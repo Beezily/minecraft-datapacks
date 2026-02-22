@@ -23,3 +23,9 @@ function sg:scripts/remove_supply_markers
 
 # Set time
 time set noon
+
+# Teleports all spectators to an alive player, then gamemode adventure all + resistance
+execute as @a[gamemode=spectator] run tp @s @r[gamemode=adventure]
+gamemode adventure @a
+effect give @a resistance infinite 4 true
+effect give @a saturation infinite 0 true

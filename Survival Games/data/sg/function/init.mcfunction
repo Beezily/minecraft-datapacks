@@ -5,7 +5,7 @@ scoreboard objectives add sg dummy
 
 # Ender Chest mechanics
 scoreboard objectives add new_chest minecraft.custom:minecraft.open_enderchest
-scoreboard objectives add open_chest minecraft.used:minecraft.chest
+scoreboard objectives add open_chest minecraft.custom:minecraft.open_chest
 
 # Teams
 team add Red
@@ -74,6 +74,9 @@ scoreboard objectives setdisplay list kills
 # Death scoreboard
 scoreboard objectives add died deathCount
 
+# Kill Reward scoreboard
+scoreboard objectives add kill_reward playerKillCount
+
 # Gamerules
 gamerule advance_time false
 gamerule mob_griefing false
@@ -97,4 +100,6 @@ function sg:scripts/export_settings
 
 # Init worldborder
 function sg:scripts/init_worldborder with storage sg:settings
+
+
 

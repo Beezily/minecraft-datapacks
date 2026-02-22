@@ -30,7 +30,7 @@ scoreboard players set @a[scores={Blue=1..}] Blue 0
 scoreboard players set @a[scores={Green=1..}] Green 0
 scoreboard players set @a[scores={Aqua=1..}] Aqua 0
 scoreboard players set @a[scores={Purple=1..}] Purple 0
-scoreboard players set @a[scores={Solo=1..}] Purple 0
+scoreboard players set @a[scores={Solo=1..}] Solo 0
 
 # Do nothing if the game isn't running
 execute unless score %game sg matches 1 run return 0
@@ -38,6 +38,14 @@ execute unless score %game sg matches 1 run return 0
 # New loot spawn mechanics
 execute as @a[scores={open_chest=1..}] at @s rotated as @s anchored eyes run function sg:scripts/find_chest
 scoreboard players set @a[scores={open_chest=1..}] open_chest 0
+# Replace loot if marker from wrong iteration, then kill (This works, but really necessary?)
+execute as @e[type=minecraft:marker,tag=sgChest] unless score @s sg = %iteration sg at @s run data modify block ~ ~ ~ Items set value []
+execute as @e[type=minecraft:marker,tag=sgChest] unless score @s sg = %iteration sg run kill @s 
+
+# Reward 3 levels and regeneration 2 for 3 seconds upon any kill
+execute as @a[scores={kill_reward=1..}] run xp add @s 3 levels
+execute as @a[scores={kill_reward=1..}] run effect give @s regeneration 3 1 false
+scoreboard players set @a[scores={kill_reward=1..}] kill_reward 0
 
 # Kill items without current iteration, then mark all items with iteration as well
 execute as @e[type=item] if score @s sg matches 0.. unless score @s sg = %iteration sg run kill @s
@@ -78,6 +86,7 @@ execute if score %game sg matches 1 if score %timer sg matches 24020
 
 # Release actions (run once when countdown hits 0)
 execute if score %game sg matches 1 if score %timer sg matches 24000 run title @a title {"text":"GO!","color":"#ff8c00","bold":true}
+execute if score %game sg matches 1 if score %timer sg matches 24000 run effect clear @a
 execute if score %game sg matches 1 if score %timer sg matches 24000 run effect give @a minecraft:absorption 30 2 true
 execute if score %game sg matches 1 if score %timer sg matches 24000 run effect give @a minecraft:weakness 10 9 true
 execute if score %game sg matches 1 if score %timer sg matches 24000 run effect give @a minecraft:instant_health 1 99 true

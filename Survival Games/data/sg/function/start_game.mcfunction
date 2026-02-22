@@ -98,3 +98,6 @@ function sg:scripts/create_supply_markers with storage sg:settings
 # Initialize the init world border if not already
 function sg:scripts/init_worldborder with storage sg:settings
 
+# Adventure mode to all AND importantly reset death so not immediate spectate
+gamemode adventure @a
+scoreboard players reset * died
