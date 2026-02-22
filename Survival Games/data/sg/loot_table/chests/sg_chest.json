@@ -229,8 +229,8 @@
       "conditions": [{ "condition": "minecraft:random_chance", "chance": 0.08 }],
       "entries": [
         { "type": "minecraft:item", "name": "minecraft:book", "weight": 35, "functions": [{ "function": "minecraft:set_enchantments", "enchantments": { "minecraft:sharpness": 1 } }] },
-        { "type": "minecraft:item", "name": "minecraft:book", "weight": 35, "functions": [{ "function": "minecraft:set_enchantments", "enchantments": { "minecraft:protection": 1 } }] },
-        { "type": "minecraft:item", "name": "minecraft:book", "weight": 30, "functions": [{ "function": "minecraft:set_enchantments", "enchantments": { "minecraft:power": 1 } }] }
+        { "type": "minecraft:item", "name": "minecraft:book", "weight": 45, "functions": [{ "function": "minecraft:set_enchantments", "enchantments": { "minecraft:protection": 1 } }] },
+        { "type": "minecraft:item", "name": "minecraft:book", "weight": 20, "functions": [{ "function": "minecraft:set_enchantments", "enchantments": { "minecraft:power": 1 } }] }
       ]
     },
 

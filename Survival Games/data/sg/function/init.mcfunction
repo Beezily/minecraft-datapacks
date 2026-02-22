@@ -28,6 +28,8 @@ team modify Purple friendlyFire false
 team modify Purple color light_purple
 
 # Constants
+scoreboard players set #5 sg 5
+scoreboard players set #10 sg 10
 scoreboard players set #1200 sg 1200
 scoreboard players set #24000 sg 24000
 scoreboard players set #12000 sg 12000
@@ -39,7 +41,7 @@ scoreboard players set %game sg 0
 scoreboard players set %timer sg 0
 scoreboard players set %tmp sg 0
 scoreboard players set %mins sg 0
-scoreboard players set %random sg 0
+scoreboard players set %enforce_players sg 1
 execute unless score %iteration sg matches 0.. run scoreboard players set %iteration sg 0
 
 # Team join scores
@@ -49,6 +51,7 @@ scoreboard objectives add Blue trigger
 scoreboard objectives add Green trigger
 scoreboard objectives add Aqua trigger
 scoreboard objectives add Purple trigger
+scoreboard objectives add Solo trigger
 
 # Bossbar
 bossbar remove sg:timer
@@ -59,9 +62,7 @@ bossbar set sg:timer value 24000
 bossbar set sg:timer players @a
 bossbar set sg:timer visible false
 
-# World border
-worldborder center 175.5 193.5
-worldborder set 588
+# World border settings
 worldborder warning distance 0
 worldborder warning time 0
 
@@ -84,3 +85,16 @@ gamerule fire_spread_radius_around_player 0
 
 # Set time
 time set noon
+
+# Run map values from world_settings
+execute unless score %custom_settings sg matches 1 run function sg:admin/world_settings
+
+# Admin trigger score
+scoreboard objectives add admin trigger
+
+# Export map values into storage
+function sg:scripts/export_settings
+
+# Init worldborder
+function sg:scripts/init_worldborder with storage sg:settings
+
