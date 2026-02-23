@@ -106,6 +106,7 @@ scoreboard players reset * kill_reward
 # Just to give people peace of mind
 effect give @a minecraft:instant_health 1 99
 effect give @a minecraft:saturation 1 99
+effect give @a minecraft:weakness 10 9 true
 
 # Set %winner to none. If %winner is not reset then they just win immediately lol
 scoreboard players set %winner sg 0

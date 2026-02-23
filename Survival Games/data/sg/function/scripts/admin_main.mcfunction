@@ -129,21 +129,21 @@ execute if score %admin sg matches 25 as @a[scores={admin=1..}] run execute stor
 execute if score %admin sg matches 25 as @a[scores={admin=1..}] run execute store result score #supply1z sg run data get entity @s Pos[2]
 execute if score %admin sg matches 25 as @a[scores={admin=1..}] at @s run fill ~1 ~-1 ~1 ~-1 ~-1 ~-1 minecraft:iron_block
 
-execute if score %admin sg matches 25 as @a[scores={admin=1..}] run tellraw @s {"bold":false,"color":"gold","text":"Please use /trigger admin on supply drop 1 (Warning: This will fill iron blocks below)"}
+execute if score %admin sg matches 25 as @a[scores={admin=1..}] run tellraw @s {"bold":false,"color":"gold","text":"Please use /trigger admin on supply drop 2 (Warning: This will fill iron blocks below)"}
 execute if score %admin sg matches 25 as @a[scores={admin=1..}] run tellraw @s {"bold":false,"color":"gold","text":"Make sure you are within half of the border range, supply drop happens after the first border shrink!"}
 execute if score %admin sg matches 26 as @a[scores={admin=1..}] run execute store result score #supply2x sg run data get entity @s Pos[0]
 execute if score %admin sg matches 26 as @a[scores={admin=1..}] run execute store result score #supply2y sg run data get entity @s Pos[1]
 execute if score %admin sg matches 26 as @a[scores={admin=1..}] run execute store result score #supply2z sg run data get entity @s Pos[2]
 execute if score %admin sg matches 26 as @a[scores={admin=1..}] at @s run fill ~1 ~-1 ~1 ~-1 ~-1 ~-1 minecraft:iron_block
 
-execute if score %admin sg matches 26 as @a[scores={admin=1..}] run tellraw @s {"bold":false,"color":"gold","text":"Please use /trigger admin on supply drop 1 (Warning: This will fill iron blocks below)"}
+execute if score %admin sg matches 26 as @a[scores={admin=1..}] run tellraw @s {"bold":false,"color":"gold","text":"Please use /trigger admin on supply drop 3 (Warning: This will fill iron blocks below)"}
 execute if score %admin sg matches 26 as @a[scores={admin=1..}] run tellraw @s {"bold":false,"color":"gold","text":"Make sure you are within half of the border range, supply drop happens after the first border shrink!"}
 execute if score %admin sg matches 27 as @a[scores={admin=1..}] run execute store result score #supply3x sg run data get entity @s Pos[0]
 execute if score %admin sg matches 27 as @a[scores={admin=1..}] run execute store result score #supply3y sg run data get entity @s Pos[1]
 execute if score %admin sg matches 27 as @a[scores={admin=1..}] run execute store result score #supply3z sg run data get entity @s Pos[2]
 execute if score %admin sg matches 27 as @a[scores={admin=1..}] at @s run fill ~1 ~-1 ~1 ~-1 ~-1 ~-1 minecraft:iron_block
 
-execute if score %admin sg matches 27 as @a[scores={admin=1..}] run tellraw @s {"bold":false,"color":"gold","text":"Please use /trigger admin on supply drop 1 (Warning: This will fill iron blocks below)"}
+execute if score %admin sg matches 27 as @a[scores={admin=1..}] run tellraw @s {"bold":false,"color":"gold","text":"Please use /trigger admin on supply drop 4 (Warning: This will fill iron blocks below)"}
 execute if score %admin sg matches 27 as @a[scores={admin=1..}] run tellraw @s {"bold":false,"color":"gold","text":"Make sure you are within half of the border range, supply drop happens after the first border shrink!"}
 execute if score %admin sg matches 28 as @a[scores={admin=1..}] run execute store result score #supply4x sg run data get entity @s Pos[0]
 execute if score %admin sg matches 28 as @a[scores={admin=1..}] run execute store result score #supply4y sg run data get entity @s Pos[1]
@@ -167,5 +167,6 @@ execute as @a[scores={admin=1..}] run scoreboard players enable @s admin
 execute as @a[scores={admin=1..}] run scoreboard players set @s admin 0
 
 # Disable admin and reset %admin when everything is done. 
-execute if score %admin sg matches 31 run scoreboard players set %admin sg 0
-execute if score %admin sg matches 31 as @a[scores={admin=1..}] run trigger admin set 0
+execute if score %admin sg matches 32 as @a[scores={admin=1..}] run trigger admin set 0
+execute if score %admin sg matches 32 run function sg:scripts/export_settings
+execute if score %admin sg matches 32 run scoreboard players set %admin sg 0

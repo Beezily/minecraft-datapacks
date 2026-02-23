@@ -5,7 +5,7 @@
 #scoreboard players set @a[scores={new_chest=1..}] new_chest 0
 
 # Admin mode loop
-execute if score %admin sg matches 1..31 run function sg:scripts/admin_main
+execute if score %admin sg matches 1..32 run function sg:scripts/admin_main
 
 # Allow team joins only if game isn't running
 execute unless score %game sg matches 1 as @a[scores={Red=1..}] run team join Red @s
@@ -24,13 +24,13 @@ execute unless score %game sg matches 1 as @a unless score @s Aqua matches 0 run
 execute unless score %game sg matches 1 as @a unless score @s Purple matches 0 run scoreboard players enable @s Purple
 execute unless score %game sg matches 1 as @a unless score @s Solo matches 0 run scoreboard players enable @s Solo
 
-scoreboard players set @a[scores={Red=1..}] Red 0
-scoreboard players set @a[scores={Yellow=1..}] Yellow 0
-scoreboard players set @a[scores={Blue=1..}] Blue 0
-scoreboard players set @a[scores={Green=1..}] Green 0
-scoreboard players set @a[scores={Aqua=1..}] Aqua 0
-scoreboard players set @a[scores={Purple=1..}] Purple 0
-scoreboard players set @a[scores={Solo=1..}] Solo 0
+execute unless score %game sg matches 1 run scoreboard players set @a[scores={Red=1..}] Red 0
+execute unless score %game sg matches 1 run scoreboard players set @a[scores={Yellow=1..}] Yellow 0
+execute unless score %game sg matches 1 run scoreboard players set @a[scores={Blue=1..}] Blue 0
+execute unless score %game sg matches 1 run scoreboard players set @a[scores={Green=1..}] Green 0
+execute unless score %game sg matches 1 run scoreboard players set @a[scores={Aqua=1..}] Aqua 0
+execute unless score %game sg matches 1 run scoreboard players set @a[scores={Purple=1..}] Purple 0
+execute unless score %game sg matches 1 run scoreboard players set @a[scores={Solo=1..}] Solo 0
 
 # Do nothing if the game isn't running
 execute unless score %game sg matches 1 run return 0
@@ -94,7 +94,7 @@ execute if score %game sg matches 1 if score %timer sg matches 24040 run execute
 execute if score %game sg matches 1 if score %timer sg matches 24020 run execute as @a at @s run playsound minecraft:block.note_block.pling player @s ~ ~ ~ 1 1
 
 # Force teleport during countdown
-execute if score %game sg matches 1 if score %timer sg matches 24000..24100 run function sg:scripts/start_tp
+execute if score %game sg matches 1 if score %timer sg matches 24000..24100 run function sg:scripts/start_tp with storage sg:settings
 
 # Release actions (run once when countdown hits 0)
 execute if score %game sg matches 1 if score %timer sg matches 24000 run title @a title {"text":"GO!","color":"#ff8c00","bold":true}
