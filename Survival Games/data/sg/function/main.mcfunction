@@ -189,6 +189,17 @@ execute as @a[gamemode=spectator,team=Aqua] at @s unless entity @a[team=Aqua,gam
 execute as @a[gamemode=spectator,team=Purple] at @s unless entity @a[team=Purple,gamemode=!spectator,distance=..24] if entity @a[team=Purple,gamemode=!spectator] run title @s actionbar {"text":"Stay close to a teammate!","color":"red"}
 execute as @a[gamemode=spectator,team=Purple] at @s unless entity @a[team=Purple,gamemode=!spectator,distance=..24] if entity @a[team=Purple,gamemode=!spectator] run tp @s @r[team=Purple,gamemode=!spectator]
 
+# Detect when the game should have ended, then set %timer to negative
+execute if score %game sg matches 1 if score %winner sg matches 0 if entity @a[gamemode=adventure] as @a[gamemode=adventure,limit=1,sort=arbitrary] run function sg:end/check_winner
+
+# Loop announce_end_main while counting down
+execute if score %game sg matches 1 unless score %winner sg matches 0 run function sg:end/fireworks_tick
+
+# When end screen has finished playing for 10 seconds end the game
+execute if score %game sg matches 1 if score %timer sg matches ..-200 run function sg:end/end_game
+
 # Game ticking
 # Decrement main timer down to 0 (stops at 0)
 execute if score %game sg matches 1 if score %timer sg matches 1.. run scoreboard players remove %timer sg 1
+# Decrement past 0 when is negative
+execute if score %game sg matches 1 if score %timer sg matches ..-1 run scoreboard players remove %timer sg 1

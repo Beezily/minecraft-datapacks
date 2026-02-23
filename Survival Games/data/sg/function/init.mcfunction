@@ -28,6 +28,7 @@ team modify Purple friendlyFire false
 team modify Purple color light_purple
 
 # Constants
+scoreboard players set #1 sg 1
 scoreboard players set #2 sg 2
 scoreboard players set #5 sg 5
 scoreboard players set #10 sg 10
