@@ -1,6 +1,6 @@
 # Loops when admin is trying to set custom world settings
-tellraw @a[scores={admin=1..}] {"bold":false,"color":"white","text":"Success!"}
-tellraw @a[scores={admin=1..}] {"bold":false,"color":"white","text":""}
+execute unless score %admin sg matches 0 run tellraw @a[scores={admin=1..}] {"bold":false,"color":"white","text":"Success!"}
+execute unless score %admin sg matches 0 run tellraw @a[scores={admin=1..}] {"bold":false,"color":"white","text":""}
 
 execute if score %admin sg matches 0 as @a[scores={admin=1..}] run tellraw @s {"bold":false,"color":"gold","text":"Please use /trigger admin on player spawn 1 (Red 1)"}
 execute if score %admin sg matches 1 as @a[scores={admin=1..}] run execute store result score #red1x sg run data get entity @s Pos[0]

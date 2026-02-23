@@ -14,6 +14,7 @@ scoreboard players operation @a sg = %iteration sg
 clear @a
 effect clear @a
 xp set @a 0 levels
+xp set @a 0 points
 
 # Reset worldborder to full map size
 worldborder center 175.5 193.5
@@ -66,10 +67,10 @@ scoreboard players set %next Aqua 1
 scoreboard players set %next Purple 1
 
 # Assigning unique spawn IDs to each team player
-execute as @a unless entity @s[team=] run function sg:scripts/gen_team_id
+execute as @a unless entity @s[team=] run function sg:team_id/gen_team_id
 
 # Now do those without teams
-execute as @a if entity @s[team=] run function sg:scripts/gen_solo_id
+execute as @a if entity @s[team=] run function sg:team_id/gen_solo_id
 
 # Add players needed to be part of their team back to their team
 execute as @a[tag=toJoinRed] run team join Red
