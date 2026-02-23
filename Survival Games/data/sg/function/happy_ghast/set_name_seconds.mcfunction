@@ -1,0 +1,1 @@
+$data modify entity @s CustomName set value {"text":"⏳ Time Left: $(v)s","color":"white","bold":true}

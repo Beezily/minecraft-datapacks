@@ -8,7 +8,7 @@
           "type": "minecraft:item",
           "name": "minecraft:wolf_spawn_egg",
           "functions": [
-            { "function": "minecraft:set_count", "count": 2 },
+            { "function": "minecraft:set_count", "count": 3 },
             { "function": "minecraft:set_components", "components": { "minecraft:can_place_on": { "blocks": "minecraft:chest" } } },
             { "function": "minecraft:set_name", "name": { "text": "Wolf Egg" }, "target": "item_name" }
           ]
@@ -24,7 +24,7 @@
     {
       "rolls": 1,
       "entries": [
-        { "type": "minecraft:item", "name": "minecraft:wolf_armor", "functions": [{ "function": "minecraft:set_count", "count": 2 }] }
+        { "type": "minecraft:item", "name": "minecraft:wolf_armor", "functions": [{ "function": "minecraft:set_count", "count": 3 }] }
       ]
     }
   ]

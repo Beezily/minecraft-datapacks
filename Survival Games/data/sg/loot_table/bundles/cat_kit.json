@@ -1,0 +1,41 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:cat_spawn_egg",
+          "functions": [
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:entity_data": {
+                  "id": "minecraft:cat",
+                  "Invulnerable": true
+                },
+                "minecraft:can_place_on": { "blocks": "minecraft:chest" }
+              }
+            },
+            {
+              "function": "minecraft:set_name",
+              "name": { "text": "Cat Egg" },
+              "target": "item_name"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:cod",
+          "functions": [{ "function": "minecraft:set_count", "count": 10 }]
+        }
+      ]
+    }
+  ]
+}

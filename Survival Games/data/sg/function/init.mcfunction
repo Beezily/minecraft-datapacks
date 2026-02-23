@@ -28,13 +28,16 @@ team modify Purple friendlyFire false
 team modify Purple color light_purple
 
 # Constants
+scoreboard players set #2 sg 2
 scoreboard players set #5 sg 5
 scoreboard players set #10 sg 10
+scoreboard players set #20 sg 20
+scoreboard players set #27 sg 27
 scoreboard players set #1200 sg 1200
-scoreboard players set #24000 sg 24000
-scoreboard players set #12000 sg 12000
-scoreboard players set #9600 sg 9600
 scoreboard players set #6000 sg 6000
+scoreboard players set #9600 sg 9600
+scoreboard players set #12000 sg 12000
+scoreboard players set #24000 sg 24000
 
 # Variables
 scoreboard players set %game sg 0
@@ -77,10 +80,21 @@ scoreboard objectives add died deathCount
 # Kill Reward scoreboard
 scoreboard objectives add kill_reward playerKillCount
 
+# Fix anvils score
+scoreboard objectives add anvil_fix minecraft.custom:minecraft.interact_with_anvil
+
+# Happy ghast usage
+scoreboard objectives add spawned_happy_ghast minecraft.used:minecraft.happy_ghast_spawn_egg
+
+# Stashable score
+scoreboard objectives add stash dummy
+
 # Gamerules
 gamerule advance_time false
+gamerule advance_weather false
 gamerule mob_griefing false
 gamerule spawn_mobs false
+gamerule mob_drops false
 gamerule block_drops false
 gamerule locator_bar false
 gamerule immediate_respawn true

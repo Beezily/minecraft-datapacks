@@ -40,25 +40,37 @@ execute as @a[scores={open_chest=1..}] at @s rotated as @s anchored eyes run fun
 scoreboard players set @a[scores={open_chest=1..}] open_chest 0
 # Replace loot if marker from wrong iteration, then kill (This works, but really necessary?)
 execute as @e[type=minecraft:marker,tag=sgChest] unless score @s sg = %iteration sg at @s run data modify block ~ ~ ~ Items set value []
-execute as @e[type=minecraft:marker,tag=sgChest] unless score @s sg = %iteration sg run kill @s 
+execute as @e[type=minecraft:marker,tag=sgChest] unless score @s sg = %iteration sg run kill @s
 
-# Reward 3 levels and regeneration 2 for 3 seconds upon any kill
+# Stashable replace mechanics (the function raycast handled with advancements)
+execute as @e[type=minecraft:marker,tag=sgStash] unless score @s sg = %iteration sg at @s run data modify block ~ ~ ~ Items set value []
+execute as @e[type=minecraft:marker,tag=sgStash] unless score @s sg = %iteration sg run kill @s
+
+# Fix all anvils that break
+execute as @a[scores={anvil_fix=1..}] at @s rotated as @s anchored eyes run function sg:scripts/fix_anvil
+scoreboard players set @a[scores={anvil_fix=1..}] anvil_fix 0
+
+
+
+# Reward 3 levels and regeneration 2 for 4 seconds upon any kill
 execute as @a[scores={kill_reward=1..}] run xp add @s 3 levels
-execute as @a[scores={kill_reward=1..}] run effect give @s regeneration 3 1 false
+execute as @a[scores={kill_reward=1..}] run effect give @s regeneration 4 1 false
 scoreboard players set @a[scores={kill_reward=1..}] kill_reward 0
 
-# Kill items without current iteration, then mark all items with iteration as well
-execute as @e[type=item] if score @s sg matches 0.. unless score @s sg = %iteration sg run kill @s
-execute as @e[type=item] unless score @s sg matches 0.. run scoreboard players operation @s sg = %iteration sg
-# Same with dogs
-execute as @e[type=wolf] if score @s sg matches 0.. unless score @s sg = %iteration sg run kill @s
-execute as @e[type=wolf] unless score @s sg matches 0.. run scoreboard players operation @s sg = %iteration sg
-# Same with boats
-execute as @e[type=#minecraft:boat] if score @s sg matches 0.. unless score @s sg = %iteration sg run kill @s
-execute as @e[type=#minecraft:boat] unless score @s sg matches 0.. run scoreboard players operation @s sg = %iteration sg
+# Kill all replaceable entities (like dogs, items, boats, etc) without current iteration, then mark all of them with iteration as well if new
+execute as @e[type=#sg:entity_replace] if score @s sg matches 0.. unless score @s sg = %iteration sg run kill @s
+execute as @e[type=#sg:entity_replace] unless score @s sg matches 0.. run scoreboard players operation @s sg = %iteration sg
 # Same with players if %enforce_players
 execute if score %enforce_players sg matches 1 as @a[gamemode=adventure] unless score @s sg = %iteration sg run team leave @s
 execute if score %enforce_players sg matches 1 as @a[gamemode=adventure] unless score @s sg = %iteration sg run gamemode spectator
+
+# Tellraw when spawn ghast
+execute as @a[scores={spawned_happy_ghast=1..}] run tellraw @s {"color":"gray","text":"You have spawned a happy ghast for 5 minutes!"}
+scoreboard players set @a[scores={spawned_happy_ghast=1..}] spawned_happy_ghast 0
+# Happy ghast timer and name
+execute as @e[type=minecraft:happy_ghast] run scoreboard players remove @s spawned_happy_ghast 1
+execute as @e[type=minecraft:happy_ghast,scores={spawned_happy_ghast=..-6000}] run kill @s
+execute as @e[type=minecraft:happy_ghast] run function sg:happy_ghast/update_name
 
 # Death to spectator mechanics
 gamemode spectator @a[scores={died=1..}]
@@ -82,7 +94,7 @@ execute if score %game sg matches 1 if score %timer sg matches 24040 run execute
 execute if score %game sg matches 1 if score %timer sg matches 24020 run execute as @a at @s run playsound minecraft:block.note_block.pling player @s ~ ~ ~ 1 1
 
 # Force teleport during countdown
-execute if score %game sg matches 1 if score %timer sg matches 24020
+execute if score %game sg matches 1 if score %timer sg matches 24000..24100 run function sg:scripts/start_tp
 
 # Release actions (run once when countdown hits 0)
 execute if score %game sg matches 1 if score %timer sg matches 24000 run title @a title {"text":"GO!","color":"#ff8c00","bold":true}
@@ -92,7 +104,6 @@ execute if score %game sg matches 1 if score %timer sg matches 24000 run effect 
 execute if score %game sg matches 1 if score %timer sg matches 24000 run effect give @a minecraft:instant_health 1 99 true
 execute if score %game sg matches 1 if score %timer sg matches 24000 run effect give @a minecraft:saturation 1 99 true
 execute if score %game sg matches 1 if score %timer sg matches 24000 as @a run attribute @s minecraft:jump_strength base set 0.42
-execute if score %game sg matches 1 if score %timer sg matches 24000 as @a run attribute @s minecraft:gravity base set 0.08
 execute if score %game sg matches 1 if score %timer sg matches 24000 run execute as @a at @s run playsound minecraft:entity.ender_dragon.growl master @s ~ ~ ~ 1 1 1
 
 # Bossbar text during countdown
@@ -105,7 +116,8 @@ execute if score %game sg matches 1 if score %timer sg matches 12000 run execute
 # At 10 minutes remaining (12000 ticks), shrink to half (592 -> 296) over 2 minutes (120s)
 execute if score %game sg matches 1 if score %timer sg matches 12000 run function sg:scripts/shrink_worldborder_half with storage sg:settings
 
-# Supply drop happens at 8 minutes left and drops at 6 minutes left
+# Supply drop happens at 8 (9600 ticks) minutes left and drops at 6 (7200 ticks) minutes left
+execute if score %game sg matches 1 if score %timer sg matches 7200..9600 as @e[type=marker,tag=sgSupply] at @s run function sg:scripts/supply_loop
 
 # Final shrink start (at 5:00 remaining)
 execute if score %game sg matches 1 if score %timer sg matches 6000 run execute as @a at @s run playsound minecraft:entity.ender_dragon.growl master @s ~ ~ ~ 1 1 1
@@ -113,10 +125,10 @@ execute if score %game sg matches 1 if score %timer sg matches 6000 run execute 
 execute if score %game sg matches 1 if score %timer sg matches 6000 run function sg:scripts/shrink_worldborder_deathmatch with storage sg:settings
 
 
-# PVP enabled text
+# PVP enabled text (clears weakness)
 execute if score %game sg matches 1 if score %timer sg matches 23800 run tellraw @a {"text":"PvP is now enabled!","color":"red","bold":true}
 execute if score %game sg matches 1 if score %timer sg matches 23800 as @a at @s run playsound minecraft:entity.ravager.attack master @s ~ ~ ~ 1 1 1
-
+execute if score %game sg matches 1 if score %timer sg matches 23800 run effect clear @a minecraft:weakness
 
 # Bossbar phase text (bold orange)
 # Grace period text (first 10 seconds after release)

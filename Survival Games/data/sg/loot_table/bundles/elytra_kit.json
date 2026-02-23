@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    { "rolls": 1, "entries": [{ "type": "minecraft:item", "name": "minecraft:elytra" }] },
+    { "rolls": 1, "entries": [{ "type": "minecraft:item", "name": "minecraft:wind_charge", "functions": [{ "function": "minecraft:set_count", "count": 24 }] }] }
+  ]
+}

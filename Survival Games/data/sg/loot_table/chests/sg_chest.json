@@ -119,7 +119,7 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:suspicious_stew",
-          "weight": 15,
+          "weight": 10,
           "functions": [
             {
               "function": "minecraft:set_stew_effect",
@@ -169,7 +169,7 @@
         { "type": "minecraft:item", "name": "minecraft:bow", "weight": 25 },
         { "type": "minecraft:item", "name": "minecraft:crossbow", "weight": 15 },
         { "type": "minecraft:item", "name": "minecraft:trident", "weight": 10 },
-        { "type": "minecraft:item", "name": "minecraft:breeze_rod", "weight": 15, "functions": [{ "function": "minecraft:set_count", "count": 2 }] },
+        { "type": "minecraft:item", "name": "minecraft:breeze_rod", "weight": 20, "functions": [{ "function": "minecraft:set_count", "count": 2 }] },
         { "type": "minecraft:item", "name": "minecraft:arrow", "weight": 35, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 5, "max": 10 } }] }
       ]
     },
@@ -253,18 +253,18 @@
         },
 
         { "type": "minecraft:item", "name": "minecraft:netherite_sword", "weight": 20 },
-        { "type": "minecraft:item", "name": "minecraft:ender_pearl", "weight": 45, "functions": [{ "function": "minecraft:set_count", "count": 4 }] }
+        { "type": "minecraft:item", "name": "minecraft:ender_pearl", "weight": 45, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 3, "max": 6 } }] }
       ]
     },
 
     {
       "rolls": 1,
-      "conditions": [{ "condition": "minecraft:random_chance", "chance": 0.15 }],
+      "conditions": [{ "condition": "minecraft:random_chance", "chance": 0.2 }],
       "entries": [
         {
           "type": "minecraft:item", 
           "name": "minecraft:goat_horn", 
-          "weight": 25, 
+          "weight": 35, 
           "functions": [{ "function": "minecraft:set_instrument", "options": "#minecraft:goat_horns" }] 
         },
 
@@ -272,6 +272,56 @@
           "type": "minecraft:loot_table",
           "value": "sg:bundles/wolf_kit",
           "weight": 10
+        },
+
+        {
+          "type": "minecraft:loot_table",
+          "value": "sg:bundles/cat_kit",
+          "weight": 20
+        },
+
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:happy_ghast_spawn_egg",
+          "weight": 20,
+          "functions": [
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:entity_data": {
+                  "id": "minecraft:happy_ghast",
+                  "Age": 0,
+                  "CustomNameVisible": true,
+                  "Glowing": true,
+                  "equipment": {
+                    "body": { "id": "minecraft:white_harness", "count": 1 }
+                  }
+                },
+                "minecraft:can_place_on": { "blocks": "minecraft:chest" }
+              }
+            }
+          ]
+        },
+
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:horse_spawn_egg",
+          "weight": 10,
+          "functions": [
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:entity_data": {
+                  "id": "minecraft:horse",
+                  "Tame": true,
+                  "equipment": {
+                    "saddle": { "id": "minecraft:saddle", "count": 1 }
+                  }
+                },
+                "minecraft:can_place_on": { "blocks": "minecraft:chest" }
+              }
+            }
+          ]
         },
 
         { "type": "minecraft:item", "name": "minecraft:spyglass", "weight": 60 }

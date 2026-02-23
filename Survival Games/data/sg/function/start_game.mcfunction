@@ -13,6 +13,7 @@ scoreboard players operation @a sg = %iteration sg
 # Clear everyone
 clear @a
 effect clear @a
+xp set @a 0 levels
 
 # Reset worldborder to full map size
 worldborder center 175.5 193.5
@@ -35,7 +36,6 @@ effect give @a minecraft:slowness 6 255 true
 effect give @a minecraft:resistance 6 255 true
 # No jump
 execute as @a run attribute @s minecraft:jump_strength base set 0
-execute as @a run attribute @s minecraft:gravity base set 100
 
 # Disable all triggers to prevent team switches
 execute as @a run trigger Red set 0
@@ -69,7 +69,7 @@ scoreboard players set %next Purple 1
 execute as @a unless entity @s[team=] run function sg:scripts/gen_team_id
 
 # Now do those without teams
-execute as @a unless entity @s[team=] run function sg:scripts/gen_solo_id
+execute as @a if entity @s[team=] run function sg:scripts/gen_solo_id
 
 # Add players needed to be part of their team back to their team
 execute as @a[tag=toJoinRed] run team join Red
@@ -101,3 +101,9 @@ function sg:scripts/init_worldborder with storage sg:settings
 # Adventure mode to all AND importantly reset death so not immediate spectate
 gamemode adventure @a
 scoreboard players reset * died
+scoreboard players reset * kill_reward
+
+# Just to give people peace of mind
+effect give @a minecraft:instant_health 1 99
+effect give @a minecraft:saturation 1 99
+
