@@ -32,9 +32,6 @@ execute unless score %game sg matches 1 run scoreboard players set @a[scores={Aq
 execute unless score %game sg matches 1 run scoreboard players set @a[scores={Purple=1..}] Purple 0
 execute unless score %game sg matches 1 run scoreboard players set @a[scores={Solo=1..}] Solo 0
 
-# Do nothing if the game isn't running
-execute unless score %game sg matches 1 run return 0
-
 # New loot spawn mechanics
 execute as @a[scores={open_chest=1..}] at @s rotated as @s anchored eyes run function sg:scripts/find_chest
 scoreboard players set @a[scores={open_chest=1..}] open_chest 0
@@ -50,17 +47,19 @@ execute as @e[type=minecraft:marker,tag=sgStash] unless score @s sg = %iteration
 execute as @a[scores={anvil_fix=1..}] at @s rotated as @s anchored eyes run function sg:scripts/fix_anvil
 scoreboard players set @a[scores={anvil_fix=1..}] anvil_fix 0
 
+# Kill all replaceable entities (like dogs, items, boats, etc) without current iteration, then mark all of them with iteration as well if new
+execute as @e[type=#sg:entity_replace] if score @s sg matches 0.. unless score @s sg = %iteration sg run kill @s
+execute as @e[type=#sg:entity_replace] unless score @s sg matches 0.. run scoreboard players operation @s sg = %iteration sg
 
+# Do nothing if the game isn't running (reduces lag, probably not necessary)
+execute unless score %game sg matches 1 run return 0
 
 # Reward 3 levels and regeneration 2 for 4 seconds upon any kill
 execute as @a[scores={kill_reward=1..}] run xp add @s 3 levels
 execute as @a[scores={kill_reward=1..}] run effect give @s regeneration 4 1 false
 scoreboard players set @a[scores={kill_reward=1..}] kill_reward 0
 
-# Kill all replaceable entities (like dogs, items, boats, etc) without current iteration, then mark all of them with iteration as well if new
-execute as @e[type=#sg:entity_replace] if score @s sg matches 0.. unless score @s sg = %iteration sg run kill @s
-execute as @e[type=#sg:entity_replace] unless score @s sg matches 0.. run scoreboard players operation @s sg = %iteration sg
-# Same with players if %enforce_players
+# If %enforce_players, remove players without current iteration
 execute if score %enforce_players sg matches 1 as @a[gamemode=adventure] unless score @s sg = %iteration sg run team leave @s
 execute if score %enforce_players sg matches 1 as @a[gamemode=adventure] unless score @s sg = %iteration sg run gamemode spectator
 

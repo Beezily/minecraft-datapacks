@@ -26,6 +26,9 @@ effect clear @a
 effect give @a resistance infinite 4 true
 execute as @a run attribute @s minecraft:jump_strength base set 0.42
 
+# Playsound for all alive players
+execute as @a[gamemode=adventure] at @s run playsound ui.toast.challenge_complete master @s ~ ~ ~ 1 1 1
+
 # ANNOUNCE
 execute if score %winner sg matches 1 run title @a title {"text":"Red wins!","color":"red","bold":true}
 execute if score %winner sg matches 2 run title @a title {"text":"Yellow wins!","color":"yellow","bold":true}
