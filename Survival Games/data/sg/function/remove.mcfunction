@@ -11,7 +11,7 @@ scoreboard objectives setdisplay sidebar
 
 # Scoreboards
 scoreboard objectives remove sg
-scoreboard objectives remove new_chest
+scoreboard objectives remove open_ender
 scoreboard objectives remove open_chest
 scoreboard objectives remove kills
 scoreboard objectives remove died

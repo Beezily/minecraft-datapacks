@@ -1,0 +1,224 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": 1,
+      "conditions": [{ "condition": "minecraft:random_chance", "chance": 0.5 }],
+      "entries": [
+        { "type": "minecraft:item", "name": "minecraft:experience_bottle", "weight": 1, "functions": [{ "function": "minecraft:set_count", "count": 4 }] },
+        { "type": "minecraft:item", "name": "minecraft:experience_bottle", "weight": 1, "functions": [{ "function": "minecraft:set_count", "count": 6 }] },
+        { "type": "minecraft:item", "name": "minecraft:experience_bottle", "weight": 1, "functions": [{ "function": "minecraft:set_count", "count": 8 }] }
+      ]
+    },
+
+    {
+      "rolls": 1,
+      "conditions": [{ "condition": "minecraft:random_chance", "chance": 1.0 }],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:gold_ingot",
+          "weight": 20,
+          "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 0, "max": 5 } }]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:iron_ingot",
+          "weight": 20,
+          "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1, "max": 3 } }]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diamond",
+          "weight": 10,
+          "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1, "max": 2 } }]
+        }
+      ]
+    },
+
+    {
+      "rolls": 2,
+      "entries": [
+        { "type": "minecraft:item", "name": "minecraft:cooked_beef", "weight": 45, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 4, "max": 7 } }] },
+        { "type": "minecraft:item", "name": "minecraft:cooked_porkchop", "weight": 45, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 4, "max": 7 } }] },
+        { "type": "minecraft:item", "name": "minecraft:apple", "weight": 40, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 2, "max": 4 } }] },
+        { "type": "minecraft:item", "name": "minecraft:golden_apple", "weight": 20 },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:suspicious_stew",
+          "weight": 10,
+          "functions": [
+            {
+              "function": "minecraft:set_stew_effect",
+              "effects": [{ "type": "minecraft:saturation", "duration": 7 }]
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "rolls": 1,
+      "conditions": [{ "condition": "minecraft:random_chance", "chance": 0.35 }],
+      "entries": [
+        { "type": "minecraft:item", "name": "minecraft:stone_sword", "weight": 270 },
+        { "type": "minecraft:item", "name": "minecraft:stone_axe", "weight": 240 },
+        { "type": "minecraft:item", "name": "minecraft:stone_spear", "weight": 90 },
+
+        { "type": "minecraft:item", "name": "minecraft:copper_sword", "weight": 180 },
+        { "type": "minecraft:item", "name": "minecraft:copper_axe", "weight": 160 },
+        { "type": "minecraft:item", "name": "minecraft:copper_spear", "weight": 60 },
+
+        { "type": "minecraft:item", "name": "minecraft:iron_sword", "weight": 245 },
+        { "type": "minecraft:item", "name": "minecraft:iron_axe", "weight": 240 },
+        { "type": "minecraft:item", "name": "minecraft:iron_spear", "weight": 80 }
+      ]
+    },
+
+    {
+      "rolls": 1,
+      "conditions": [{ "condition": "minecraft:random_chance", "chance": 0.5 }],
+      "entries": [
+        { "type": "minecraft:item", "name": "minecraft:bow", "weight": 15 },
+        { "type": "minecraft:item", "name": "minecraft:crossbow", "weight": 25 },
+        { "type": "minecraft:item", "name": "minecraft:trident", "weight": 15 },
+        { "type": "minecraft:item", "name": "minecraft:breeze_rod", "weight": 50, "functions": [{ "function": "minecraft:set_count", "count": 4 }] },
+        { "type": "minecraft:item", "name": "minecraft:arrow", "weight": 35, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 5, "max": 10 } }] }
+      ]
+    },
+
+    {
+      "rolls": 1,
+      "conditions": [{ "condition": "minecraft:random_chance", "chance": 0.35 }],
+      "entries": [
+        { "type": "minecraft:item", "name": "minecraft:copper_helmet", "weight": 50 },
+        { "type": "minecraft:item", "name": "minecraft:chainmail_helmet", "weight": 30 },
+        { "type": "minecraft:item", "name": "minecraft:iron_helmet", "weight": 50 },
+
+        { "type": "minecraft:item", "name": "minecraft:copper_chestplate", "weight": 50 },
+        { "type": "minecraft:item", "name": "minecraft:chainmail_chestplate", "weight": 30 },
+        { "type": "minecraft:item", "name": "minecraft:iron_chestplate", "weight": 50 },
+
+        { "type": "minecraft:item", "name": "minecraft:copper_leggings", "weight": 50 },
+        { "type": "minecraft:item", "name": "minecraft:chainmail_leggings", "weight": 30 },
+        { "type": "minecraft:item", "name": "minecraft:iron_leggings", "weight": 50 },
+
+        { "type": "minecraft:item", "name": "minecraft:copper_boots", "weight": 50 },
+        { "type": "minecraft:item", "name": "minecraft:chainmail_boots", "weight": 30 },
+        { "type": "minecraft:item", "name": "minecraft:iron_boots", "weight": 50 }
+      ]
+    },
+
+    { "rolls": 1, "conditions": [{ "condition": "minecraft:random_chance", "chance": 0.05 }], "entries": [{ "type": "minecraft:item", "name": "minecraft:totem_of_undying" }] },
+    {
+      "rolls": 1,
+      "conditions": [{ "condition": "minecraft:random_chance", "chance": 0.1 }],
+      "entries": [
+        { "type": "minecraft:item", "name": "minecraft:splash_potion", "functions": [{ "function": "minecraft:set_potion", "id": "minecraft:healing" }] }
+      ]
+    },
+
+    {
+      "rolls": 1,
+      "conditions": [{ "condition": "minecraft:random_chance", "chance": 0.12 }],
+      "entries": [
+        { "type": "minecraft:item", "name": "minecraft:book", "weight": 35, "functions": [{ "function": "minecraft:set_enchantments", "enchantments": { "minecraft:sharpness": 1 } }] },
+        { "type": "minecraft:item", "name": "minecraft:book", "weight": 45, "functions": [{ "function": "minecraft:set_enchantments", "enchantments": { "minecraft:protection": 1 } }] },
+        { "type": "minecraft:item", "name": "minecraft:book", "weight": 20, "functions": [{ "function": "minecraft:set_enchantments", "enchantments": { "minecraft:power": 1 } }] }
+      ]
+    },
+
+    {
+      "rolls": 1,
+      "conditions": [{ "condition": "minecraft:random_chance", "chance": 0.05 }],
+      "entries": [
+        { "type": "minecraft:item", "name": "minecraft:elytra", "weight": 25 },
+
+        {
+          "type": "minecraft:loot_table",
+          "value": "sg:bundles/mace_kit",
+          "weight": 10
+        },
+
+        {
+          "type": "minecraft:loot_table",
+          "value": "sg:bundles/mega_wolf_kit",
+          "weight": 10
+        },
+
+        { "type": "minecraft:item", "name": "minecraft:netherite_sword", "weight": 20 },
+        { "type": "minecraft:item", "name": "minecraft:ender_pearl", "weight": 45, "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 3, "max": 6 } }] }
+      ]
+    },
+
+    {
+      "rolls": 1,
+      "conditions": [{ "condition": "minecraft:random_chance", "chance": 0.2 }],
+      "entries": [
+        {
+          "type": "minecraft:item", 
+          "name": "minecraft:goat_horn", 
+          "weight": 15, 
+          "functions": [{ "function": "minecraft:set_instrument", "options": "#minecraft:goat_horns" }] 
+        },
+
+        {
+          "type": "minecraft:loot_table",
+          "value": "sg:bundles/wolf_kit",
+          "weight": 20
+        },
+
+        {
+          "type": "minecraft:loot_table",
+          "value": "sg:bundles/cat_kit",
+          "weight": 20
+        },
+
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:happy_ghast_spawn_egg",
+          "weight": 30,
+          "functions": [
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:entity_data": {
+                  "id": "minecraft:happy_ghast",
+                  "Age": 0,
+                  "CustomNameVisible": true,
+                  "Glowing": true,
+                  "equipment": {
+                    "body": { "id": "minecraft:white_harness", "count": 1 }
+                  }
+                },
+                "minecraft:can_place_on": { "blocks": "minecraft:chest" }
+              }
+            }
+          ]
+        },
+
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:horse_spawn_egg",
+          "weight": 15,
+          "functions": [
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:entity_data": {
+                  "id": "minecraft:horse",
+                  "Tame": true,
+                  "equipment": {
+                    "saddle": { "id": "minecraft:saddle", "count": 1 }
+                  }
+                },
+                "minecraft:can_place_on": { "blocks": "minecraft:chest" }
+              }
+            }
+          ]
+        }
+        
+      ]
+    }
+  ]
+}

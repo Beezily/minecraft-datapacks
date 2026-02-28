@@ -4,7 +4,7 @@ tellraw @a [{"text":"reload - "},{"text":"Survival Games","color":"light_purple"
 scoreboard objectives add sg dummy
 
 # Ender Chest mechanics
-scoreboard objectives add new_chest minecraft.custom:minecraft.open_enderchest
+scoreboard objectives add open_ender minecraft.custom:minecraft.open_enderchest
 scoreboard objectives add open_chest minecraft.custom:minecraft.open_chest
 
 # Teams
@@ -45,7 +45,8 @@ scoreboard players set %game sg 0
 scoreboard players set %timer sg 0
 scoreboard players set %tmp sg 0
 scoreboard players set %mins sg 0
-scoreboard players set %enforce_players sg 1
+execute unless score %ender_loot sg matches 0.. run scoreboard players set %ender_loot sg 1
+execute unless score %enforce_players sg matches 0.. run scoreboard players set %enforce_players sg 1
 execute unless score %iteration sg matches 0.. run scoreboard players set %iteration sg 0
 
 # Team join scores

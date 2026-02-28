@@ -1,9 +1,5 @@
 ## Survival Games - By Beezily
 
-# (OLD) Ender chest loot mechs
-#execute as @a[scores={new_chest=1..}] at @s rotated as @s anchored eyes run function sg:scripts/find_ender
-#scoreboard players set @a[scores={new_chest=1..}] new_chest 0
-
 # Admin mode loop
 execute if score %admin sg matches 1..32 run function sg:scripts/admin_main
 
@@ -35,9 +31,15 @@ execute unless score %game sg matches 1 run scoreboard players set @a[scores={So
 # New loot spawn mechanics
 execute as @a[scores={open_chest=1..}] at @s rotated as @s anchored eyes run function sg:scripts/find_chest
 scoreboard players set @a[scores={open_chest=1..}] open_chest 0
-# Replace loot if marker from wrong iteration, then kill (This works, but really necessary?)
+# Ender chest loot mechs
+execute as @a[scores={open_ender=1..}] at @s rotated as @s anchored eyes run function sg:scripts/find_ender
+scoreboard players set @a[scores={open_ender=1..}] open_ender 0
+# Replace loot if marker from wrong iteration, then kill
 execute as @e[type=minecraft:marker,tag=sgChest] unless score @s sg = %iteration sg at @s run data modify block ~ ~ ~ Items set value []
 execute as @e[type=minecraft:marker,tag=sgChest] unless score @s sg = %iteration sg run kill @s
+# Replace loot if ender marker from wrong iteration, then kill (THIS MUST BE RUN AFTER sgChest MARKER CHECK)
+execute as @e[type=minecraft:marker,tag=sgEnder] unless score @s sg = %iteration sg at @s run setblock ~ ~ ~ minecraft:ender_chest
+execute as @e[type=minecraft:marker,tag=sgEnder] unless score @s sg = %iteration sg run kill @s
 
 # Stashable replace mechanics (the function raycast handled with advancements)
 execute as @e[type=minecraft:marker,tag=sgStash] unless score @s sg = %iteration sg at @s run data modify block ~ ~ ~ Items set value []
