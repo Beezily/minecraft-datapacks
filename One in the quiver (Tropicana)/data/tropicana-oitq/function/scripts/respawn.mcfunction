@@ -1,9 +1,4 @@
-# ---------------------------------------------------
-# tropicana-oitq:scripts/respawn
-# Runs as the player (@s)
-# ---------------------------------------------------
-
-# Random 1..10
+# Random 1..10 to pick respawn spot
 execute store result score %r oitq run random value 1..10
 
 # Teleport to one random spawn
@@ -21,5 +16,13 @@ execute if score %r oitq matches 10 run tp @s 48 22 -21 90 0
 # Put player back into game
 gamemode adventure @s
 
-# Brief spawn protection: Resistance V for 2 seconds (40 ticks)
+# Give back item if they somehow dropped it during combat
+execute unless items entity @s container.* minecraft:stone_sword unless items entity @s weapon.offhand minecraft:stone_sword run give @s stone_sword[unbreakable={}] 1
+execute unless items entity @s container.* minecraft:bow unless items entity @s weapon.offhand minecraft:bow run give @s bow[unbreakable={},enchantments={"power":255},enchantment_glint_override=false,tooltip_display={hide_tooltip:false,hidden_components:["enchantments"]},item_name={"bold":false,"color":"white","italic":false,"text":"Bow"}] 1
+
+# Brief spawn protection: Resistance V for 2 seconds
 effect give @s minecraft:resistance 2 4 true
+
+# Give players one arrow exactly
+clear @s minecraft:arrow
+give @s minecraft:arrow

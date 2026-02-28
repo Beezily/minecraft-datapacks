@@ -12,9 +12,6 @@ scoreboard players set #599 oitq 599
 # Variables
 scoreboard players set %game oitq 0
 scoreboard players set %timer oitq 0
-scoreboard players set %countdown oitq 0
-scoreboard players set %started oitq 0
-scoreboard players set %ended oitq 0
 scoreboard players set %tmp oitq 0
 scoreboard players set %mins oitq 0
 scoreboard players set %secs oitq 0
@@ -49,6 +46,15 @@ team add Purple
 team modify Purple friendlyFire false
 team modify Purple color light_purple
 
+# Team join scoreboards
+scoreboard objectives add Red trigger
+scoreboard objectives add Yellow trigger
+scoreboard objectives add Blue trigger
+scoreboard objectives add Green trigger
+scoreboard objectives add Aqua trigger
+scoreboard objectives add Purple trigger
+scoreboard objectives add Solo trigger
+
 # Kill counter
 scoreboard objectives add kills playerKillCount
 scoreboard objectives setdisplay below_name kills
@@ -69,6 +75,7 @@ gamerule locator_bar false
 gamerule immediate_respawn true
 gamerule fall_damage false
 gamerule keep_inventory true
+gamerule fire_spread_radius_around_player 0
 
 # Set time
 time set noon
