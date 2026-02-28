@@ -22,6 +22,11 @@ scoreboard objectives remove stash
 scoreboard objectives remove admin
 scoreboard objectives remove craft
 scoreboard objectives remove craft_cd
+scoreboard objectives remove anvil
+scoreboard objectives remove anvil_cd
+scoreboard objectives remove enchant
+scoreboard objectives remove enchant_cd
+scoreboard objectives remove rules
 
 # Teams
 team remove Red

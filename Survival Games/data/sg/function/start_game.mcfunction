@@ -116,3 +116,16 @@ scoreboard players set %winner sg 0
 scoreboard players reset * craft
 scoreboard players reset * craft_cd
 execute if score %summon_crafting sg matches 1 run scoreboard players enable @a craft
+
+# Reset anvil scores
+scoreboard players reset * anvil
+scoreboard players reset * anvil_cd
+execute if score %summon_anvil sg matches 1 run scoreboard players enable @a anvil
+
+# Reset enchant scores
+scoreboard players reset * enchant
+scoreboard players reset * enchant_cd
+execute if score %summon_enchant sg matches 1 run scoreboard players enable @a enchant
+
+# Rules during game
+scoreboard players enable @a rules

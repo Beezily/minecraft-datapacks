@@ -1,4 +1,4 @@
-# Note this is a little different from regualr chest loot because we know for sure if someone opened
+# Note this is a little different from regualar chest loot because we know for sure if someone opened
 # ender chest, that loot is unopened and needs new loot. NOTE THIS IS BONUS LOOT (old chest mechs still apply)
 #Particles, sound, set chest, and add loot
 playsound entity.armor_stand.break block @a ~ ~ ~ 1 1

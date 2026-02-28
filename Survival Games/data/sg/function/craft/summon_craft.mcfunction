@@ -5,6 +5,7 @@ execute if score @s craft_cd matches 1.. run scoreboard players add %temp sg 19
 execute if score @s craft_cd matches 1.. run scoreboard players operation %temp sg /= #20 sg
 execute if score @s craft_cd matches 1.. run tellraw @s [{"text":"Your crafting table has already been placed! You may create another in ","color":"red"},{"score":{"name":"%temp","objective":"sg"},"color":"gold"},{"text":" seconds.","color":"red"}]
 execute if score @s craft_cd matches 1.. run tellraw @s {"color":"gray","text":"Hint: Use /trigger craft on the crafting table you made to get it back faster!"}
+execute if score @s craft_cd matches 1.. at @s run playsound block.dispenser.fail master @s ~ ~ ~ 1 1 1
 execute if score @s craft_cd matches 1.. run return 0
 
 # Summon new marker and set data (we will preserve the blockstate of chest cuz why not)
@@ -25,6 +26,7 @@ execute if block ~ ~ ~ chest[type=right] run data modify entity @n[tag=sgCraft,d
 # Finally set block once all data has been preserved
 setblock ~ ~ ~ crafting_table
 tellraw @s {"color":"gray","text":"You have placed a crafting table for 15 seconds."}
+playsound minecraft:block.crafter.craft block @a ~ ~ ~ 1 1
 
 # Particles and sound
 playsound entity.armor_stand.break block @a ~ ~ ~ 1 1

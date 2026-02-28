@@ -12,6 +12,14 @@ execute unless score %game sg matches 1 as @a[scores={Aqua=1..}] run team join A
 execute unless score %game sg matches 1 as @a[scores={Purple=1..}] run team join Purple @s
 execute unless score %game sg matches 1 as @a[scores={Solo=1..}] run team leave @s
 
+execute unless score %game sg matches 1 as @a[scores={Red=1..}] at @s run playsound minecraft:block.respawn_anchor.charge master @s ~ ~ ~ 1 1 1
+execute unless score %game sg matches 1 as @a[scores={Yellow=1..}] at @s run playsound minecraft:block.respawn_anchor.charge master @s ~ ~ ~ 1 1 1
+execute unless score %game sg matches 1 as @a[scores={Blue=1..}] at @s run playsound minecraft:block.respawn_anchor.charge master @s ~ ~ ~ 1 1 1
+execute unless score %game sg matches 1 as @a[scores={Green=1..}] at @s run playsound minecraft:block.respawn_anchor.charge master @s ~ ~ ~ 1 1 1
+execute unless score %game sg matches 1 as @a[scores={Aqua=1..}] at @s run playsound minecraft:block.respawn_anchor.charge master @s ~ ~ ~ 1 1 1
+execute unless score %game sg matches 1 as @a[scores={Purple=1..}] at @s run playsound minecraft:block.respawn_anchor.charge master @s ~ ~ ~ 1 1 1
+execute unless score %game sg matches 1 as @a[scores={Solo=1..}] at @s run playsound minecraft:block.respawn_anchor.charge master @s ~ ~ ~ 1 1 1
+
 execute unless score %game sg matches 1 as @a unless score @s Red matches 0 run scoreboard players enable @s Red
 execute unless score %game sg matches 1 as @a unless score @s Yellow matches 0 run scoreboard players enable @s Yellow
 execute unless score %game sg matches 1 as @a unless score @s Blue matches 0 run scoreboard players enable @s Blue
@@ -27,6 +35,11 @@ execute unless score %game sg matches 1 run scoreboard players set @a[scores={Gr
 execute unless score %game sg matches 1 run scoreboard players set @a[scores={Aqua=1..}] Aqua 0
 execute unless score %game sg matches 1 run scoreboard players set @a[scores={Purple=1..}] Purple 0
 execute unless score %game sg matches 1 run scoreboard players set @a[scores={Solo=1..}] Solo 0
+
+# Tellraw rules and rules trigger
+execute as @a[scores={rules=1..}] run function sg:scripts/tell_rules
+execute as @a unless score @s rules matches 0 run scoreboard players enable @s rules
+execute as @a unless score @s rules matches 0 run scoreboard players set @s rules 0
 
 # Crafting mechanics
 # Enable for all if not enabled yet
@@ -44,6 +57,40 @@ scoreboard players remove @a[scores={craft_cd=1..}] craft_cd 1
 # Destroy restore all crafting tables of not current iteration (always runs, before chest restore runs)
 execute as @e[type=minecraft:marker,tag=sgCraft] unless score @s sg = %iteration sg at @s run function sg:craft/restore_craft
 execute as @e[type=minecraft:marker,tag=sgCraft] unless score @s sg = %iteration sg run kill @s
+
+# Anvil mechanics
+# Enable for all if not enabled yet
+execute if score %game sg matches 1 if score %summon_anvil sg matches 1 as @a unless score @s anvil matches 0.. run scoreboard players enable @s anvil
+execute if score %game sg matches 1 if score %summon_anvil sg matches 1 as @a unless score @s anvil matches 0.. run scoreboard players set @s anvil 0
+# Find anvil (the restore chest should be run BEFORE iteration chest clear)
+execute if score %game sg matches 1 if score %summon_anvil sg matches 1 as @a[scores={anvil=1..}] at @s rotated as @s anchored eyes run function sg:anvil/find_anvil
+execute if score %game sg matches 1 if score %summon_anvil sg matches 1 as @a[scores={anvil=1..}] run scoreboard players enable @s anvil
+execute if score %game sg matches 1 if score %summon_anvil sg matches 1 run scoreboard players set @a[scores={anvil=1..}] anvil 0
+# Anvils lifetime of 15 seconds
+scoreboard players remove @e[type=marker,scores={anvil_cd=1..}] anvil_cd 1
+execute as @e[type=marker,scores={anvil_cd=0}] at @s run function sg:anvil/restore_anvil
+# Player cooldown of summoning anvil
+scoreboard players remove @a[scores={anvil_cd=1..}] anvil_cd 1
+# Destroy restore all anvils of not current iteration (always runs, before chest restore runs)
+execute as @e[type=minecraft:marker,tag=sgAnvil] unless score @s sg = %iteration sg at @s run function sg:anvil/restore_anvil
+execute as @e[type=minecraft:marker,tag=sgAnvil] unless score @s sg = %iteration sg run kill @s
+
+# Enchanting mechanics
+# Enable for all if not enabled yet
+execute if score %game sg matches 1 if score %summon_enchant sg matches 1 as @a unless score @s enchant matches 0.. run scoreboard players enable @s enchant
+execute if score %game sg matches 1 if score %summon_enchant sg matches 1 as @a unless score @s enchant matches 0.. run scoreboard players set @s enchant 0
+# Find enchanting table (the restore chest should be run BEFORE iteration chest clear)
+execute if score %game sg matches 1 if score %summon_enchant sg matches 1 as @a[scores={enchant=1..}] at @s rotated as @s anchored eyes run function sg:enchant/find_enchant
+execute if score %game sg matches 1 if score %summon_enchant sg matches 1 as @a[scores={enchant=1..}] run scoreboard players enable @s enchant
+execute if score %game sg matches 1 if score %summon_enchant sg matches 1 run scoreboard players set @a[scores={enchant=1..}] enchant 0
+# Enchanting tables lifetime of 15 seconds
+scoreboard players remove @e[type=marker,scores={enchant_cd=1..}] enchant_cd 1
+execute as @e[type=marker,scores={enchant_cd=0}] at @s run function sg:enchant/restore_enchant
+# Player cooldown of summoning enchanting table
+scoreboard players remove @a[scores={enchant_cd=1..}] enchant_cd 1
+# Destroy restore all enchanting tables of not current iteration (always runs, before chest restore runs)
+execute as @e[type=minecraft:marker,tag=sgEnchant] unless score @s sg = %iteration sg at @s run function sg:enchant/restore_enchant
+execute as @e[type=minecraft:marker,tag=sgEnchant] unless score @s sg = %iteration sg run kill @s
 
 # New loot spawn mechanics
 execute as @a[scores={open_chest=1..}] at @s rotated as @s anchored eyes run function sg:scripts/find_chest

@@ -1,6 +1,7 @@
 # Restores the chest from the crafting table data
 # Do nothing if there is nothing to restore
 execute unless entity @n[tag=sgCraft,distance=..0.8] run tellraw @s {"color":"red","text":"This crafting table was never a chest!"}
+execute unless entity @n[tag=sgCraft,distance=..0.8] at @s run playsound block.dispenser.fail master @s ~ ~ ~ 1 1 1
 execute unless entity @n[tag=sgCraft,distance=..0.8] run return 0
 
 # Restore all blockstates to the chest

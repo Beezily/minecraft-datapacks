@@ -1,4 +1,4 @@
-# Helper to toggle summon crafting (literally toggling %enforce_players sg)
+# Helper to toggle summon crafting (literally toggling %summon_crafting sg)
 scoreboard players add %summon_crafting sg 1
 scoreboard players operation %summon_crafting sg %= #2 sg
 

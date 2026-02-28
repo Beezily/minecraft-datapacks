@@ -2,7 +2,7 @@
 scoreboard players set #world_center_x sg 175
 scoreboard players set #world_center_z sg 193
 scoreboard players set #world_border_diam sg 588
-scoreboard players set #deathmatch_diam sg 32
+scoreboard players set #deathmatch_diam sg 33
 
 # Put your supply drop locations here
 scoreboard players set #supply1x sg 247

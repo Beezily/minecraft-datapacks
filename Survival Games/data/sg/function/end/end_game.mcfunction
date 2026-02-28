@@ -37,3 +37,15 @@ execute as @a[gamemode=spectator] run tp @s @r[gamemode=adventure]
 gamemode adventure @a
 effect give @a resistance infinite 4 true
 effect give @a saturation infinite 0 true
+
+# Disable triggering craft, anvil, enchant
+execute as @a run trigger craft set 0
+execute as @a run trigger anvil set 0
+execute as @a run trigger enchant set 0
+
+scoreboard players reset * craft
+scoreboard players reset * anvil
+scoreboard players reset * enchant
+
+# Enable rules if they messed it up somehow
+scoreboard players enable @a rules

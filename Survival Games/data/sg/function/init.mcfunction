@@ -47,6 +47,8 @@ scoreboard players set %tmp sg 0
 scoreboard players set %mins sg 0
 execute unless score %ender_loot sg matches 0.. run scoreboard players set %ender_loot sg 1
 execute unless score %summon_crafting sg matches 0.. run scoreboard players set %summon_crafting sg 1
+execute unless score %summon_anvil sg matches 0.. run scoreboard players set %summon_anvil sg 0
+execute unless score %summon_enchant sg matches 0.. run scoreboard players set %summon_enchant sg 0
 execute unless score %enforce_players sg matches 0.. run scoreboard players set %enforce_players sg 1
 execute unless score %iteration sg matches 0.. run scoreboard players set %iteration sg 0
 
@@ -71,6 +73,7 @@ bossbar set sg:timer visible false
 # World border settings
 worldborder warning distance 0
 worldborder warning time 0
+worldborder damage buffer 0
 
 # Kill counter
 scoreboard objectives add kills playerKillCount
@@ -92,9 +95,20 @@ scoreboard objectives add spawned_happy_ghast minecraft.used:minecraft.happy_gha
 # Stashable score
 scoreboard objectives add stash dummy
 
-# Crafting
+# Crafting summon
 scoreboard objectives add craft trigger
 scoreboard objectives add craft_cd dummy
+
+# Anvil summon
+scoreboard objectives add anvil trigger
+scoreboard objectives add anvil_cd dummy
+
+# Enchant summon
+scoreboard objectives add enchant trigger
+scoreboard objectives add enchant_cd dummy
+
+# Rules
+scoreboard objectives add rules trigger
 
 # Gamerules
 gamerule advance_time false
