@@ -20,6 +20,8 @@ scoreboard objectives remove anvil_fix
 scoreboard objectives remove spawned_happy_ghast
 scoreboard objectives remove stash
 scoreboard objectives remove admin
+scoreboard objectives remove craft
+scoreboard objectives remove craft_cd
 
 # Teams
 team remove Red

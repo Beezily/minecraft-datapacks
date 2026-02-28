@@ -46,6 +46,7 @@ scoreboard players set %timer sg 0
 scoreboard players set %tmp sg 0
 scoreboard players set %mins sg 0
 execute unless score %ender_loot sg matches 0.. run scoreboard players set %ender_loot sg 1
+execute unless score %summon_crafting sg matches 0.. run scoreboard players set %summon_crafting sg 1
 execute unless score %enforce_players sg matches 0.. run scoreboard players set %enforce_players sg 1
 execute unless score %iteration sg matches 0.. run scoreboard players set %iteration sg 0
 
@@ -91,6 +92,10 @@ scoreboard objectives add spawned_happy_ghast minecraft.used:minecraft.happy_gha
 # Stashable score
 scoreboard objectives add stash dummy
 
+# Crafting
+scoreboard objectives add craft trigger
+scoreboard objectives add craft_cd dummy
+
 # Gamerules
 gamerule advance_time false
 gamerule advance_weather false
@@ -114,8 +119,8 @@ scoreboard objectives add admin trigger
 # Export map values into storage
 function sg:scripts/export_settings
 
-# Init worldborder
-function sg:scripts/init_worldborder with storage sg:settings
+# Init worldborder (REMOVED. This will insta-kill you on some maps)
+#function sg:scripts/init_worldborder with storage sg:settings
 
 
 

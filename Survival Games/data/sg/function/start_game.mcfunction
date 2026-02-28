@@ -112,3 +112,7 @@ effect give @a minecraft:weakness 10 9 true
 # Set %winner to none. If %winner is not reset then they just win immediately lol
 scoreboard players set %winner sg 0
 
+# Reset craft scores
+scoreboard players reset * craft
+scoreboard players reset * craft_cd
+execute if score %summon_crafting sg matches 1 run scoreboard players enable @a craft

@@ -28,6 +28,23 @@ execute unless score %game sg matches 1 run scoreboard players set @a[scores={Aq
 execute unless score %game sg matches 1 run scoreboard players set @a[scores={Purple=1..}] Purple 0
 execute unless score %game sg matches 1 run scoreboard players set @a[scores={Solo=1..}] Solo 0
 
+# Crafting mechanics
+# Enable for all if not enabled yet
+execute if score %game sg matches 1 if score %summon_crafting sg matches 1 as @a unless score @s craft matches 0.. run scoreboard players enable @s craft
+execute if score %game sg matches 1 if score %summon_crafting sg matches 1 as @a unless score @s craft matches 0.. run scoreboard players set @s craft 0
+# Find crafting table (the restore chest should be run BEFORE iteration chest clear)
+execute if score %game sg matches 1 if score %summon_crafting sg matches 1 as @a[scores={craft=1..}] at @s rotated as @s anchored eyes run function sg:craft/find_craft
+execute if score %game sg matches 1 if score %summon_crafting sg matches 1 as @a[scores={craft=1..}] run scoreboard players enable @s craft
+execute if score %game sg matches 1 if score %summon_crafting sg matches 1 run scoreboard players set @a[scores={craft=1..}] craft 0
+# Crafting tables lifetime of 15 seconds
+scoreboard players remove @e[type=marker,scores={craft_cd=1..}] craft_cd 1
+execute as @e[type=marker,scores={craft_cd=0}] at @s run function sg:craft/restore_craft
+# Player cooldown of summoning crafting table
+scoreboard players remove @a[scores={craft_cd=1..}] craft_cd 1
+# Destroy restore all crafting tables of not current iteration (always runs, before chest restore runs)
+execute as @e[type=minecraft:marker,tag=sgCraft] unless score @s sg = %iteration sg at @s run function sg:craft/restore_craft
+execute as @e[type=minecraft:marker,tag=sgCraft] unless score @s sg = %iteration sg run kill @s
+
 # New loot spawn mechanics
 execute as @a[scores={open_chest=1..}] at @s rotated as @s anchored eyes run function sg:scripts/find_chest
 scoreboard players set @a[scores={open_chest=1..}] open_chest 0
