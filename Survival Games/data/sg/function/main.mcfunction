@@ -137,6 +137,49 @@ execute as @e[type=minecraft:happy_ghast] run scoreboard players remove @s spawn
 execute as @e[type=minecraft:happy_ghast,scores={spawned_happy_ghast=..-6000}] run kill @s
 execute as @e[type=minecraft:happy_ghast] run function sg:happy_ghast/update_name
 
+# Spawn by dropping mechanics
+# Ghast
+execute as @a[scores={spawn_ghast=1..},predicate=sg:sneaking] run data modify entity @n[type=item,nbt={Item:{id:"minecraft:happy_ghast_spawn_egg"}},tag=!sgToSpawnGhast] Glowing set value 1b
+execute as @a[scores={spawn_ghast=1..},predicate=sg:sneaking] run data modify entity @n[type=item,nbt={Item:{id:"minecraft:happy_ghast_spawn_egg"}},tag=!sgToSpawnGhast] PickupDelay set value 100s
+execute as @a[scores={spawn_ghast=1..},predicate=sg:sneaking] run tag @n[type=item,nbt={Item:{id:"minecraft:happy_ghast_spawn_egg"}},tag=!sgToSpawnGhast] add sgToSpawnGhast
+execute if predicate sg:50_chance as @e[type=item,tag=sgToSpawnGhast] at @s run particle firework ~ ~ ~ 0.1 0.1 0.1 0 1
+execute as @e[type=item,nbt={Age:20s},tag=sgToSpawnGhast] at @s run summon happy_ghast ~ ~ ~ {Glowing:1b,CustomNameVisible:1b,Age:0,equipment:{body:{id:"minecraft:white_harness",count:1}}}
+execute as @e[type=item,nbt={Age:20s},tag=sgToSpawnGhast] at @s run particle minecraft:firework ~ ~ ~ 0.3 0.3 0.3 0.3 30
+execute as @e[type=item,nbt={Age:20s},tag=sgToSpawnGhast] at @s run playsound minecraft:entity.firework_rocket.blast player @a ~ ~ ~ 1 1
+execute as @e[type=item,nbt={Age:20s},tag=sgToSpawnGhast] at @s run tellraw @a[distance=..12] {"color":"gray","text":"A happy ghast has been spawned for 5 minutes!"}
+execute as @e[type=item,nbt={Age:20s},tag=sgToSpawnGhast] at @s run kill @s
+scoreboard players set @a[scores={spawn_ghast=1..}] spawn_ghast 0
+# Horse
+execute as @a[scores={spawn_horse=1..},predicate=sg:sneaking] run data modify entity @n[type=item,nbt={Item:{id:"minecraft:horse_spawn_egg"}},tag=!sgToSpawnHorse] Glowing set value 1b
+execute as @a[scores={spawn_horse=1..},predicate=sg:sneaking] run data modify entity @n[type=item,nbt={Item:{id:"minecraft:horse_spawn_egg"}},tag=!sgToSpawnHorse] PickupDelay set value 100s
+execute as @a[scores={spawn_horse=1..},predicate=sg:sneaking] run tag @n[type=item,nbt={Item:{id:"minecraft:horse_spawn_egg"}},tag=!sgToSpawnHorse] add sgToSpawnHorse
+execute if predicate sg:50_chance as @e[type=item,tag=sgToSpawnHorse] at @s run particle firework ~ ~ ~ 0.1 0.1 0.1 0 1
+execute as @e[type=item,nbt={Age:20s},tag=sgToSpawnHorse] at @s run summon horse ~ ~ ~ {Tame:1b,equipment:{saddle:{id:"minecraft:saddle",count:1}}}
+execute as @e[type=item,nbt={Age:20s},tag=sgToSpawnHorse] at @s run particle minecraft:firework ~ ~ ~ 0.3 0.3 0.3 0.3 30
+execute as @e[type=item,nbt={Age:20s},tag=sgToSpawnHorse] at @s run playsound minecraft:entity.firework_rocket.blast player @a ~ ~ ~ 1 1
+execute as @e[type=item,nbt={Age:20s},tag=sgToSpawnHorse] at @s run kill @s
+scoreboard players set @a[scores={spawn_horse=1..}] spawn_horse 0
+# Wolf
+execute as @a[scores={spawn_wolf=1..},predicate=sg:sneaking] run data modify entity @n[type=item,nbt={Item:{id:"minecraft:wolf_spawn_egg"}},tag=!sgToSpawnWolf] Glowing set value 1b
+execute as @a[scores={spawn_wolf=1..},predicate=sg:sneaking] run data modify entity @n[type=item,nbt={Item:{id:"minecraft:wolf_spawn_egg"}},tag=!sgToSpawnWolf] PickupDelay set value 100s
+execute as @a[scores={spawn_wolf=1..},predicate=sg:sneaking] run tag @n[type=item,nbt={Item:{id:"minecraft:wolf_spawn_egg"}},tag=!sgToSpawnWolf] add sgToSpawnWolf
+execute if predicate sg:50_chance as @e[type=item,tag=sgToSpawnWolf] at @s run particle firework ~ ~ ~ 0.1 0.1 0.1 0 1
+execute as @e[type=item,nbt={Age:20s},tag=sgToSpawnWolf] at @s run summon wolf
+execute as @e[type=item,nbt={Age:20s},tag=sgToSpawnWolf] at @s run particle minecraft:firework ~ ~ ~ 0.3 0.3 0.3 0.3 30
+execute as @e[type=item,nbt={Age:20s},tag=sgToSpawnWolf] at @s run playsound minecraft:entity.firework_rocket.blast player @a ~ ~ ~ 1 1
+execute as @e[type=item,nbt={Age:20s},tag=sgToSpawnWolf] at @s run kill @s
+scoreboard players set @a[scores={spawn_wolf=1..}] spawn_wolf 0
+# Cat
+execute as @a[scores={spawn_cat=1..},predicate=sg:sneaking] run data modify entity @n[type=item,nbt={Item:{id:"minecraft:cat_spawn_egg"}},tag=!sgToSpawnCat] Glowing set value 1b
+execute as @a[scores={spawn_cat=1..},predicate=sg:sneaking] run data modify entity @n[type=item,nbt={Item:{id:"minecraft:cat_spawn_egg"}},tag=!sgToSpawnCat] PickupDelay set value 100s
+execute as @a[scores={spawn_cat=1..},predicate=sg:sneaking] run tag @n[type=item,nbt={Item:{id:"minecraft:cat_spawn_egg"}},tag=!sgToSpawnCat] add sgToSpawnCat
+execute if predicate sg:50_chance as @e[type=item,tag=sgToSpawnCat] at @s run particle firework ~ ~ ~ 0.1 0.1 0.1 0 1
+execute as @e[type=item,nbt={Age:20s},tag=sgToSpawnCat] at @s run summon cat
+execute as @e[type=item,nbt={Age:20s},tag=sgToSpawnCat] at @s run particle minecraft:firework ~ ~ ~ 0.3 0.3 0.3 0.3 30
+execute as @e[type=item,nbt={Age:20s},tag=sgToSpawnCat] at @s run playsound minecraft:entity.firework_rocket.blast player @a ~ ~ ~ 1 1
+execute as @e[type=item,nbt={Age:20s},tag=sgToSpawnCat] at @s run kill @s
+scoreboard players set @a[scores={spawn_cat=1..}] spawn_cat 0
+
 # Death to spectator mechanics
 gamemode spectator @a[scores={died=1..}]
 scoreboard players set @a[scores={died=1..}] died 0
@@ -145,81 +188,81 @@ scoreboard players set @a[scores={died=1..}] died 0
 execute store result bossbar sg:timer value run scoreboard players get %timer sg
 
 # 5-second countdown before release
-execute if score %game sg matches 1 if score %timer sg matches 24100 run title @a title {"text":"5","color":"#ff8c00","bold":true}
-execute if score %game sg matches 1 if score %timer sg matches 24080 run title @a title {"text":"4","color":"#ff8c00","bold":true}
-execute if score %game sg matches 1 if score %timer sg matches 24060 run title @a title {"text":"3","color":"#ff8c00","bold":true}
-execute if score %game sg matches 1 if score %timer sg matches 24040 run title @a title {"text":"2","color":"#ff8c00","bold":true}
-execute if score %game sg matches 1 if score %timer sg matches 24020 run title @a title {"text":"1","color":"#ff8c00","bold":true}
+execute if score %game sg matches 1 if score %timer sg matches 18100 run title @a title {"text":"5","color":"#ff8c00","bold":true}
+execute if score %game sg matches 1 if score %timer sg matches 18080 run title @a title {"text":"4","color":"#ff8c00","bold":true}
+execute if score %game sg matches 1 if score %timer sg matches 18060 run title @a title {"text":"3","color":"#ff8c00","bold":true}
+execute if score %game sg matches 1 if score %timer sg matches 18040 run title @a title {"text":"2","color":"#ff8c00","bold":true}
+execute if score %game sg matches 1 if score %timer sg matches 18020 run title @a title {"text":"1","color":"#ff8c00","bold":true}
 
 # Sound plings during countdown
-execute if score %game sg matches 1 if score %timer sg matches 24100 run execute as @a at @s run playsound minecraft:block.note_block.pling player @s ~ ~ ~ 1 1
-execute if score %game sg matches 1 if score %timer sg matches 24080 run execute as @a at @s run playsound minecraft:block.note_block.pling player @s ~ ~ ~ 1 1
-execute if score %game sg matches 1 if score %timer sg matches 24060 run execute as @a at @s run playsound minecraft:block.note_block.pling player @s ~ ~ ~ 1 1
-execute if score %game sg matches 1 if score %timer sg matches 24040 run execute as @a at @s run playsound minecraft:block.note_block.pling player @s ~ ~ ~ 1 1
-execute if score %game sg matches 1 if score %timer sg matches 24020 run execute as @a at @s run playsound minecraft:block.note_block.pling player @s ~ ~ ~ 1 1
+execute if score %game sg matches 1 if score %timer sg matches 18100 run execute as @a at @s run playsound minecraft:block.note_block.pling player @s ~ ~ ~ 1 1
+execute if score %game sg matches 1 if score %timer sg matches 18080 run execute as @a at @s run playsound minecraft:block.note_block.pling player @s ~ ~ ~ 1 1
+execute if score %game sg matches 1 if score %timer sg matches 18060 run execute as @a at @s run playsound minecraft:block.note_block.pling player @s ~ ~ ~ 1 1
+execute if score %game sg matches 1 if score %timer sg matches 18040 run execute as @a at @s run playsound minecraft:block.note_block.pling player @s ~ ~ ~ 1 1
+execute if score %game sg matches 1 if score %timer sg matches 18020 run execute as @a at @s run playsound minecraft:block.note_block.pling player @s ~ ~ ~ 1 1
 
 # Force teleport during countdown
-execute if score %game sg matches 1 if score %timer sg matches 24000..24100 run function sg:scripts/start_tp with storage sg:settings
+execute if score %game sg matches 1 if score %timer sg matches 18000..18100 run function sg:scripts/start_tp with storage sg:settings
 
 # Release actions (run once when countdown hits 0)
-execute if score %game sg matches 1 if score %timer sg matches 24000 run title @a title {"text":"GO!","color":"#ff8c00","bold":true}
-execute if score %game sg matches 1 if score %timer sg matches 24000 run effect clear @a
-execute if score %game sg matches 1 if score %timer sg matches 24000 run effect give @a minecraft:absorption 30 2 true
-execute if score %game sg matches 1 if score %timer sg matches 24000 run effect give @a minecraft:weakness 10 9 true
-execute if score %game sg matches 1 if score %timer sg matches 24000 run effect give @a minecraft:instant_health 1 99 true
-execute if score %game sg matches 1 if score %timer sg matches 24000 run effect give @a minecraft:saturation 1 99 true
-execute if score %game sg matches 1 if score %timer sg matches 24000 as @a run attribute @s minecraft:jump_strength base set 0.42
-execute if score %game sg matches 1 if score %timer sg matches 24000 run execute as @a at @s run playsound minecraft:entity.ender_dragon.growl master @s ~ ~ ~ 1 1 1
+execute if score %game sg matches 1 if score %timer sg matches 18000 run title @a title {"text":"GO!","color":"#ff8c00","bold":true}
+execute if score %game sg matches 1 if score %timer sg matches 18000 run effect clear @a
+execute if score %game sg matches 1 if score %timer sg matches 18000 run effect give @a minecraft:absorption 30 2 true
+execute if score %game sg matches 1 if score %timer sg matches 18000 run effect give @a minecraft:weakness 10 9 true
+execute if score %game sg matches 1 if score %timer sg matches 18000 run effect give @a minecraft:instant_health 1 99 true
+execute if score %game sg matches 1 if score %timer sg matches 18000 run effect give @a minecraft:saturation 1 99 true
+execute if score %game sg matches 1 if score %timer sg matches 18000 as @a run attribute @s minecraft:jump_strength base set 0.42
+execute if score %game sg matches 1 if score %timer sg matches 18000 run execute as @a at @s run playsound minecraft:entity.ender_dragon.growl master @s ~ ~ ~ 1 1 1
 
 # Bossbar text during countdown
-execute if score %game sg matches 1 if score %timer sg matches 24100 run bossbar set sg:timer name {"text":"Starting...","color":"#ff8c00","bold":true}
+execute if score %game sg matches 1 if score %timer sg matches 18100 run bossbar set sg:timer name {"text":"Starting...","color":"#ff8c00","bold":true}
 
 # Border control
 # Border sounds (run before border phase gets set
-# First shrink start (at 10:00 remaining)
-execute if score %game sg matches 1 if score %timer sg matches 12000 run execute as @a at @s run playsound minecraft:entity.ender_dragon.growl master @s ~ ~ ~ 1 1 1
-# At 10 minutes remaining (12000 ticks), shrink to half (592 -> 296) over 2 minutes (120s)
-execute if score %game sg matches 1 if score %timer sg matches 12000 run function sg:scripts/shrink_worldborder_half with storage sg:settings
+# First shrink start (at 7:00 remaining)
+execute if score %game sg matches 1 if score %timer sg matches 8400 run execute as @a at @s run playsound minecraft:entity.ender_dragon.growl master @s ~ ~ ~ 1 1 1
+# At 7 minutes remaining (8400 ticks), shrink to half (592 -> 296) over 2 minutes (120s)
+execute if score %game sg matches 1 if score %timer sg matches 8400 run function sg:scripts/shrink_worldborder_half with storage sg:settings
 
-# Supply drop happens at 8 (9600 ticks) minutes left and drops at 6 (7200 ticks) minutes left
-execute if score %game sg matches 1 if score %timer sg matches 7200..9600 as @e[type=marker,tag=sgSupply] at @s run function sg:scripts/supply_loop
+# Supply drop happens at 5 (6000 ticks) minutes left and drops at 3 (3600 ticks) minutes left
+execute if score %game sg matches 1 if score %timer sg matches 3600..6000 as @e[type=marker,tag=sgSupply] at @s run function sg:scripts/supply_loop
 
-# Final shrink start (at 5:00 remaining)
-execute if score %game sg matches 1 if score %timer sg matches 6000 run execute as @a at @s run playsound minecraft:entity.ender_dragon.growl master @s ~ ~ ~ 1 1 1
-# At 5 minutes remaining (6000 ticks), shrink to 18-block radius (diameter 36) over 5 minutes (300s)
-execute if score %game sg matches 1 if score %timer sg matches 6000 run function sg:scripts/shrink_worldborder_deathmatch with storage sg:settings
+# Final shrink start (at 2:00 remaining)
+execute if score %game sg matches 1 if score %timer sg matches 2400 run execute as @a at @s run playsound minecraft:entity.ender_dragon.growl master @s ~ ~ ~ 1 1 1
+# At 2 minutes remaining (2400 ticks), shrink to 18-block radius (diameter 36) over 2 minutes (120s)
+execute if score %game sg matches 1 if score %timer sg matches 2400 run function sg:scripts/shrink_worldborder_deathmatch with storage sg:settings
 
 
 # PVP enabled text (clears weakness)
-execute if score %game sg matches 1 if score %timer sg matches 23800 run tellraw @a {"text":"PvP is now enabled!","color":"red","bold":true}
-execute if score %game sg matches 1 if score %timer sg matches 23800 as @a at @s run playsound minecraft:entity.ravager.attack master @s ~ ~ ~ 1 1 1
-execute if score %game sg matches 1 if score %timer sg matches 23800 run effect clear @a minecraft:weakness
+execute if score %game sg matches 1 if score %timer sg matches 17800 run tellraw @a {"text":"PvP is now enabled!","color":"red","bold":true}
+execute if score %game sg matches 1 if score %timer sg matches 17800 as @a at @s run playsound minecraft:entity.ravager.attack master @s ~ ~ ~ 1 1 1
+execute if score %game sg matches 1 if score %timer sg matches 17800 run effect clear @a minecraft:weakness
 
 # Bossbar phase text (bold orange)
 # Grace period text (first 10 seconds after release)
-execute if score %game sg matches 1 if score %timer sg matches 23800..24000 run bossbar set sg:timer name {"text":"Grace Period","color":"#ff8c00","bold":true}
+execute if score %game sg matches 1 if score %timer sg matches 17800..18000 run bossbar set sg:timer name {"text":"Grace Period","color":"#ff8c00","bold":true}
 
-# Before first shrink: show "X minutes until Border Shrink" (timer > 12000)
-execute if score %game sg matches 1 if score %timer sg matches 12001..23800 run scoreboard players operation %tmp sg = %timer sg
-execute if score %game sg matches 1 if score %timer sg matches 12001..23800 run scoreboard players remove %tmp sg 12000
-execute if score %game sg matches 1 if score %timer sg matches 12001..23800 run scoreboard players add %tmp sg 1199
-execute if score %game sg matches 1 if score %timer sg matches 12001..23800 run scoreboard players operation %mins sg = %tmp sg
-execute if score %game sg matches 1 if score %timer sg matches 12001..23800 run scoreboard players operation %mins sg /= #1200 sg
-execute if score %game sg matches 1 if score %timer sg matches 12001..23800 run bossbar set sg:timer name [{"text":"","color":"#ff8c00","bold":true},{"score":{"name":"%mins","objective":"sg"},"color":"#ff8c00","bold":true},{"text":" minutes until Border Shrink","color":"#ff8c00","bold":true}]
+# Before first shrink: show "X minutes until Border Shrink" (timer > 8400)
+execute if score %game sg matches 1 if score %timer sg matches 8401..17800 run scoreboard players operation %tmp sg = %timer sg
+execute if score %game sg matches 1 if score %timer sg matches 8401..17800 run scoreboard players remove %tmp sg 8400
+execute if score %game sg matches 1 if score %timer sg matches 8401..17800 run scoreboard players add %tmp sg 1199
+execute if score %game sg matches 1 if score %timer sg matches 8401..17800 run scoreboard players operation %mins sg = %tmp sg
+execute if score %game sg matches 1 if score %timer sg matches 8401..17800 run scoreboard players operation %mins sg /= #1200 sg
+execute if score %game sg matches 1 if score %timer sg matches 8401..17800 run bossbar set sg:timer name [{"text":"","color":"#ff8c00","bold":true},{"score":{"name":"%mins","objective":"sg"},"color":"#ff8c00","bold":true},{"text":" minutes until Border Shrink","color":"#ff8c00","bold":true}]
 
-# First shrink window: (9601..12000)
-execute if score %game sg matches 1 if score %timer sg matches 9601..12000 run bossbar set sg:timer name {"text":"Border shrinking...","color":"#ff8c00","bold":true}
+# First shrink window: (6000..8400)
+execute if score %game sg matches 1 if score %timer sg matches 6000..8400 run bossbar set sg:timer name {"text":"Border shrinking...","color":"#ff8c00","bold":true}
 
-# Between shrinks: show "X minutes until Border Shrink" (6001..9600)
-execute if score %game sg matches 1 if score %timer sg matches 6001..9600 run scoreboard players operation %tmp sg = %timer sg
-execute if score %game sg matches 1 if score %timer sg matches 6001..9600 run scoreboard players remove %tmp sg 6000
-execute if score %game sg matches 1 if score %timer sg matches 6001..9600 run scoreboard players add %tmp sg 1199
-execute if score %game sg matches 1 if score %timer sg matches 6001..9600 run scoreboard players operation %mins sg = %tmp sg
-execute if score %game sg matches 1 if score %timer sg matches 6001..9600 run scoreboard players operation %mins sg /= #1200 sg
-execute if score %game sg matches 1 if score %timer sg matches 6001..9600 run bossbar set sg:timer name [{"text":"","color":"#ff8c00","bold":true},{"score":{"name":"%mins","objective":"sg"},"color":"#ff8c00","bold":true},{"text":" minutes until Border Shrink","color":"#ff8c00","bold":true}]
+# Between shrinks: show "X minutes until Border Shrink" (2401..6000)
+execute if score %game sg matches 1 if score %timer sg matches 2401..6000 run scoreboard players operation %tmp sg = %timer sg
+execute if score %game sg matches 1 if score %timer sg matches 2401..6000 run scoreboard players remove %tmp sg 2400
+execute if score %game sg matches 1 if score %timer sg matches 2401..6000 run scoreboard players add %tmp sg 1199
+execute if score %game sg matches 1 if score %timer sg matches 2401..6000 run scoreboard players operation %mins sg = %tmp sg
+execute if score %game sg matches 1 if score %timer sg matches 2401..6000 run scoreboard players operation %mins sg /= #1200 sg
+execute if score %game sg matches 1 if score %timer sg matches 2401..6000 run bossbar set sg:timer name [{"text":"","color":"#ff8c00","bold":true},{"score":{"name":"%mins","objective":"sg"},"color":"#ff8c00","bold":true},{"text":" minutes until Border Shrink","color":"#ff8c00","bold":true}]
 
-# Final shrink window: (1..6000)
-execute if score %game sg matches 1 if score %timer sg matches 1..6000 run bossbar set sg:timer name {"text":"Border shrinking...","color":"#ff8c00","bold":true}
+# Final shrink window: (1..2400)
+execute if score %game sg matches 1 if score %timer sg matches 1..2400 run bossbar set sg:timer name {"text":"Border shrinking...","color":"#ff8c00","bold":true}
 
 # Deathmatch: timer = 0
 execute if score %game sg matches 1 if score %timer sg matches 0 run bossbar set sg:timer name {"text":"DEATHMATCH","color":"#ff8c00","bold":true}

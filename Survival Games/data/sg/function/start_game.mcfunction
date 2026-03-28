@@ -2,7 +2,7 @@
 scoreboard players set %game sg 1
 
 # Timer ticks
-scoreboard players set %timer sg 24100
+scoreboard players set %timer sg 18100
 
 # Increase game iteration by 1
 scoreboard players add %iteration sg 1
@@ -25,8 +25,8 @@ worldborder warning time 0
 # Show bossbar to everyone
 bossbar set sg:timer players @a
 bossbar set sg:timer visible true
-bossbar set sg:timer max 24000
-bossbar set sg:timer value 24000
+bossbar set sg:timer max 18000
+bossbar set sg:timer value 18000
 bossbar set sg:timer name {"text":"Starting...","color":"#ff8c00","bold":true}
 
 # Set time to be noon

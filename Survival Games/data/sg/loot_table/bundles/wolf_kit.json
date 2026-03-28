@@ -11,7 +11,14 @@
             {
               "function": "minecraft:set_components",
               "components": {
-                "minecraft:can_place_on": { "blocks": "minecraft:chest" }
+                "minecraft:can_place_on": { "blocks": "minecraft:chest" },
+                "minecraft:lore": [
+                  {
+                    "text": "Drop this egg while sneaking to spawn it!",
+                    "color": "gray",
+                    "italic": false
+                  }
+                ]
               }
             },
             {

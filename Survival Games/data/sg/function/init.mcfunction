@@ -65,8 +65,8 @@ scoreboard objectives add Solo trigger
 bossbar remove sg:timer
 bossbar add sg:timer {"text":"Survival Games","color":"#ff8c00","bold":true}
 bossbar set sg:timer color red
-bossbar set sg:timer max 24000
-bossbar set sg:timer value 24000
+bossbar set sg:timer max 18000
+bossbar set sg:timer value 18000
 bossbar set sg:timer players @a
 bossbar set sg:timer visible false
 
@@ -91,6 +91,12 @@ scoreboard objectives add anvil_fix minecraft.custom:minecraft.interact_with_anv
 
 # Happy ghast usage
 scoreboard objectives add spawned_happy_ghast minecraft.used:minecraft.happy_ghast_spawn_egg
+
+# Spawning mechanics scores
+scoreboard objectives add spawn_ghast minecraft.dropped:minecraft.happy_ghast_spawn_egg
+scoreboard objectives add spawn_horse minecraft.dropped:minecraft.horse_spawn_egg
+scoreboard objectives add spawn_wolf minecraft.dropped:minecraft.wolf_spawn_egg
+scoreboard objectives add spawn_cat minecraft.dropped:minecraft.cat_spawn_egg
 
 # Stashable score
 scoreboard objectives add stash dummy

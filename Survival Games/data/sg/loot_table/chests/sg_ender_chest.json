@@ -191,7 +191,14 @@
                     "body": { "id": "minecraft:white_harness", "count": 1 }
                   }
                 },
-                "minecraft:can_place_on": { "blocks": "minecraft:chest" }
+                "minecraft:can_place_on": { "blocks": "minecraft:chest" },
+                "minecraft:lore": [
+                  {
+                    "text": "Drop this egg while sneaking to spawn it!",
+                    "color": "gray",
+                    "italic": false
+                  }
+                ]
               }
             }
           ]
@@ -212,7 +219,14 @@
                     "saddle": { "id": "minecraft:saddle", "count": 1 }
                   }
                 },
-                "minecraft:can_place_on": { "blocks": "minecraft:chest" }
+                "minecraft:can_place_on": { "blocks": "minecraft:chest" },
+                "minecraft:lore": [
+                  {
+                    "text": "Drop this egg while sneaking to spawn it!",
+                    "color": "gray",
+                    "italic": false
+                  }
+                ]
               }
             }
           ]

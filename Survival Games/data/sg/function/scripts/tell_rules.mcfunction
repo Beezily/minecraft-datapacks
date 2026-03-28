@@ -12,12 +12,12 @@ tellraw @s [{"text":"• ","color":"gray"},{"text":"Use ","color":"yellow"},{"te
 tellraw @s {"text":""}
 
 tellraw @s {"text":"Game Rules:","color":"gold","bold":true}
-tellraw @s [{"text":"• ","color":"gray"},{"text":"The game lasts ","color":"yellow"},{"text":"20 minutes","color":"gold","bold":true},{"text":".","color":"yellow"}]
+tellraw @s [{"text":"• ","color":"gray"},{"text":"The game lasts ","color":"yellow"},{"text":"15 minutes","color":"gold","bold":true},{"text":".","color":"yellow"}]
 tellraw @s [{"text":"• ","color":"gray"},{"text":"All players start with ","color":"yellow"},{"text":"Absorption III","color":"red","bold":true},{"text":" for 30 seconds and ","color":"yellow"},{"text":"10 seconds of grace period","color":"green","bold":true},{"text":".","color":"yellow"}]
-tellraw @s [{"text":"• ","color":"gray"},{"text":"The border starts shrinking at ","color":"yellow"},{"text":"10:00","color":"gold","bold":true},{"text":", reaching half size by ","color":"yellow"},{"text":"8:00","color":"gold","bold":true},{"text":".","color":"yellow"}]
-tellraw @s [{"text":"• ","color":"gray"},{"text":"The supply drop is announced at ","color":"yellow"},{"text":"8:00","color":"gold","bold":true},{"text":" and lands at ","color":"yellow"},{"text":"6:00","color":"gold","bold":true},{"text":".","color":"yellow"}]
+tellraw @s [{"text":"• ","color":"gray"},{"text":"The border starts shrinking at ","color":"yellow"},{"text":"7:00","color":"gold","bold":true},{"text":", reaching half size by ","color":"yellow"},{"text":"5:00","color":"gold","bold":true},{"text":".","color":"yellow"}]
+tellraw @s [{"text":"• ","color":"gray"},{"text":"The supply drop is announced at ","color":"yellow"},{"text":"5:00","color":"gold","bold":true},{"text":" and lands at ","color":"yellow"},{"text":"3:00","color":"gold","bold":true},{"text":".","color":"yellow"}]
 tellraw @s [{"text":"  ","color":"gray"},{"text":"A ","color":"yellow"},{"text":"beacon","color":"aqua","bold":false},{"text":" and the ","color":"yellow"},{"text":"exact coordinates","color":"aqua","bold":false},{"text":" will point to it.","color":"yellow"}]
-tellraw @s [{"text":"• ","color":"gray"},{"text":"The border starts shrinking again at ","color":"yellow"},{"text":"5:00","color":"gold","bold":true},{"text":" and keeps shrinking until ","color":"yellow"},{"text":"deathmatch size","color":"red","bold":false},{"text":" at ","color":"yellow"},{"text":"0:00","color":"gold","bold":true},{"text":".","color":"yellow"}]
+tellraw @s [{"text":"• ","color":"gray"},{"text":"The border starts shrinking again at ","color":"yellow"},{"text":"2:00","color":"gold","bold":true},{"text":" and keeps shrinking until ","color":"yellow"},{"text":"deathmatch size","color":"red","bold":false},{"text":" at ","color":"yellow"},{"text":"0:00","color":"gold","bold":true},{"text":".","color":"yellow"}]
 tellraw @s [{"text":"• ","color":"gray"},{"text":"Kills grant ","color":"yellow"},{"text":"3 levels","color":"green","bold":true},{"text":" and ","color":"yellow"},{"text":"Regeneration II","color":"light_purple","bold":true},{"text":" for 4 seconds.","color":"yellow"}]
 tellraw @s [{"text":"• ","color":"gray"},{"text":"The ","color":"yellow"},{"text":"last player or team standing","color":"dark_red","bold":true},{"text":" wins!","color":"yellow"}]
 
