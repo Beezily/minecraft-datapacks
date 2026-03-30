@@ -126,6 +126,7 @@ gamerule block_drops false
 gamerule locator_bar false
 gamerule immediate_respawn true
 gamerule fire_spread_radius_around_player 0
+gamerule keep_inventory false
 
 # Set time
 time set noon

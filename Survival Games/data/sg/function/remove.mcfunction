@@ -27,6 +27,10 @@ scoreboard objectives remove anvil_cd
 scoreboard objectives remove enchant
 scoreboard objectives remove enchant_cd
 scoreboard objectives remove rules
+scoreboard objectives remove spawn_ghast
+scoreboard objectives remove spawn_horse
+scoreboard objectives remove spawn_wolf
+scoreboard objectives remove spawn_cat
 
 # Teams
 team remove Red
