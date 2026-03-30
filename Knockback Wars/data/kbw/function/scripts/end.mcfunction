@@ -22,3 +22,6 @@ scoreboard players reset * calculation
 
 #Setting %game to false
 scoreboard players set %game wins 0
+
+# Remove arrows by killing (this is fine right ;))
+kill @a

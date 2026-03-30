@@ -12,7 +12,7 @@ execute as @a[distance=..0.9] run effect give @s minecraft:blindness 1 0 true
 #If attack score was reset, then perform the teleport
 execute if score @s attack matches 0 at @s run particle minecraft:large_smoke ~ ~1.2 ~ 0.25 0.6 0.25 0 15 normal
 execute if score @s attack matches 0 at @s run particle minecraft:smoke ~ ~0.8 ~ 0.25 0.6 0.25 0.05 90 normal
-execute if score @s attack matches 0 run tp @s ~ ~ ~
+execute if score @s attack matches 0 run tp @s ~ ~ ~ ~180 ~
 execute if score @s attack matches 0 run particle minecraft:large_smoke ~ ~1.2 ~ 0.25 0.6 0.25 0 15 normal
 execute if score @s attack matches 0 run particle minecraft:smoke ~ ~0.8 ~ 0.25 0.6 0.25 0.05 90 normal
 execute if score @s attack matches 0 run playsound minecraft:entity.blaze.shoot master @a ~ ~ ~ 1 2

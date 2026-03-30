@@ -1,7 +1,7 @@
 {
-	"pack": {
-  	"pack_format": 10,
-  	"description": "Knockback Wars Datapack (Designed SPECIFICALLY for the kb wars map)"
-	}
+  "pack": {
+    "min_format": [101, 1],
+    "max_format": [101, 1],
+    "description": "Knockback Wars Datapack (Designed SPECIFICALLY for the kb wars map)"
+  }
 }
-

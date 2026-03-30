@@ -1,0 +1,5 @@
+#Grim Reaper unprepares for rend
+clear @s minecraft:diamond_hoe[custom_data~{scythe:3b}]
+execute if items entity @s weapon.mainhand * run give @s minecraft:netherite_hoe[custom_name={text:"Soul Reaper",color:"black",italic:false},lore=[{text:"This mysterious scythe has"},{text:"strange powers. Not even you"},{text:"have complete mastery of it. "}],unbreakable={},enchantments={"minecraft:knockback":2},custom_data={scythe:2b},tooltip_display={hidden_components:["unbreakable","attribute_modifiers"]}] 1
+execute unless items entity @s weapon.mainhand * run clear @s minecraft:netherite_hoe[custom_data~{scythe:2b}]
+execute unless items entity @s weapon.mainhand * run item replace entity @s weapon.mainhand with minecraft:netherite_hoe[custom_name={text:"Soul Reaper",color:"black",italic:false},lore=[{text:"This mysterious scythe has"},{text:"strange powers. Not even you"},{text:"have complete mastery of it. "}],unbreakable={},enchantments={"minecraft:knockback":2},custom_data={scythe:2b},tooltip_display={hidden_components:["unbreakable","attribute_modifiers"]}] 1

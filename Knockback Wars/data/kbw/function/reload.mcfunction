@@ -1,17 +1,19 @@
-tellraw @a [{"text":"reload - "},{"text":"Knockback Wars","color":"white","bold":true},{"text":" - ","color":"white","bold":false},{"text":"by Bzlbzlbzl","color":"light_purple"}]
+tellraw @a [{"text":"reload - "},{"text":"Knockback Wars","color":"white","bold":true},{"text":" - ","color":"white","bold":false},{"text":"by Beezily","color":"light_purple"}]
 
-gamerule doLimitedCrafting true
-gamerule commandBlockOutput false
-gamerule mobGriefing false
-gamerule doMobLoot false
-gamerule doMobSpawning false
-gamerule keepInventory true
-gamerule doDaylightCycle true
-gamerule doFireTick false
-gamerule announceAdvancements false
-gamerule doImmediateRespawn true
-gamerule doWeatherCycle false
-gamerule doTileDrops false
+gamerule minecraft:limited_crafting true
+gamerule minecraft:command_block_output false
+gamerule minecraft:mob_griefing false
+gamerule minecraft:mob_drops false
+gamerule minecraft:spawn_mobs false
+gamerule minecraft:keep_inventory true
+gamerule minecraft:advance_time true
+gamerule minecraft:fire_spread_radius_around_player 0
+gamerule minecraft:show_advancement_messages false
+gamerule minecraft:immediate_respawn true
+gamerule minecraft:advance_weather false
+gamerule minecraft:block_drops false
+gamerule minecraft:show_death_messages false
+gamerule minecraft:locator_bar false
 
 scoreboard players reset * queue
 #scoreboard players reset * wins
@@ -29,7 +31,7 @@ scoreboard players reset * jingle
 scoreboard objectives add queue dummy
 scoreboard objectives setdisplay list queue
 scoreboard objectives add wins dummy
-scoreboard objectives setdisplay belowName wins
+scoreboard objectives setdisplay below_name wins
 scoreboard objectives add score dummy
 scoreboard objectives setdisplay sidebar score
 scoreboard objectives add pyroFlail minecraft.used:minecraft.carrot_on_a_stick
@@ -41,6 +43,7 @@ scoreboard objectives add damage minecraft.custom:minecraft.damage_dealt
 scoreboard objectives add blocked minecraft.custom:minecraft.damage_blocked_by_shield
 scoreboard objectives add last_sprint dummy
 scoreboard objectives add jingle dummy
+scoreboard objectives add ensnare dummy
 
 team add Assassin
 team modify Assassin color yellow
