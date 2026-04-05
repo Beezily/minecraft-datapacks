@@ -1,8 +1,8 @@
 # run by dsCenter marker to go to random spot and load it
-execute at @s run forceload remove ~ ~ ~ ~
-execute store result entity @s Pos[0] double 1 run random value -2000000..2000000
-execute store result entity @s Pos[2] double 1 run random value -2000000..2000000
-execute at @s run forceload add ~ ~ ~ ~
+#execute at @s run forceload remove ~ ~ ~ ~
+execute store result entity @s Pos[0] double 1 run random value -1500000..1500000
+execute store result entity @s Pos[2] double 1 run random value -1500000..1500000
+#execute at @s run forceload add ~ ~ ~ ~
 
 # World spawn
 execute at @s run setworldspawn ~ ~ ~
@@ -37,9 +37,11 @@ execute as @s at @s positioned ~-250 ~ ~-433 as @e[type=marker,tag=dsSpot,limit=
 execute as @s at @s positioned ~250 ~ ~-433 as @e[type=marker,tag=dsSpot,limit=1,sort=random] run function death-swap:scripts/tp_spread
 
 # Non-teams can go anywhere
-execute as @s at @s if score %valid ds matches 1 if entity @a[team=] store success score %valid ds as @n[type=marker,tag=dsCenter] at @s run spreadplayers ~ ~ 10 500 false @a[team=]
+execute as @s at @s if score %valid ds matches 1 if entity @a[team=] store success score %valid ds run spreadplayers ~ ~ 10 500 false @a[team=]
 # Kill all the dsSpot markers (just in case)
 kill @e[type=marker,tag=dsSpot]
+# Kill self too if spread was good
+execute if score %valid ds matches 1 if entity @s[type=marker,tag=dsCenter] run kill @s
 
 execute if score %valid ds matches 0 run tellraw @a {"text":"Error: Bad spawn. Trying again...","bold":false,"color":red}
 # Run this function again if there was ever an invalid spread (like stuck in ocean or something)

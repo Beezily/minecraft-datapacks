@@ -1,10 +1,10 @@
-# Progress to next round
+# Manual retry. Literally same thing lol, but no add iteration
 
 # Timer ticks
 scoreboard players set %timer ds 6000
 
 # Add iteration by 1
-scoreboard players add %iteration ds 1
+#scoreboard players add %iteration ds 1
 
 # Clear everyone if %clear_rounds
 execute if score %clear_rounds ds matches 1 run effect clear @a
@@ -49,4 +49,3 @@ scoreboard players reset * ds_died
 tellraw @a [{"text":"Starting ","color":"green","bold":true},{"text":"Round ","color":"gold","bold":true},{"score":{"name":"%iteration","objective":"ds"},"color":"gold","bold":true},{"text":"! Swapping in 5 minutes.","color":"green","bold":true}]
 execute if score %iteration ds = %final_iteration ds run tellraw @a {"text":"This is the final round!","color":"dark_green"}
 title @a title {"text":"Round Start!","bold":true}
-

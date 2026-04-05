@@ -13,8 +13,8 @@ effect give @a resistance infinite 4 true
 # Show bossbar to everyone
 bossbar set ds:timer players @a
 bossbar set ds:timer visible false
-bossbar set ds:timer max 3600
-bossbar set ds:timer value 3600
+bossbar set ds:timer max 6000
+bossbar set ds:timer value 6000
 bossbar set ds:timer name {"text":"Starting...","color":"#037d5e","bold":true}
 
 # Enable all triggers to allow team switches

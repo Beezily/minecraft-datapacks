@@ -2,7 +2,7 @@
 scoreboard players set %game ds 1
 
 # Timer ticks
-scoreboard players set %timer ds 3600
+scoreboard players set %timer ds 6000
 
 # Clear iteration to fresh new 1
 scoreboard players set %iteration ds 1
@@ -16,10 +16,13 @@ xp set @a 0 points
 # Show bossbar to everyone
 bossbar set ds:timer players @a
 bossbar set ds:timer visible true
-bossbar set ds:timer max 3600
-bossbar set ds:timer value 3600
+bossbar set ds:timer max 6000
+bossbar set ds:timer value 6000
 bossbar set ds:timer name {"text":"Starting...","color":"#037d5e","bold":true}
 bossbar set ds:timer color green
+
+# Enable team tp for teams
+scoreboard players enable @a[team=!] team_tp
 
 # Disable all triggers to prevent team switches
 execute as @a run trigger Red set 0
@@ -41,15 +44,12 @@ scoreboard players set @a Solo 0
 # Reset all deaths
 scoreboard players reset * deaths
 
-# Survival mode to all AND importantly reset death so not immediate spectate
-gamemode survival @a
-scoreboard players reset * ds_died
-
 # Starter gear
 give @a stone_axe 1
 give @a stone_pickaxe 1
 give @a stone_shovel 1
 give @a cooked_beef 3
+give @a crafting_table 1
 
 # Just to give people peace of mind
 effect give @a minecraft:instant_health 1 99 true
@@ -58,8 +58,12 @@ effect give @a minecraft:saturation 1 99 true
 # Find new center and then teleport players
 function death-swap:scripts/gen_new_spot
 
+# Survival mode to all AND importantly reset death so not immediate spectate
+gamemode survival @a
+scoreboard players reset * ds_died
+
 # Tellraw current round to all players
-tellraw @a [{"text":"Starting round ","color":"green","bold":true},{"score":{"name":"%iteration","objective":"ds"},"color":"gold","bold":true},{"text":"! Swapping in 3 minutes.","color":"green","bold":true}]
+tellraw @a [{"text":"Starting ","color":"green","bold":true},{"text":"Round ","color":"gold","bold":true},{"score":{"name":"%iteration","objective":"ds"},"color":"gold","bold":true},{"text":"! Swapping in 5 minutes.","color":"green","bold":true}]
 execute if score %iteration ds = %final_iteration ds run tellraw @a {"text":"This is the final round!","color":"dark_green"}
 title @a title {"text":"Round Start!","bold":true}
 

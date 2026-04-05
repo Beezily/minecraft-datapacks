@@ -57,12 +57,11 @@ execute if score %timer ds matches 0 run function death-swap:scripts/start_survi
 
 # Update bossbar dynamically
 # Positive timer: 0..3600 ticks
-execute if score %timer ds matches 0..3600 run bossbar set ds:timer max 3600
-execute if score %timer ds matches 0..3600 store result bossbar ds:timer value run scoreboard players get %timer ds
-execute if score %timer ds matches 0..3600 run scoreboard players operation %temp ds = %timer ds
-execute if score %timer ds matches 0..3600 run scoreboard players operation %temp ds += #20 ds
-execute if score %timer ds matches 0..3600 run scoreboard players operation %temp ds /= #20 ds
-execute if score %timer ds matches 0..3600 run bossbar set ds:timer name [{"text":"Swapping in ","bold":true,"color":"#037d5e"},{"score":{"name":"%temp","objective":"ds"},"bold":true,"color":"#037d5e"},{"text":"s...","bold":true,"color":"#037d5e"}]
+execute if score %timer ds matches 0..6000 store result bossbar ds:timer value run scoreboard players get %timer ds
+execute if score %timer ds matches 0..6000 run scoreboard players operation %temp ds = %timer ds
+execute if score %timer ds matches 0..6000 run scoreboard players operation %temp ds += #19 ds
+execute if score %timer ds matches 0..6000 run scoreboard players operation %temp ds /= #20 ds
+execute if score %timer ds matches 0..6000 run bossbar set ds:timer name [{"text":"Swapping in ","bold":true,"color":"#037d5e"},{"score":{"name":"%temp","objective":"ds"},"bold":true,"color":"red"},{"text":"s","bold":true,"color":"red"},{"text":"...","bold":true,"color":"#037d5e"}]
 # Negative timer: -601..-1 ticks
 execute if score %timer ds matches -601..-1 run bossbar set ds:timer max 600
 execute if score %timer ds matches -601..-1 run scoreboard players operation %temp ds = %timer ds
@@ -90,12 +89,24 @@ execute if score %timer ds matches -601 as @a[gamemode=survival] at @s run plays
 
 # Start next round when timer ends or end game if %iteration = %final_iteration
 # NOTE: End game must be run first because the next_round adds to %iteration
+# @r is needed to keep spawned markers loaded
 execute if score %timer ds matches -601 if score %iteration ds = %final_iteration ds run function death-swap:scripts/end_game
-execute if score %timer ds matches -601 unless score %iteration ds = %final_iteration ds run function death-swap:scripts/next_round
+execute if score %timer ds matches -601 unless score %iteration ds = %final_iteration ds at @r run function death-swap:scripts/next_round
 
 # Put all players that died into spectator mode, they will be respawned next round
 execute as @a[scores={ds_died=1..}] run gamemode spectator @s
 scoreboard players reset @a[scores={ds_died=1..}] ds_died
+
+# team_tp trigger (only 1 time use)
+execute as @a[team=!,scores={team_tp=1..}] run tellraw @s {"text":"You have used your team teleport this round and teleported to a random teammate!","bold":false,"color":"light_purple"}
+execute as @a[team=!,scores={team_tp=1..}] run effect give @s minecraft:regeneration 4 2 false
+execute as @a[team=Red,scores={team_tp=1..}] at @s run function death-swap:tp/red_team_tp
+execute as @a[team=Yellow,scores={team_tp=1..}] at @s run function death-swap:tp/yellow_team_tp
+execute as @a[team=Blue,scores={team_tp=1..}] at @s run function death-swap:tp/blue_team_tp
+execute as @a[team=Green,scores={team_tp=1..}] at @s run function death-swap:tp/green_team_tp
+execute as @a[team=Aqua,scores={team_tp=1..}] at @s run function death-swap:tp/aqua_team_tp
+execute as @a[team=Purple,scores={team_tp=1..}] at @s run function death-swap:tp/purple_team_tp
+scoreboard players set @a[scores={team_tp=1..}] team_tp 0
 
 # Enforce spectators stay near their teams
 # RED

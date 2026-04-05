@@ -12,8 +12,8 @@ scoreboard players set %timer ds -1
 # Playsound here after the tp
 execute as @a at @s run playsound minecraft:entity.ravager.roar master @s ~ ~ ~ 1 1 1
 
-# Disables team tp if I implement it
-
+# Disables team tp
+execute as @a run trigger team_tp set 0
 
 # Optional obsidian nerf
 execute if score %nerf_obsidian ds matches 1 as @a at @s positioned ~ ~ ~ if block ~ ~ ~ obsidian run tellraw @s {"text":"Obsidian trapping has been nerfed. The block has been broken for you!","bold":false,"color":light_purple}

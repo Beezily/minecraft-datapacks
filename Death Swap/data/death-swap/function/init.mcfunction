@@ -2,6 +2,7 @@ tellraw @a [{"text":"reload - "},{"text":"Death Swap","color":"dark_green","bold
 
 # Main scoreboard
 scoreboard objectives add ds dummy
+scoreboard objectives add team_tp trigger
 
 # Teams
 team add Red
@@ -26,6 +27,7 @@ team modify Purple color light_purple
 # Constants
 scoreboard players set #1 ds 1
 scoreboard players set #2 ds 2
+scoreboard players set #19 ds 19
 scoreboard players set #20 ds 20
 scoreboard players set #601 ds 601
 
@@ -36,7 +38,7 @@ scoreboard players set %iteration ds 0
 scoreboard players set %final_iteration ds 8
 execute unless score %nerf_lava ds matches 0.. run scoreboard players set %nerf_lava ds 1
 execute unless score %nerf_obsidian ds matches 0.. run scoreboard players set %nerf_obsidian ds 1
-execute unless score %clear_rounds ds matches 0.. run scoreboard players set %clear_rounds ds 0
+execute unless score %clear_rounds ds matches 0.. run scoreboard players set %clear_rounds ds 1
 execute unless score %pvp ds matches 0.. run scoreboard players set %pvp ds 1
 
 # Team join scores
@@ -52,8 +54,8 @@ scoreboard objectives add Solo trigger
 bossbar remove ds:timer
 bossbar add ds:timer {"text":"Death Swap","color":"#037d5e","bold":true}
 bossbar set ds:timer color green
-bossbar set ds:timer max 3600
-bossbar set ds:timer value 3600
+bossbar set ds:timer max 6000
+bossbar set ds:timer value 6000
 bossbar set ds:timer players @a
 bossbar set ds:timer visible false
 
@@ -73,5 +75,7 @@ scoreboard objectives add ds_group_order dummy
 gamerule locator_bar true
 gamerule immediate_respawn true
 gamerule keep_inventory false
+gamerule spectators_generate_chunks true
 execute if score %pvp ds matches 1 run gamerule pvp true
+difficulty hard
 
