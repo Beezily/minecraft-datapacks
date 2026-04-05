@@ -33,26 +33,32 @@ bossbar set parkour:timer visible false
 team add Red
 team modify Red friendlyFire false
 team modify Red seeFriendlyInvisibles true
+team modify Red collisionRule never
 team modify Red color red
 team add Yellow
 team modify Yellow friendlyFire false
 team modify Yellow seeFriendlyInvisibles true
+team modify Yellow collisionRule never
 team modify Yellow color yellow
 team add Blue
 team modify Blue friendlyFire false
 team modify Blue seeFriendlyInvisibles true
+team modify Blue collisionRule never
 team modify Blue color blue
 team add Green
 team modify Green friendlyFire false
 team modify Green seeFriendlyInvisibles true
+team modify Green collisionRule never
 team modify Green color green
 team add Aqua
 team modify Aqua friendlyFire false
 team modify Aqua seeFriendlyInvisibles true
+team modify Aqua collisionRule never
 team modify Aqua color aqua
 team add Purple
 team modify Purple friendlyFire false
 team modify Purple seeFriendlyInvisibles true
+team modify Purple collisionRule never
 team modify Purple color light_purple
 
 # Team join scoreboards
