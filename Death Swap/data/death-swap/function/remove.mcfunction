@@ -11,10 +11,8 @@ scoreboard objectives setdisplay sidebar
 
 # Scoreboards
 scoreboard objectives remove ds
-scoreboard objectives remove deaths
-scoreboard objectives remove ds_died
-scoreboard objectives remove ds_group
-scoreboard objectives remove ds_group_order
+scoreboard objectives remove team_tp
+scoreboard objectives remove rules
 
 # Teams
 team remove Red

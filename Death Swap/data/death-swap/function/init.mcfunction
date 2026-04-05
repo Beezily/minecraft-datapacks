@@ -3,6 +3,7 @@ tellraw @a [{"text":"reload - "},{"text":"Death Swap","color":"dark_green","bold
 # Main scoreboard
 scoreboard objectives add ds dummy
 scoreboard objectives add team_tp trigger
+scoreboard objectives add rules trigger
 
 # Teams
 team add Red
@@ -35,11 +36,12 @@ scoreboard players set #601 ds 601
 scoreboard players set %game ds 0
 scoreboard players set %timer ds 0
 scoreboard players set %iteration ds 0
-scoreboard players set %final_iteration ds 8
+execute unless score %final_iteration ds matches 0.. run scoreboard players set %final_iteration ds 6
 execute unless score %nerf_lava ds matches 0.. run scoreboard players set %nerf_lava ds 1
 execute unless score %nerf_obsidian ds matches 0.. run scoreboard players set %nerf_obsidian ds 1
 execute unless score %clear_rounds ds matches 0.. run scoreboard players set %clear_rounds ds 1
 execute unless score %pvp ds matches 0.. run scoreboard players set %pvp ds 1
+execute unless score %team_tp ds matches 0.. run scoreboard players set %team_tp ds 1
 
 # Team join scores
 scoreboard objectives add Red trigger

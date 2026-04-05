@@ -33,6 +33,11 @@ execute unless score %game ds matches 1 run scoreboard players set @a[scores={Aq
 execute unless score %game ds matches 1 run scoreboard players set @a[scores={Purple=1..}] Purple 0
 execute unless score %game ds matches 1 run scoreboard players set @a[scores={Solo=1..}] Solo 0
 
+# Tellraw rules and rules trigger
+execute as @a[scores={rules=1..}] run function death-swap:scripts/tell_rules
+execute as @a unless score @s rules matches 0 run scoreboard players enable @s rules
+execute as @a unless score @s rules matches 0 run scoreboard players set @s rules 0
+
 # Do nothing if the game isn't running (reduces lag, probably not necessary)
 execute unless score %game ds matches 1 run return 0
 

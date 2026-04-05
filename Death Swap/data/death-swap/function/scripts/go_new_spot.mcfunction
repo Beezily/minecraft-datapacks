@@ -1,7 +1,7 @@
 # run by dsCenter marker to go to random spot and load it
 #execute at @s run forceload remove ~ ~ ~ ~
-execute store result entity @s Pos[0] double 1 run random value -1500000..1500000
-execute store result entity @s Pos[2] double 1 run random value -1500000..1500000
+execute store result entity @s Pos[0] double 1 run random value -2500000..2500000
+execute store result entity @s Pos[2] double 1 run random value -2500000..2500000
 #execute at @s run forceload add ~ ~ ~ ~
 
 # World spawn

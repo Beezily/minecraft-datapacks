@@ -21,8 +21,10 @@ bossbar set ds:timer value 6000
 bossbar set ds:timer name {"text":"Starting...","color":"#037d5e","bold":true}
 bossbar set ds:timer color green
 
-# Enable team tp for teams
+# Enable team tp for teams and rules
+scoreboard players set @a team_tp 0
 scoreboard players enable @a[team=!] team_tp
+scoreboard players enable @a rules
 
 # Disable all triggers to prevent team switches
 execute as @a run trigger Red set 0
