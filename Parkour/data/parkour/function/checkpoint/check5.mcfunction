@@ -8,7 +8,7 @@ tellraw @a [{"selector":"@s","color":"yellow","bold":true},{"text":" was the ","
 scoreboard players operation @s parkour += %score5 checkpoint
 scoreboard players operation @s parkour += #10 parkour
 scoreboard players add %check5 checkpoint 1
-scoreboard players remove %score5 checkpoint 1
+execute unless score %score5 checkpoint matches ..0 run scoreboard players remove %score5 checkpoint 1
 execute at @n[type=marker,tag=parkourCheck5] run spawnpoint @s ~ ~ ~
 
 execute at @s run playsound minecraft:ui.toast.challenge_complete master @s ~ ~ ~ 1 1 1

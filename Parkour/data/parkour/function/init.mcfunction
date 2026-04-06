@@ -18,6 +18,7 @@ scoreboard players set #599 parkour 599
 scoreboard players set %game parkour 0
 scoreboard players set %timer parkour 0
 execute unless score %water_kill parkour matches 0.. run scoreboard players set %water_kill parkour 1
+execute unless score %lava_kill parkour matches 0.. run scoreboard players set %lava_kill parkour 1
 execute unless score %pvp parkour matches 0.. run scoreboard players set %pvp parkour 0
 
 # Bossbar
@@ -74,6 +75,7 @@ scoreboard objectives setdisplay list parkour
 
 # Gamerules
 gamerule advance_time false
+gamerule advance_weather false
 gamerule mob_griefing false
 gamerule spawn_mobs false
 gamerule block_drops false
@@ -84,4 +86,5 @@ gamerule keep_inventory true
 gamerule show_death_messages false
 gamerule max_block_modifications 100000
 gamerule fire_spread_radius_around_player 0
+gamerule respawn_radius 0
 execute if score %pvp parkour matches 0 run gamerule pvp false
