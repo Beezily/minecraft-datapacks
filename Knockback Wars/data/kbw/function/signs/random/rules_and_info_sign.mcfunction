@@ -1,0 +1,1 @@
+give @s oak_sign[block_entity_data={id:"sign",front_text:{color:"black",has_glowing_text:0b,messages:["",{"text":"RULES","bold":true,"color":"white"},{"text":"AND INFO","bold":true,"color":"white"},""]},back_text:{color:"black",has_glowing_text:0b,messages:["","","",""]},is_waxed:1b},custom_name={"text":"Rules and Info Sign","italic":false}] 1

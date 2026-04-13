@@ -2,7 +2,7 @@
 
 #Summons a temporary marker to get location of looking at, and a tagged Fireball
 summon area_effect_cloud ^ ^ ^1 {Tags:["pyroFireball"]}
-execute at @s positioned ~ ~2 ~ run summon minecraft:fireball ^ ^ ^ {Tags:["pyroFireball"],ExplosionPower:3}
+execute at @s anchored eyes run summon minecraft:fireball ^ ^ ^ {Tags:["pyroFireball"],ExplosionPower:3}
 
 #Coordinate X data storage
 execute store result score @s pyroFlail run data get entity @s Pos[0] 1000

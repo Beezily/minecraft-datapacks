@@ -44,6 +44,7 @@ scoreboard objectives add blocked minecraft.custom:minecraft.damage_blocked_by_s
 scoreboard objectives add last_sprint dummy
 scoreboard objectives add jingle dummy
 scoreboard objectives add ensnare dummy
+scoreboard objectives add pyroSlam dummy
 
 team add Assassin
 team modify Assassin color yellow

@@ -13,10 +13,21 @@ effect give @a[team=Assassin] minecraft:speed 1 0 true
 effect give @a[team=Knight] minecraft:slowness 1 1 true
 
 #Getting count of players with %count
-execute store result score %count wins if entity @a[scores={queue=1}]
+# REMOVED: We can just do this on the sign
+#execute store result score %count wins if entity @a[scores={queue=1}]
 
 #Starting the game based on the %countdown; first countdown, when finally 0 then runs start function
-# NOTE: Command "execute if score %game wins matches 0 if score %count wins matches 2.. run scoreboard players set %countdown wins 60" run from elsewhere required to start this
+# NOTE: Command "execute if score %game wins matches 0 if score %count wins matches 2.. run scoreboard players set %countdown wins 100" run from elsewhere required to start this
+execute if score %countdown wins matches 100 as @a unless entity @s[scores={queue=1..}] run tellraw @s [{"bold":true,"color":"red","text":"NOTE: You have not queued for the game yet. \n"},{"bold":true,"color":"red","text":"Click the queue sign before the game starts if you want to participate this game."}]
+execute if score %countdown wins matches 100 run summon shulker 0.5 70.0 35.5 {Silent:1b,Invulnerable:1b,Glowing:1b,Team:"Duelist",PersistenceRequired:1b,NoAI:1b,AttachFace:0b,Tags:["kbwQueueMarker"],active_effects:[{id:"minecraft:invisibility",amplifier:0,duration:-1,show_particles:0b}]}
+execute if score %countdown wins matches 100 run summon shulker -34.5 70.0 0.5 {Silent:1b,Invulnerable:1b,Glowing:1b,Team:"Duelist",PersistenceRequired:1b,NoAI:1b,AttachFace:0b,Tags:["kbwQueueMarker"],active_effects:[{id:"minecraft:invisibility",amplifier:0,duration:-1,show_particles:0b}]}
+execute if score %countdown wins matches 100 run summon shulker 0.5 70.0 -34.5 {Silent:1b,Invulnerable:1b,Glowing:1b,Team:"Duelist",PersistenceRequired:1b,NoAI:1b,AttachFace:0b,Tags:["kbwQueueMarker"],active_effects:[{id:"minecraft:invisibility",amplifier:0,duration:-1,show_particles:0b}]}
+execute if score %countdown wins matches 100 run summon shulker 35.5 70.0 0.5 {Silent:1b,Invulnerable:1b,Glowing:1b,Team:"Duelist",PersistenceRequired:1b,NoAI:1b,AttachFace:0b,Tags:["kbwQueueMarker"],active_effects:[{id:"minecraft:invisibility",amplifier:0,duration:-1,show_particles:0b}]}
+
+execute if score %countdown wins matches 100 run tellraw @a ["",{"text":"Starting in "},{"text":"5","bold":true,"color":"#DB00EB"},{"text":"..."}]
+execute if score %countdown wins matches 100 as @a at @s run playsound minecraft:block.note_block.hat master @s ~ ~ ~ 1 1
+execute if score %countdown wins matches 80 run tellraw @a ["",{"text":"Starting in "},{"text":"4","bold":true,"color":"#009DD6"},{"text":"..."}]
+execute if score %countdown wins matches 80 as @a at @s run playsound minecraft:block.note_block.hat master @s ~ ~ ~ 1 1
 execute if score %countdown wins matches 60 run tellraw @a ["",{"text":"Starting in "},{"text":"3","bold":true,"color":"dark_green"},{"text":"..."}]
 execute if score %countdown wins matches 60 as @a at @s run playsound minecraft:block.note_block.hat master @s ~ ~ ~ 1 1
 execute if score %countdown wins matches 40 run tellraw @a ["",{"text":"Starting in "},{"text":"2","bold":true,"color":"gold"},{"text":"..."}]
@@ -27,17 +38,21 @@ execute if score %countdown wins matches 0 run tellraw @a {"text":"START!","bold
 execute if score %countdown wins matches 0 run function kbw:scripts/start
 execute if score %countdown wins matches 0 as @a at @s run playsound minecraft:block.note_block.pling master @s ~ ~ ~ 1 2
 
+# Shulker remove mechanics
+scoreboard players add @e[type=shulker,tag=kbwQueueMarker] calculation 1
+execute as @e[type=shulker,tag=kbwQueueMarker,scores={calculation=100..}] at @s run tp @s ~ -68 ~
+kill @e[type=shulker,tag=kbwQueueMarker,scores={calculation=100..}]
+
 #Ghost head mechanics
-execute as @a[team=Ghost] unless items entity @s armor.head minecraft:jack_o_lantern[custom_data~{ghost:1b}] run item replace entity @s armor.head with minecraft:jack_o_lantern[custom_name={text:'Possessed Mask',color:'gray',italic:false},lore=[{text:'Even with a physical head,'},{text:'attacks just seem to pass'},{text:'right through you.'}],attribute_modifiers=[{id:'ghost:mask_knockback_resistance',type:'minecraft:knockback_resistance',amount:0.25,operation:'add_value',slot:'head'}],custom_data={ghost:1b}]
+execute as @a[team=Ghost] unless items entity @s armor.head minecraft:jack_o_lantern[custom_data~{ghost:1b}] run item replace entity @s armor.head with minecraft:jack_o_lantern[custom_name={text:'Possessed Mask',color:'gray',italic:false},lore=[{text:'Even with a physical head,'},{text:'attacks just seem to pass'},{text:'right through you.'}],attribute_modifiers=[{id:'ghost:mask_knockback_resistance',type:'minecraft:knockback_resistance',amount:0.25,operation:'add_value',slot:'head'}],custom_data={ghost:1b},tooltip_display={hidden_components:["enchantments"]},enchantment_glint_override=false,enchantments={"binding_curse":1}]
 clear @a[team=!Ghost] minecraft:jack_o_lantern[minecraft:custom_data~{ghost:1b}]
-execute as @e[type=minecraft:item] if items entity @s contents *[minecraft:custom_data~{ghost:1b}] run kill @s
+#execute as @e[type=minecraft:item] if items entity @s contents *[minecraft:custom_data~{ghost:1b}] run kill @s
 
 #Reaper armor mechanics
-execute as @a[team=Reaper] unless items entity @s armor.head minecraft:leather_helmet[custom_data~{reaper:1b},dyed_color=0] run item replace entity @s armor.head with minecraft:leather_helmet[custom_name={text:"Reaper's Hood",color:'black',italic:false},lore=[{text:"Nobody knows what's under"},{text:'this hood... not even you.'}],dyed_color=0,unbreakable={},tooltip_display={hidden_components:['minecraft:enchantments','minecraft:unbreakable']},attribute_modifiers=[{id:'reaper:hood_movement_speed',type:'minecraft:movement_speed',amount:0.1,operation:'add_multiplied_base',slot:'head'}],custom_data={reaper:1b}]
-execute as @a[team=Reaper] unless items entity @s armor.chest minecraft:leather_chestplate[custom_data~{reaper:1b},dyed_color=0] run item replace entity @s armor.chest with minecraft:leather_chestplate[custom_name={text:"Reaper's Robe",color:'black',italic:false},lore=[{text:"Your body isn't as"},{text:'tangible as the living.'}],dyed_color=0,unbreakable={},tooltip_display={hidden_components:['minecraft:enchantments','minecraft:unbreakable']},attribute_modifiers=[{id:'reaper:robe_knockback_resistance',type:'minecraft:knockback_resistance',amount:0.1,operation:'add_value',slot:'chest'}],custom_data={reaper:1b}]
+execute as @a[team=Reaper] unless items entity @s armor.head minecraft:leather_helmet[custom_data~{reaper:1b},dyed_color=0] run item replace entity @s armor.head with minecraft:leather_helmet[custom_name={text:"Reaper's Hood",color:'black',italic:false},lore=[{text:"Nobody knows what's under"},{text:'this hood... not even you.'}],dyed_color=0,unbreakable={},tooltip_display={hidden_components:['minecraft:enchantments','minecraft:unbreakable']},attribute_modifiers=[{id:'movement_speed',type:'minecraft:movement_speed',amount:0.05,operation:'add_multiplied_base',slot:'head'}],custom_data={reaper:1b},enchantments={binding_curse:1},enchantment_glint_override=false]
+execute as @a[team=Reaper] unless items entity @s armor.chest minecraft:leather_chestplate[custom_data~{reaper:1b},dyed_color=0] run item replace entity @s armor.chest with minecraft:leather_chestplate[custom_name={text:"Reaper's Robe",color:'black',italic:false},lore=[{text:"Your body isn't as"},{text:'tangible as the living.'}],dyed_color=0,unbreakable={},tooltip_display={hidden_components:['minecraft:enchantments','minecraft:unbreakable']},attribute_modifiers=[{id:'movement_speed',type:'minecraft:movement_speed',amount:0.05,operation:'add_multiplied_base',slot:'head'}],custom_data={reaper:1b},enchantments={binding_curse:1},enchantment_glint_override=false]
 clear @a[team=!Reaper] minecraft:leather_helmet[minecraft:custom_data~{reaper:1b}]
 clear @a[team=!Reaper] minecraft:leather_chestplate[minecraft:custom_data~{reaper:1b}]
-execute as @e[type=minecraft:item] if items entity @s contents *[minecraft:custom_data~{reaper:1b}] run kill @s
 
 #Bow kit mechanics when has weakness (stunned)
 execute as @a[team=Archer,tag=inGame,nbt={Inventory:[{id:"minecraft:arrow"}],active_effects:[{id:"minecraft:weakness"}]}] run clear @s minecraft:arrow
@@ -69,6 +84,15 @@ scoreboard players set @a[team=Pyromaniac,scores={calculation=0}] pyroFlail 0
 execute as @a[team=Pyromaniac,tag=inGame,scores={pyroFlail=1..,calculation=..0},nbt=!{active_effects:[{id:"minecraft:weakness"}]}] at @s run function kbw:scripts/fireball
 execute as @a[team=Pyromaniac,tag=inGame,scores={calculation=0..}] run scoreboard players remove @s calculation 1
 
+#Pyromaniac slam mechanics
+execute as @a[team=Pyromaniac,tag=inGame,tag=pyroSlamming] at @s run particle flame ~ ~1 ~ 0.5 1 0.5 0.1 5 normal @a
+execute as @a[team=Pyromaniac,tag=inGame,predicate=kbw:sneaking,nbt={SelectedItem:{components:{"minecraft:custom_data":{pyroSlam:1b}}},OnGround:0b},tag=!pyroSlamming] at @s if block ~ ~-1 ~ #air if block ~ ~-2 ~ #air if block ~ ~-3 ~ #air if block ~ ~-4 ~ #air run playsound block.respawn_anchor.charge master @s ~ ~ ~ 1 2 1
+execute as @a[team=Pyromaniac,tag=inGame,predicate=kbw:sneaking,nbt={SelectedItem:{components:{"minecraft:custom_data":{pyroSlam:1b}}},OnGround:0b},tag=!pyroSlamming] at @s if block ~ ~-1 ~ #air if block ~ ~-2 ~ #air if block ~ ~-3 ~ #air if block ~ ~-4 ~ #air run attribute @s gravity base set 0.5
+execute as @a[team=Pyromaniac,tag=inGame,predicate=kbw:sneaking,nbt={SelectedItem:{components:{"minecraft:custom_data":{pyroSlam:1b}}},OnGround:0b},tag=!pyroSlamming] at @s if block ~ ~-1 ~ #air if block ~ ~-2 ~ #air if block ~ ~-3 ~ #air if block ~ ~-4 ~ #air run tag @s add pyroSlamming
+execute as @a[team=Pyromaniac,tag=inGame,tag=pyroSlamming,tag=!pyroSlamLegit] store result score @s pyroSlam run data get entity @s fall_distance
+execute as @a[team=Pyromaniac,tag=inGame,tag=pyroSlamming,tag=!pyroSlamLegit,scores={pyroSlam=3..}] run tag @s add pyroSlamLegit
+execute as @a[team=Pyromaniac,tag=inGame,tag=pyroSlamming,nbt={OnGround:1b}] at @s run function kbw:scripts/slam
+
 # Grim Reaper mechanics
 #Swapping to diamond hoe and swapping back
 execute as @a[team=Reaper,nbt={SelectedItem:{components:{"minecraft:custom_data":{scythe:2b}}}},nbt=!{fall_distance:0.0d},predicate=kbw:sneaking,scores={calculation=..0}] run function kbw:scripts/rend_prep
@@ -84,8 +108,6 @@ execute as @a[team=Reaper,scores={rend=1..,calculation=..0}] at @s rotated ~180 
 execute as @a[team=Reaper,predicate=kbw:sneaking,scores={reap=1..,calculation=..0}] at @s rotated ~ 0 run function kbw:scripts/reap
 execute as @a[team=Reaper,predicate=kbw:sneaking,scores={attack=1..,calculation=..0}] at @s rotated ~ 0 run function kbw:scripts/reap
 
-#Replace knockback scythe to knockback 2 during 
-
 #Decreasing scoreboard values by 1 every tick
 scoreboard players reset @a[team=Reaper,scores={rend=1..}] rend
 scoreboard players reset @a[team=Reaper,scores={reap=1..}] reap
@@ -96,7 +118,6 @@ execute as @a[team=Reaper,tag=inGame,scores={calculation=0..}] run scoreboard pl
 execute as @a[team=Reaper,tag=inGame,scores={calculation=20..}] at @s run particle minecraft:soul ~ ~1 ~ 0.3 0.5 0.3 0 1 normal
 execute as @a[team=Reaper,tag=inGame,scores={calculation=20}] at @s run particle minecraft:smoke ~ ~0.8 ~ 0.25 0.6 0.25 0.05 90 normal
 execute as @a[team=Reaper,tag=inGame,scores={calculation=20}] at @s run playsound minecraft:entity.generic.extinguish_fire master @a ~ ~ ~ 0.6 2
-execute as @a[team=Reaper,tag=inGame,scores={calculation=20}] run attribute @s minecraft:knockback_resistance base set 0
 execute as @a[team=Reaper,tag=inGame,scores={calculation=20}] run attribute @s minecraft:attack_knockback base set 0
 
 #Effects for when others lost their soul and get it back
@@ -115,7 +136,7 @@ execute as @e[type=minecraft:armor_stand,tag=reapScythe,predicate=kbw:soul] at @
 execute as @e[type=minecraft:armor_stand,tag=reapScythe,scores={calculation=0}] at @s positioned ~-0.4 64 ~-0.7 if entity @e[type=minecraft:player,team=Reaper,tag=noScythe,distance=..1,scores={calculation=..19}] run function kbw:scripts/scythe
 
 #Duelist shield mechanics (I could have put the offhand + shield check in the same scan by separating w/ commas, but the point is they're different)
-execute as @a[team=Duelist,tag=inGame,scores={damage=0..,last_sprint=1},nbt=!{fall_distance:0.0d}] if items entity @s weapon.mainhand *[custom_data~{duelist:1b}] unless items entity @s container.* minecraft:shield unless items entity @s weapon.offhand * run item replace entity @s weapon.offhand with minecraft:shield[custom_name={text:"Shield",color:"red",italic:false},lore=[{translate:"Upon broken, stuns all nearby"},{translate:"enemies briefly. Restores"},{translate:"after every clean axe crit."}],custom_data={duelist:2b},unbreakable={},tooltip_display={hidden_components:["minecraft:unbreakable"]}] 1
+execute as @a[team=Duelist,tag=inGame,scores={damage=0..,last_sprint=1},nbt=!{fall_distance:0.0d}] if items entity @s weapon.mainhand *[custom_data~{duelist:1b}] unless items entity @s container.* minecraft:shield unless items entity @s weapon.offhand * run item replace entity @s weapon.offhand with minecraft:shield[custom_name={text:"Shield",color:"red",italic:false},lore=[{text:"Upon broken, stuns all nearby"},{text:"enemies briefly. Restores"},{text:"after every clean axe crit."}],custom_data={duelist:2b},unbreakable={},tooltip_display={hidden_components:["minecraft:unbreakable"]}] 1
 execute as @a[team=Duelist,scores={blocked=0..}] run clear @s minecraft:shield[custom_data~{duelist:2b}]
 execute as @a[team=Duelist,scores={blocked=0..}] at @s as @e[distance=..5,type=!#impact_projectiles,type=!armor_stand,type=!ender_pearl,type=!minecraft:splash_potion,type=!minecraft:lingering_potion] unless score @s blocked matches 0.. run effect give @s minecraft:weakness 2 10 true
 execute as @a[team=Duelist,scores={blocked=0..}] at @s as @e[distance=..5,type=!#impact_projectiles,type=!armor_stand,type=!ender_pearl,type=!minecraft:splash_potion,type=!minecraft:lingering_potion] run playsound minecraft:item.shield.break player @s ~ ~ ~ 1 0.9
@@ -129,7 +150,7 @@ execute if score %game wins matches 1 run fill 19 69 -19 -19 71 19 minecraft:air
 execute unless score %game wins matches 1 if entity @a[nbt={Inventory:[{components:{"minecraft:custom_data":{builder:1b}}}]}] run fill 19 69 -19 -19 71 19 minecraft:air replace minecraft:tube_coral_block
 execute unless score %game wins matches 1 if entity @a[nbt={Inventory:[{components:{"minecraft:custom_data":{builder:1b}}}]}] run fill 18 68 -18 -18 64 18 minecraft:air replace minecraft:dead_tube_coral_block
 execute if score %game wins matches 1 if score %timer wins matches 0 run scoreboard players add %blocks wins 1
-execute if score %game wins matches 1 if score %blocks wins matches 2 as @a[team=Builder,tag=inGame] unless entity @s[nbt={Inventory:[{Count:64b,components:{"minecraft:custom_data":{builder:1b}}}]}] run give @s minecraft:tube_coral_block[can_place_on=[{blocks:["minecraft:red_terracotta","minecraft:glowstone","minecraft:white_wool","minecraft:lime_wool","minecraft:sand","minecraft:tube_coral_block"]}],custom_name={translate:"Building Block",color:"blue",italic:false},lore=[{translate:"These blocks don't last forever..."},{translate:"Luckily you've got tons more"}],custom_data={builder:1b},enchantments={"minecraft:knockback":2},tooltip_display={hidden_components:["can_place_on"]}] 1
+execute if score %game wins matches 1 if score %blocks wins matches 2 as @a[team=Builder,tag=inGame] unless entity @s[nbt={Inventory:[{Count:64b,components:{"minecraft:custom_data":{builder:1b}}}]}] run give @s minecraft:tube_coral_block[can_place_on=[{blocks:["minecraft:red_terracotta","minecraft:glowstone","minecraft:white_wool","minecraft:lime_wool","minecraft:sand","minecraft:tube_coral_block"]}],custom_name={text:"Building Block",color:"blue",italic:false},lore=[{text:"These blocks don't last forever..."},{text:"Luckily you've got tons more"}],custom_data={builder:1b},enchantments={"minecraft:knockback":2},tooltip_display={hidden_components:["can_place_on"]}] 1
 execute if score %blocks wins matches 2.. run scoreboard players set %blocks wins 0
 
 #Ending game if not enough players; message and set %game to 0

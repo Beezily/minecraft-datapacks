@@ -15,8 +15,8 @@ give @a[team=,scores={queue=1}] minecraft:bow[custom_name={text:"Annoying Bow",c
 give @a[team=,scores={queue=1}] minecraft:arrow 1
 
 #Archer
-give @a[team=Archer,scores={queue=1}] minecraft:bow[custom_name={text:"Heavy Bow",color:"aqua",italic:false},lore=[{text:"A bow that shoots"},{text:"with unparalleled strength."}],unbreakable={},enchantments={punch:3,infinity:1,knockback:1},tooltip_display={hidden_components:["unbreakable"]}] 1
-give @a[team=Archer,scores={queue=1}] minecraft:crossbow[enchantments={"punch":4,"infinity":1},custom_name={"color":"aqua","italic":false,"text":"Trusty Sidearm"},unbreakable={},lore=["A handy quickshot that becomes"," your best partner in a pinch."],tooltip_display={hidden_components:["unbreakable"]}] 1
+give @a[team=Archer,scores={queue=1}] minecraft:bow[custom_name={text:"Heavy Bow",color:"aqua",italic:false},lore=[{text:"A bow that shoots"},{text:"with unparalleled strength."}],unbreakable={},enchantments={punch:3,piercing:2,infinity:1,knockback:1},tooltip_display={hidden_components:["unbreakable"]}] 1
+give @a[team=Archer,scores={queue=1}] minecraft:crossbow[enchantments={"punch":3,"infinity":1,"multishot":1},custom_name={"color":"aqua","italic":false,"text":"Trusty Sidearm"},unbreakable={},lore=["A handy quickshot that becomes"," your best partner in a pinch."],tooltip_display={hidden_components:["unbreakable"]}] 1
 give @a[team=Archer,scores={queue=1}] minecraft:turtle_spawn_egg[can_place_on=[{blocks:["minecraft:glowstone","minecraft:white_wool","minecraft:lime_wool","minecraft:sand","minecraft:red_terracotta"]}],tooltip_display={hidden_components:["can_place_on"]},custom_name={text:"Hunting Trap",color:"aqua",italic:false},lore=[{text:"Roots your opponents"},{text:"for a short time."}],entity_data={id:"minecraft:turtle",Invulnerable:1b,CustomNameVisible:0b,Age:-2147483647,Tags:["archerTrap"]}] 4
 give @a[team=Archer,scores={queue=1}] minecraft:splash_potion[custom_name={text:"Wind's Blessing",color:"aqua",italic:false},lore=[{text:"A magical essence that"},{text:"allows you to nimbly"},{text:"outmaneuver your opponents."}],potion_contents={custom_effects:[{id:"minecraft:speed",amplifier:2b,duration:180}],custom_color:2293580}] 3
 give @a[team=Archer,scores={queue=1}] minecraft:arrow[custom_name={text:"Arrow",color:"aqua",italic:false}] 1
@@ -36,10 +36,10 @@ give @a[scores={queue=1},team=Witch] minecraft:splash_potion[custom_name={text:"
 give @a[scores={queue=1},team=Witch] minecraft:splash_potion[custom_name={text:"Potion of Slowness",color:"dark_purple",italic:false},lore=[{text:"Drains your limbs"},{text:"of all vigor."}],potion_contents={custom_effects:[{id:"minecraft:slowness",amplifier:1b,duration:600}],custom_color:5926017}] 2
 give @a[scores={queue=1},team=Witch] minecraft:splash_potion[custom_name={text:"Potion of Speed",color:"dark_purple",italic:false},lore=[{text:"Charges your legs with"},{text:"a magical energy."}],potion_contents={custom_effects:[{id:"minecraft:speed",amplifier:2b,duration:300}],custom_color:8171462}] 1
 give @a[scores={queue=1},team=Witch] minecraft:splash_potion[custom_name={text:"Potion of Fear",color:"dark_purple",italic:false},lore=[{text:"A strange potion that"},{text:"forces you to shake with"},{text:"a phantom dread."}],potion_contents={custom_effects:[{id:"minecraft:poison",amplifier:0b,duration:2000}],custom_color:5797459}] 1
-give @a[scores={queue=1},team=Witch] minecraft:milk_bucket[custom_name={text:"Magic Milk",color:"dark_purple",italic:false},lore=[{text:"Milk milked from a magic"},{text:"cow. This strange liquid"},{text:"flows endlessly."}]] 1
+give @a[scores={queue=1},team=Witch] minecraft:milk_bucket[custom_name={text:"Magic Milk",color:"dark_purple",italic:false},lore=[{text:"Milk milked from a magic"},{text:"cow. This strange liquid"},{text:"flows endlessly."}],consumable={consume_seconds:0.1}] 1
 
 #Pyromaniac
-give @a[team=Pyromaniac,scores={queue=1}] minecraft:golden_sword[custom_name={text:"Molten Blade",color:"gold",italic:false},lore=[{text:"A glowing blade"},{text:"hot to the touch"}],unbreakable={},enchantments={knockback:3,fire_aspect:1},tooltip_display={hidden_components:["unbreakable","attribute_modifiers"]}] 1
+give @a[team=Pyromaniac,scores={queue=1}] minecraft:golden_sword[custom_name={text:"Meteor Blade",color:"gold",italic:false},lore=[{text:"A glowing blade forged from"},{text:"a thousand meteors."},{text:"Sneak while high in the air to"},{text:"send yourself crashing down!"}],unbreakable={},enchantments={knockback:3,fire_aspect:1},tooltip_display={hidden_components:["unbreakable"]},attribute_modifiers=[{id:"gravity",type:"gravity",amount:0.2,operation:"add_multiplied_base",slot:"mainhand"}],custom_data={pyroSlam:1b}] 1
 give @a[team=Pyromaniac,scores={queue=1}] minecraft:carrot_on_a_stick[can_place_on=[{blocks:["minecraft:glowstone","minecraft:white_wool","minecraft:lime_wool","minecraft:sand","minecraft:red_terracotta"]}],custom_name={text:"Fiery Flail",color:"gold",italic:false},lore=[{text:"It's like a bow..."},{text:"but more explosive."}],unbreakable={},enchantments={fire_aspect:4,knockback:1},tooltip_display={hidden_components:["unbreakable","can_place_on"]}] 1
 
 #Ghost
@@ -49,7 +49,7 @@ give @a[scores={queue=1},team=Ghost] minecraft:carved_pumpkin[custom_name={text:
 
 #Reaper
 give @a[scores={queue=1},team=Reaper] minecraft:netherite_hoe[custom_name={text:"Soul Reaper",color:"black",italic:false},lore=[{text:"This mysterious scythe has"},{text:"strange powers. Not even you"},{text:"have complete mastery of it. "}],unbreakable={},enchantments={sharpness:10,knockback:2},custom_data={scythe:2b},tooltip_display={hidden_components:["unbreakable","attribute_modifiers"]}] 1
-give @a[scores={queue=1},team=Reaper] minecraft:wooden_hoe[custom_name={text:"Farmer's Scythe",color:"black",italic:false},lore=[{text:"This stick isn't very good"},{text:"at stealing souls. You should"},{text:"probably get your weapon back."}],unbreakable={},enchantments={knockback:1},custom_data={scythe:1b},tooltip_display={hidden_components:["unbreakable","attribute_modifiers"]}] 1
+give @a[scores={queue=1},team=Reaper] minecraft:wooden_hoe[custom_name={text:"Farmer's Scythe",color:"black",italic:false},lore=[{text:"Knockback 0","color":gray,"italic":false},{text:"This stick isn't very good"},{text:"at stealing souls. You should"},{text:"probably get your weapon back."}],unbreakable={},enchantment_glint_override=true,custom_data={scythe:1b},tooltip_display={hidden_components:["unbreakable","attribute_modifiers"]}] 1
 
 #Duelist
 give @a[scores={queue=1},team=Duelist] minecraft:iron_axe[custom_name={text:"Iron Axe",color:"red",italic:false},lore=[{text:"All you need to survive"},{text:"is your trusty iron axe"}],unbreakable={},damage=0,enchantments={knockback:3},custom_data={duelist:1b},tooltip_display={hidden_components:["unbreakable","attribute_modifiers"]}] 1
@@ -59,11 +59,11 @@ item replace entity @a[scores={queue=1},team=Duelist] armor.legs with minecraft:
 item replace entity @a[scores={queue=1},team=Duelist] armor.feet with minecraft:iron_boots[custom_name={text:"Iron Boots",color:"red",italic:false},lore=[{text:"Although this armor doesn't"},{text:"protect you from knockback,"},{text:"at least it's pretty shiny"}],unbreakable={},tooltip_display={hidden_components:["unbreakable"]}] 1
 
 #Builder
-give @a[scores={queue=1},team=Builder] minecraft:tube_coral_block[can_place_on=[{blocks:["minecraft:red_terracotta","minecraft:glowstone","minecraft:white_wool","minecraft:lime_wool","minecraft:sand","minecraft:tube_coral_block"]}],custom_name={translate:"Building Block",color:"blue",italic:false},lore=[{translate:"These blocks don't last forever..."},{translate:"Luckily you've got tons more"}],custom_data={builder:1b},enchantments={knockback:2},tooltip_display={hidden_components:["can_place_on"]}] 8
-give @a[scores={queue=1},team=Builder] minecraft:diamond_pickaxe[can_break=[{blocks:["minecraft:tube_coral_block"]}],custom_name={translate:"Diamond Pickaxe",color:"blue",italic:false},unbreakable={},tooltip_display={hidden_components:["can_break","unbreakable","attribute_modifiers"]}] 1
+give @a[scores={queue=1},team=Builder] minecraft:tube_coral_block[can_place_on=[{blocks:["minecraft:red_terracotta","minecraft:glowstone","minecraft:white_wool","minecraft:lime_wool","minecraft:sand","minecraft:tube_coral_block"]}],custom_name={text:"Building Block",color:"blue",italic:false},lore=[{text:"These blocks don't last forever..."},{text:"Luckily you've got tons more"}],custom_data={builder:1b},enchantments={knockback:2},tooltip_display={hidden_components:["can_place_on"]}] 8
+give @a[scores={queue=1},team=Builder] minecraft:diamond_pickaxe[can_break=[{blocks:["minecraft:tube_coral_block"]}],custom_name={text:"Diamond Pickaxe",color:"blue",italic:false},unbreakable={},tooltip_display={hidden_components:["can_break","unbreakable","attribute_modifiers"]}] 1
 
 #All players given The Stik except Knight
-item replace entity @a[scores={queue=1},team=!Knight] hotbar.8 with minecraft:wooden_sword[custom_name={text:"The Stik",color:"red",italic:false},lore=[{text:"This hefty rod is"},{text:"really hard to wield."}],damage=59,enchantments={knockback:10},attribute_modifiers=[{id:"kbw:stik_heavy_speed",type:"minecraft:movement_speed",amount:-1.0d,operation:"add_multiplied_base",slot:"mainhand"}]] 1
+item replace entity @a[scores={queue=1},team=!Knight] hotbar.8 with minecraft:wooden_sword[custom_name={text:"The Stik",color:"red",italic:false},lore=[{text:"This hefty rod is"},{text:"really hard to wield."}],damage=58,enchantments={knockback:10},attribute_modifiers=[{id:"kbw:stik_heavy_speed",type:"minecraft:movement_speed",amount:-1.0d,operation:"add_multiplied_base",slot:"mainhand"}]] 1
 
 #Tagging inGame; untagging noScythe; reset all players score and queue; set @a calculation 0
 tag @a[scores={queue=1}] add inGame
@@ -77,6 +77,7 @@ execute as @a run attribute @s minecraft:attack_speed base set 100
 execute as @a run attribute @s minecraft:knockback_resistance base set 0
 execute as @a run attribute @s minecraft:attack_knockback base set 0
 execute as @a run attribute @s minecraft:jump_strength base set 0.42
+execute as @a run attribute @s minecraft:gravity base set 0.08
 
 #Teleportating all inGame players into arena
 spreadplayers 0 0 3 11 false @a[tag=inGame]

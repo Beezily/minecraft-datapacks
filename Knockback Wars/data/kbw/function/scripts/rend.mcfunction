@@ -27,8 +27,7 @@ execute if score @s rend matches 0 run particle minecraft:large_smoke ~ ~1.2 ~ 0
 execute if score @s rend matches 0 run particle minecraft:soul ~ ~1 ~ 0.52 0.9 0.52 0.03 24 normal
 execute if score @s rend matches 0 run particle minecraft:smoke ~ ~0.8 ~ 0.25 0.6 0.25 0.05 90 normal
 execute if score @s rend matches 0 run scoreboard players set @s calculation 180
-execute if score @s rend matches 0 run attribute @s minecraft:knockback_resistance base set 0.3
-execute if score @s rend matches 0 run attribute @s minecraft:attack_knockback base set 1.5
+execute if score @s rend matches 0 run attribute @s minecraft:attack_knockback base set 3
 execute if score @s rend matches 0 run tag @s add noScythe
 execute if score @s rend matches 0 run tag @s remove me
 execute if score @s rend matches 0 run tag @e[tag=hit] remove hit
