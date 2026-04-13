@@ -74,6 +74,7 @@ scoreboard objectives add ds_group dummy
 scoreboard objectives add ds_group_order dummy
 
 # Gamerules
+gamerule show_advancement_messages false
 gamerule locator_bar true
 gamerule immediate_respawn true
 gamerule keep_inventory false

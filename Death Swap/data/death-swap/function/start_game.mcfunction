@@ -47,9 +47,9 @@ scoreboard players set @a Solo 0
 scoreboard players reset * deaths
 
 # Starter gear
-give @a stone_axe 1
-give @a stone_pickaxe 1
-give @a stone_shovel 1
+give @a copper_axe[enchantments={"efficiency":2}] 1
+give @a copper_pickaxe[enchantments={"efficiency":2}] 1
+give @a copper_shovel[enchantments={"efficiency":2}] 1
 give @a cooked_beef 3
 give @a crafting_table 1
 

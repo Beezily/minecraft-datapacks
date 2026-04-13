@@ -14,6 +14,10 @@ execute unless entity @n[type=marker,tag=dsFound] run scoreboard players set @s 
 # Tag again, this time it will be found
 execute unless entity @n[type=marker,tag=dsFound] as @e[type=marker,tag=dsSwap] if score @s ds_group = @n[tag=dsMe] ds_group if score @s ds_group_order = @n[tag=dsMe] ds_group_order run tag @s add dsFound
 
+# The only way that the next group fails to be found AND next group order fails is if this is the last player in the swap calculation
+# So we mark the very first 0 0 marker for dsFound
+execute unless entity @n[type=marker,tag=dsFound] as @e[type=marker,tag=dsSwap] if score @s ds_group matches 0 if score @s ds_group_order matches 0 run tag @s add dsFound
+
 # Teleport to target marker, then kill target marker, untag
 tp @s @n[type=marker,tag=dsFound]
 kill @e[tag=dsFound]

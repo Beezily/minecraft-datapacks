@@ -26,15 +26,15 @@ scoreboard players enable @a[team=!] team_tp
 scoreboard players enable @a rules
 
 # Starter gear if %clear_rounds or died (in spectator)
-execute if score %clear_rounds ds matches 1 run give @a stone_axe 1
-execute if score %clear_rounds ds matches 1 run give @a stone_pickaxe 1
-execute if score %clear_rounds ds matches 1 run give @a stone_shovel 1
+execute if score %clear_rounds ds matches 1 run give @a copper_axe[enchantments={"efficiency":2}] 1
+execute if score %clear_rounds ds matches 1 run give @a copper_pickaxe[enchantments={"efficiency":2}] 1
+execute if score %clear_rounds ds matches 1 run give @a copper_shovel[enchantments={"efficiency":2}] 1
 execute if score %clear_rounds ds matches 1 run give @a cooked_beef 3
 execute if score %clear_rounds ds matches 1 run give @a crafting_table 1
 
-execute unless score %clear_rounds ds matches 1 run give @a[gamemode=spectator] stone_axe 1
-execute unless score %clear_rounds ds matches 1 run give @a[gamemode=spectator] stone_pickaxe 1
-execute unless score %clear_rounds ds matches 1 run give @a[gamemode=spectator] stone_shovel 1
+execute unless score %clear_rounds ds matches 1 run give @a[gamemode=spectator] copper_axe[enchantments={"efficiency":2}] 1
+execute unless score %clear_rounds ds matches 1 run give @a[gamemode=spectator] copper_pickaxe[enchantments={"efficiency":2}] 1
+execute unless score %clear_rounds ds matches 1 run give @a[gamemode=spectator] copper_shovel[enchantments={"efficiency":2}] 1
 execute unless score %clear_rounds ds matches 1 run give @a[gamemode=spectator] cooked_beef 3
 execute unless score %clear_rounds ds matches 1 run give @a[gamemode=spectator] crafting_table 1
 
