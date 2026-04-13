@@ -141,43 +141,63 @@ execute as @e[type=minecraft:happy_ghast] run function sg:happy_ghast/update_nam
 # Ghast
 execute as @a[scores={spawn_ghast=1..},predicate=sg:sneaking] run data modify entity @n[type=item,nbt={Item:{id:"minecraft:happy_ghast_spawn_egg"}},tag=!sgToSpawnGhast] Glowing set value 1b
 execute as @a[scores={spawn_ghast=1..},predicate=sg:sneaking] run data modify entity @n[type=item,nbt={Item:{id:"minecraft:happy_ghast_spawn_egg"}},tag=!sgToSpawnGhast] PickupDelay set value 100s
+execute as @a[scores={spawn_ghast=1..},predicate=sg:sneaking] run data merge entity @n[type=item,nbt={Item:{id:"minecraft:happy_ghast_spawn_egg"}},tag=!sgToSpawnGhast] {Item:{components:{"minecraft:max_stack_size":1}}}
 execute as @a[scores={spawn_ghast=1..},predicate=sg:sneaking] run tag @n[type=item,nbt={Item:{id:"minecraft:happy_ghast_spawn_egg"}},tag=!sgToSpawnGhast] add sgToSpawnGhast
 execute if predicate sg:50_chance as @e[type=item,tag=sgToSpawnGhast] at @s run particle firework ~ ~ ~ 0.1 0.1 0.1 0 1
-execute as @e[type=item,nbt={Age:20s},tag=sgToSpawnGhast] at @s run summon happy_ghast ~ ~ ~ {Glowing:1b,CustomNameVisible:1b,Age:0,equipment:{body:{id:"minecraft:white_harness",count:1}}}
-execute as @e[type=item,nbt={Age:20s},tag=sgToSpawnGhast] at @s run particle minecraft:firework ~ ~ ~ 0.3 0.3 0.3 0.3 30
-execute as @e[type=item,nbt={Age:20s},tag=sgToSpawnGhast] at @s run playsound minecraft:entity.firework_rocket.blast player @a ~ ~ ~ 1 1
-execute as @e[type=item,nbt={Age:20s},tag=sgToSpawnGhast] at @s run tellraw @a[distance=..12] {"color":"gray","text":"A happy ghast has been spawned for 5 minutes!"}
-execute as @e[type=item,nbt={Age:20s},tag=sgToSpawnGhast] at @s run kill @s
+tag @e[type=item,nbt={Age:10s},tag=sgToSpawnGhast] add sgSpawning
+execute as @e[tag=sgSpawning,tag=sgToSpawnGhast,type=item] store result score @s spawn_ghast run data get entity @s Item.count 1
+execute as @e[tag=sgSpawning,tag=sgToSpawnGhast,type=item] at @s run summon happy_ghast ~ ~ ~ {Glowing:1b,CustomNameVisible:1b,Age:0,equipment:{body:{id:"minecraft:white_harness",count:1}}}
+execute as @e[tag=sgSpawning,tag=sgToSpawnGhast,type=item] at @s run particle minecraft:firework ~ ~ ~ 0.3 0.3 0.3 0.3 30
+execute as @e[tag=sgSpawning,tag=sgToSpawnGhast,type=item] at @s run playsound minecraft:entity.firework_rocket.blast player @a ~ ~ ~ 1 1
+execute as @e[tag=sgSpawning,tag=sgToSpawnGhast,type=item] at @s run tellraw @a[distance=..12] {"color":"gray","text":"A happy ghast has been spawned for 5 minutes!"}
+kill @e[tag=sgSpawning,tag=sgToSpawnGhast,type=item,scores={spawn_ghast=..1}]
+scoreboard players remove @e[tag=sgSpawning,tag=sgToSpawnGhast,type=item,scores={spawn_ghast=2..}] spawn_ghast 1
+execute as @e[tag=sgSpawning,tag=sgToSpawnGhast,type=item] store result entity @s Item.count int 1 run scoreboard players get @s spawn_ghast
 scoreboard players set @a[scores={spawn_ghast=1..}] spawn_ghast 0
 # Horse
 execute as @a[scores={spawn_horse=1..},predicate=sg:sneaking] run data modify entity @n[type=item,nbt={Item:{id:"minecraft:horse_spawn_egg"}},tag=!sgToSpawnHorse] Glowing set value 1b
 execute as @a[scores={spawn_horse=1..},predicate=sg:sneaking] run data modify entity @n[type=item,nbt={Item:{id:"minecraft:horse_spawn_egg"}},tag=!sgToSpawnHorse] PickupDelay set value 100s
+execute as @a[scores={spawn_horse=1..},predicate=sg:sneaking] run data merge entity @n[type=item,nbt={Item:{id:"minecraft:horse_spawn_egg"}},tag=!sgToSpawnHorse] {Item:{components:{"minecraft:max_stack_size":1}}}
 execute as @a[scores={spawn_horse=1..},predicate=sg:sneaking] run tag @n[type=item,nbt={Item:{id:"minecraft:horse_spawn_egg"}},tag=!sgToSpawnHorse] add sgToSpawnHorse
 execute if predicate sg:50_chance as @e[type=item,tag=sgToSpawnHorse] at @s run particle firework ~ ~ ~ 0.1 0.1 0.1 0 1
-execute as @e[type=item,nbt={Age:20s},tag=sgToSpawnHorse] at @s run summon horse ~ ~ ~ {Tame:1b,equipment:{saddle:{id:"minecraft:saddle",count:1}}}
-execute as @e[type=item,nbt={Age:20s},tag=sgToSpawnHorse] at @s run particle minecraft:firework ~ ~ ~ 0.3 0.3 0.3 0.3 30
-execute as @e[type=item,nbt={Age:20s},tag=sgToSpawnHorse] at @s run playsound minecraft:entity.firework_rocket.blast player @a ~ ~ ~ 1 1
-execute as @e[type=item,nbt={Age:20s},tag=sgToSpawnHorse] at @s run kill @s
+tag @e[type=item,nbt={Age:10s},tag=sgToSpawnHorse] add sgSpawning
+execute as @e[tag=sgSpawning,tag=sgToSpawnHorse,type=item] store result score @s spawn_horse run data get entity @s Item.count 1
+execute as @e[tag=sgSpawning,tag=sgToSpawnHorse,type=item] at @s run summon horse ~ ~ ~ {Tame:1b,equipment:{saddle:{id:"minecraft:saddle",count:1}}}
+execute as @e[tag=sgSpawning,tag=sgToSpawnHorse,type=item] at @s run particle minecraft:firework ~ ~ ~ 0.3 0.3 0.3 0.3 30
+execute as @e[tag=sgSpawning,tag=sgToSpawnHorse,type=item] at @s run playsound minecraft:entity.firework_rocket.blast player @a ~ ~ ~ 1 1
+kill @e[tag=sgSpawning,tag=sgToSpawnHorse,type=item,scores={spawn_horse=..1}]
+scoreboard players remove @e[tag=sgSpawning,tag=sgToSpawnHorse,type=item,scores={spawn_horse=2..}] spawn_horse 1
+execute as @e[tag=sgSpawning,tag=sgToSpawnHorse,type=item] store result entity @s Item.count int 1 run scoreboard players get @s spawn_horse
 scoreboard players set @a[scores={spawn_horse=1..}] spawn_horse 0
 # Wolf
 execute as @a[scores={spawn_wolf=1..},predicate=sg:sneaking] run data modify entity @n[type=item,nbt={Item:{id:"minecraft:wolf_spawn_egg"}},tag=!sgToSpawnWolf] Glowing set value 1b
 execute as @a[scores={spawn_wolf=1..},predicate=sg:sneaking] run data modify entity @n[type=item,nbt={Item:{id:"minecraft:wolf_spawn_egg"}},tag=!sgToSpawnWolf] PickupDelay set value 100s
+execute as @a[scores={spawn_wolf=1..},predicate=sg:sneaking] run data merge entity @n[type=item,nbt={Item:{id:"minecraft:wolf_spawn_egg"}},tag=!sgToSpawnWolf] {Item:{components:{"minecraft:max_stack_size":1}}}
 execute as @a[scores={spawn_wolf=1..},predicate=sg:sneaking] run tag @n[type=item,nbt={Item:{id:"minecraft:wolf_spawn_egg"}},tag=!sgToSpawnWolf] add sgToSpawnWolf
 execute if predicate sg:50_chance as @e[type=item,tag=sgToSpawnWolf] at @s run particle firework ~ ~ ~ 0.1 0.1 0.1 0 1
-execute as @e[type=item,nbt={Age:20s},tag=sgToSpawnWolf] at @s run summon wolf
-execute as @e[type=item,nbt={Age:20s},tag=sgToSpawnWolf] at @s run particle minecraft:firework ~ ~ ~ 0.3 0.3 0.3 0.3 30
-execute as @e[type=item,nbt={Age:20s},tag=sgToSpawnWolf] at @s run playsound minecraft:entity.firework_rocket.blast player @a ~ ~ ~ 1 1
-execute as @e[type=item,nbt={Age:20s},tag=sgToSpawnWolf] at @s run kill @s
+tag @e[type=item,nbt={Age:10s},tag=sgToSpawnWolf] add sgSpawning
+execute as @e[tag=sgSpawning,tag=sgToSpawnWolf,type=item] store result score @s spawn_wolf run data get entity @s Item.count 1
+execute as @e[tag=sgSpawning,tag=sgToSpawnWolf,type=item] at @s run summon wolf
+execute as @e[tag=sgSpawning,tag=sgToSpawnWolf,type=item] at @s run particle minecraft:firework ~ ~ ~ 0.3 0.3 0.3 0.3 30
+execute as @e[tag=sgSpawning,tag=sgToSpawnWolf,type=item] at @s run playsound minecraft:entity.firework_rocket.blast player @a ~ ~ ~ 1 1
+kill @e[tag=sgSpawning,tag=sgToSpawnWolf,type=item,scores={spawn_wolf=..1}]
+scoreboard players remove @e[tag=sgSpawning,tag=sgToSpawnWolf,type=item,scores={spawn_wolf=2..}] spawn_wolf 1
+execute as @e[tag=sgSpawning,tag=sgToSpawnWolf,type=item] store result entity @s Item.count int 1 run scoreboard players get @s spawn_wolf
 scoreboard players set @a[scores={spawn_wolf=1..}] spawn_wolf 0
 # Cat
 execute as @a[scores={spawn_cat=1..},predicate=sg:sneaking] run data modify entity @n[type=item,nbt={Item:{id:"minecraft:cat_spawn_egg"}},tag=!sgToSpawnCat] Glowing set value 1b
 execute as @a[scores={spawn_cat=1..},predicate=sg:sneaking] run data modify entity @n[type=item,nbt={Item:{id:"minecraft:cat_spawn_egg"}},tag=!sgToSpawnCat] PickupDelay set value 100s
+execute as @a[scores={spawn_cat=1..},predicate=sg:sneaking] run data merge entity @n[type=item,nbt={Item:{id:"minecraft:cat_spawn_egg"}},tag=!sgToSpawnCat] {Item:{components:{"minecraft:max_stack_size":1}}}
 execute as @a[scores={spawn_cat=1..},predicate=sg:sneaking] run tag @n[type=item,nbt={Item:{id:"minecraft:cat_spawn_egg"}},tag=!sgToSpawnCat] add sgToSpawnCat
 execute if predicate sg:50_chance as @e[type=item,tag=sgToSpawnCat] at @s run particle firework ~ ~ ~ 0.1 0.1 0.1 0 1
-execute as @e[type=item,nbt={Age:20s},tag=sgToSpawnCat] at @s run summon cat
-execute as @e[type=item,nbt={Age:20s},tag=sgToSpawnCat] at @s run particle minecraft:firework ~ ~ ~ 0.3 0.3 0.3 0.3 30
-execute as @e[type=item,nbt={Age:20s},tag=sgToSpawnCat] at @s run playsound minecraft:entity.firework_rocket.blast player @a ~ ~ ~ 1 1
-execute as @e[type=item,nbt={Age:20s},tag=sgToSpawnCat] at @s run kill @s
+tag @e[type=item,nbt={Age:10s},tag=sgToSpawnCat] add sgSpawning
+execute as @e[tag=sgSpawning,tag=sgToSpawnCat,type=item] store result score @s spawn_cat run data get entity @s Item.count 1
+execute as @e[tag=sgSpawning,tag=sgToSpawnCat,type=item] at @s run summon cat
+execute as @e[tag=sgSpawning,tag=sgToSpawnCat,type=item] at @s run particle minecraft:firework ~ ~ ~ 0.3 0.3 0.3 0.3 30
+execute as @e[tag=sgSpawning,tag=sgToSpawnCat,type=item] at @s run playsound minecraft:entity.firework_rocket.blast player @a ~ ~ ~ 1 1
+kill @e[tag=sgSpawning,tag=sgToSpawnCat,type=item,scores={spawn_cat=..1}]
+scoreboard players remove @e[tag=sgSpawning,tag=sgToSpawnCat,type=item,scores={spawn_cat=2..}] spawn_cat 1
+execute as @e[tag=sgSpawning,tag=sgToSpawnCat,type=item] store result entity @s Item.count int 1 run scoreboard players get @s spawn_cat
 scoreboard players set @a[scores={spawn_cat=1..}] spawn_cat 0
 
 # Death to spectator mechanics
@@ -208,7 +228,6 @@ execute if score %game sg matches 1 if score %timer sg matches 18000..18100 run 
 execute if score %game sg matches 1 if score %timer sg matches 18000 run title @a title {"text":"GO!","color":"#ff8c00","bold":true}
 execute if score %game sg matches 1 if score %timer sg matches 18000 run effect clear @a
 execute if score %game sg matches 1 if score %timer sg matches 18000 run effect give @a minecraft:absorption 30 2 true
-execute if score %game sg matches 1 if score %timer sg matches 18000 run effect give @a minecraft:weakness 10 9 true
 execute if score %game sg matches 1 if score %timer sg matches 18000 run effect give @a minecraft:instant_health 1 99 true
 execute if score %game sg matches 1 if score %timer sg matches 18000 run effect give @a minecraft:saturation 1 99 true
 execute if score %game sg matches 1 if score %timer sg matches 18000 as @a run attribute @s minecraft:jump_strength base set 0.42
@@ -233,10 +252,10 @@ execute if score %game sg matches 1 if score %timer sg matches 2400 run execute 
 execute if score %game sg matches 1 if score %timer sg matches 2400 run function sg:scripts/shrink_worldborder_deathmatch with storage sg:settings
 
 
-# PVP enabled text (clears weakness)
+# PVP enabled text and TURNS ON PVP GAMERULE
 execute if score %game sg matches 1 if score %timer sg matches 17800 run tellraw @a {"text":"PvP is now enabled!","color":"red","bold":true}
 execute if score %game sg matches 1 if score %timer sg matches 17800 as @a at @s run playsound minecraft:entity.ravager.attack master @s ~ ~ ~ 1 1 1
-execute if score %game sg matches 1 if score %timer sg matches 17800 run effect clear @a minecraft:weakness
+execute if score %game sg matches 1 if score %timer sg matches 17800 run gamerule pvp true
 
 # Bossbar phase text (bold orange)
 # Grace period text (first 10 seconds after release)
