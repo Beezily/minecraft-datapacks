@@ -19,10 +19,10 @@ effect give @a[team=Knight] minecraft:slowness 1 1 true
 #Starting the game based on the %countdown; first countdown, when finally 0 then runs start function
 # NOTE: Command "execute if score %game wins matches 0 if score %count wins matches 2.. run scoreboard players set %countdown wins 100" run from elsewhere required to start this
 execute if score %countdown wins matches 100 as @a unless entity @s[scores={queue=1..}] run tellraw @s [{"bold":true,"color":"red","text":"NOTE: You have not queued for the game yet. \n"},{"bold":true,"color":"red","text":"Click the queue sign before the game starts if you want to participate this game."}]
-execute if score %countdown wins matches 100 run summon shulker 0.5 70.0 35.5 {Silent:1b,Invulnerable:1b,Glowing:1b,Team:"Duelist",PersistenceRequired:1b,NoAI:1b,AttachFace:0b,Tags:["kbwQueueMarker"],active_effects:[{id:"minecraft:invisibility",amplifier:0,duration:-1,show_particles:0b}]}
-execute if score %countdown wins matches 100 run summon shulker -34.5 70.0 0.5 {Silent:1b,Invulnerable:1b,Glowing:1b,Team:"Duelist",PersistenceRequired:1b,NoAI:1b,AttachFace:0b,Tags:["kbwQueueMarker"],active_effects:[{id:"minecraft:invisibility",amplifier:0,duration:-1,show_particles:0b}]}
-execute if score %countdown wins matches 100 run summon shulker 0.5 70.0 -34.5 {Silent:1b,Invulnerable:1b,Glowing:1b,Team:"Duelist",PersistenceRequired:1b,NoAI:1b,AttachFace:0b,Tags:["kbwQueueMarker"],active_effects:[{id:"minecraft:invisibility",amplifier:0,duration:-1,show_particles:0b}]}
-execute if score %countdown wins matches 100 run summon shulker 35.5 70.0 0.5 {Silent:1b,Invulnerable:1b,Glowing:1b,Team:"Duelist",PersistenceRequired:1b,NoAI:1b,AttachFace:0b,Tags:["kbwQueueMarker"],active_effects:[{id:"minecraft:invisibility",amplifier:0,duration:-1,show_particles:0b}]}
+execute if score %countdown wins matches 100 positioned 0 70 34 align xyz run summon minecraft:block_display ~ ~ ~ {Tags:["kbwQueueMarker"],Glowing:1b,glow_color_override:16733525,shadow_radius:0f,width:0.998f,height:0.498f,brightness:{sky:15,block:15},transformation:{left_rotation:[0f,0f,0f,1f],right_rotation:[0f,0f,0f,1f],translation:[0.001f,0.27183334f,0.8968333f],scale:[0.998f,0.498f,0.081333336f]},block_state:{Name:"minecraft:black_concrete"}}
+execute if score %countdown wins matches 100 positioned -34 70 0 align xyz run summon minecraft:block_display ~ ~ ~ {Tags:["kbwQueueMarker"],Glowing:1b,glow_color_override:16733525,shadow_radius:0f,width:0.998f,height:0.498f,brightness:{sky:15,block:15},transformation:{left_rotation:[0f,0f,0f,1f],right_rotation:[0f,0f,0f,1f],translation:[0.021833334f,0.27183334f,0.001f],scale:[0.081333336f,0.498f,0.998f]},block_state:{Name:"minecraft:black_concrete"}}
+execute if score %countdown wins matches 100 positioned 0 70 -34 align xyz run summon minecraft:block_display ~ ~ ~ {Tags:["kbwQueueMarker"],Glowing:1b,glow_color_override:16733525,shadow_radius:0f,width:0.998f,height:0.498f,brightness:{sky:15,block:15},transformation:{left_rotation:[0f,0f,0f,1f],right_rotation:[0f,0f,0f,1f],translation:[0.001f,0.27183334f,0.021833334f],scale:[0.998f,0.498f,0.081333336f]},block_state:{Name:"minecraft:black_concrete"}}
+execute if score %countdown wins matches 100 positioned 34 70 0 align xyz run summon minecraft:block_display ~ ~ ~ {Tags:["kbwQueueMarker"],Glowing:1b,glow_color_override:16733525,shadow_radius:0f,width:0.998f,height:0.498f,brightness:{sky:15,block:15},transformation:{left_rotation:[0f,0f,0f,1f],right_rotation:[0f,0f,0f,1f],translation:[0.8968333f,0.27183334f,0.001f],scale:[0.081333336f,0.498f,0.998f]},block_state:{Name:"minecraft:black_concrete"}}
 
 execute if score %countdown wins matches 100 run tellraw @a ["",{"text":"Starting in "},{"text":"5","bold":true,"color":"#DB00EB"},{"text":"..."}]
 execute if score %countdown wins matches 100 as @a at @s run playsound minecraft:block.note_block.hat master @s ~ ~ ~ 1 1
@@ -39,9 +39,8 @@ execute if score %countdown wins matches 0 run function kbw:scripts/start
 execute if score %countdown wins matches 0 as @a at @s run playsound minecraft:block.note_block.pling master @s ~ ~ ~ 1 2
 
 # Shulker remove mechanics
-scoreboard players add @e[type=shulker,tag=kbwQueueMarker] calculation 1
-execute as @e[type=shulker,tag=kbwQueueMarker,scores={calculation=100..}] at @s run tp @s ~ -68 ~
-kill @e[type=shulker,tag=kbwQueueMarker,scores={calculation=100..}]
+scoreboard players add @e[type=block_display,tag=kbwQueueMarker] calculation 1
+kill @e[type=block_display,tag=kbwQueueMarker,scores={calculation=100..}]
 
 #Ghost head mechanics
 execute as @a[team=Ghost] unless items entity @s armor.head minecraft:jack_o_lantern[custom_data~{ghost:1b}] run item replace entity @s armor.head with minecraft:jack_o_lantern[custom_name={text:'Possessed Mask',color:'gray',italic:false},lore=[{text:'Even with a physical head,'},{text:'attacks just seem to pass'},{text:'right through you.'}],attribute_modifiers=[{id:'ghost:mask_knockback_resistance',type:'minecraft:knockback_resistance',amount:0.25,operation:'add_value',slot:'head'}],custom_data={ghost:1b},tooltip_display={hidden_components:["enchantments"]},enchantment_glint_override=false,enchantments={"binding_curse":1}]
