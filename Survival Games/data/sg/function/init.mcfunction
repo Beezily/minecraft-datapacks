@@ -117,6 +117,7 @@ scoreboard objectives add enchant_cd dummy
 scoreboard objectives add rules trigger
 
 # Gamerules
+gamerule show_advancement_messages false
 gamerule advance_time false
 gamerule advance_weather false
 gamerule mob_griefing false
