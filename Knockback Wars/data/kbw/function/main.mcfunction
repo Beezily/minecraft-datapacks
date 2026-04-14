@@ -18,7 +18,8 @@ effect give @a[team=Knight] minecraft:slowness 1 1 true
 
 #Starting the game based on the %countdown; first countdown, when finally 0 then runs start function
 # NOTE: Command "execute if score %game wins matches 0 if score %count wins matches 2.. run scoreboard players set %countdown wins 100" run from elsewhere required to start this
-execute if score %countdown wins matches 100 as @a unless entity @s[scores={queue=1..}] run tellraw @s [{"bold":true,"color":"red","text":"NOTE: You have not queued for the game yet. \n"},{"bold":true,"color":"red","text":"Click the queue sign before the game starts if you want to participate this game."}]
+execute if score %countdown wins matches 110 as @a unless entity @s[scores={queue=1..}] run tellraw @s [{"bold":true,"color":"red","text":"NOTE: You have not queued for this game yet. \n"},{"bold":true,"color":"red","text":"You can still join if you click the sign before the game starts."}]
+execute if score %countdown wins matches 110 as @a unless entity @s[scores={queue=1..}] at @s run playsound minecraft:block.anvil.land master @s ~ ~ ~ 1 1 1
 execute if score %countdown wins matches 100 positioned 0 70 34 align xyz run summon minecraft:block_display ~ ~ ~ {Tags:["kbwQueueMarker"],Glowing:1b,glow_color_override:16733525,shadow_radius:0f,width:0.998f,height:0.498f,brightness:{sky:15,block:15},transformation:{left_rotation:[0f,0f,0f,1f],right_rotation:[0f,0f,0f,1f],translation:[0.001f,0.27183334f,0.8968333f],scale:[0.998f,0.498f,0.081333336f]},block_state:{Name:"minecraft:black_concrete"}}
 execute if score %countdown wins matches 100 positioned -34 70 0 align xyz run summon minecraft:block_display ~ ~ ~ {Tags:["kbwQueueMarker"],Glowing:1b,glow_color_override:16733525,shadow_radius:0f,width:0.998f,height:0.498f,brightness:{sky:15,block:15},transformation:{left_rotation:[0f,0f,0f,1f],right_rotation:[0f,0f,0f,1f],translation:[0.021833334f,0.27183334f,0.001f],scale:[0.081333336f,0.498f,0.998f]},block_state:{Name:"minecraft:black_concrete"}}
 execute if score %countdown wins matches 100 positioned 0 70 -34 align xyz run summon minecraft:block_display ~ ~ ~ {Tags:["kbwQueueMarker"],Glowing:1b,glow_color_override:16733525,shadow_radius:0f,width:0.998f,height:0.498f,brightness:{sky:15,block:15},transformation:{left_rotation:[0f,0f,0f,1f],right_rotation:[0f,0f,0f,1f],translation:[0.001f,0.27183334f,0.021833334f],scale:[0.998f,0.498f,0.081333336f]},block_state:{Name:"minecraft:black_concrete"}}
@@ -37,6 +38,8 @@ execute if score %countdown wins matches 20 as @a at @s run playsound minecraft:
 execute if score %countdown wins matches 0 run tellraw @a {"text":"START!","bold":true,"color":"blue"}
 execute if score %countdown wins matches 0 run function kbw:scripts/start
 execute if score %countdown wins matches 0 as @a at @s run playsound minecraft:block.note_block.pling master @s ~ ~ ~ 1 2
+execute if score %countdown wins matches 0 run title @a subtitle {"color":"white","shadow_color":-43691,"text":"First to 100 points wins!"}
+execute if score %countdown wins matches 0 run title @a title {"color":"white","shadow_color":-11184641,"text":"Game Start!"}
 
 # Shulker remove mechanics
 scoreboard players add @e[type=block_display,tag=kbwQueueMarker] calculation 1
