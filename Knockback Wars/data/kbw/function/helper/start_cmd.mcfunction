@@ -5,6 +5,8 @@ execute unless score %game wins matches 0 run return 0
 
 execute store result score %count wins if entity @a[scores={queue=1}]
 
+execute unless score %countdown wins matches 0.. if score %game wins matches 0 if score %count wins matches 2.. run tellraw @a {"text":"Starting Game...","bold":true,"color":"green"}
+execute unless score %countdown wins matches 0.. if score %game wins matches 0 if score %count wins matches 2.. as @a[scores={queue=1}] at @s run playsound minecraft:item.goat_horn.sound.1 master @s ~ ~ ~ 1 1 1
 execute unless score %countdown wins matches 0.. if score %game wins matches 0 if score %count wins matches 2.. run scoreboard players set %countdown wins 110
 
 execute if score %count wins matches ..1 run tellraw @s {"text":"Not enough players are queued to start the game!","bold":false,"color":"gray"}

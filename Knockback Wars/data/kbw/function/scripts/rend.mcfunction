@@ -17,7 +17,7 @@ execute if score @s rend matches 0 at @s run effect give @e[tag=hit] minecraft:h
 execute if score @s rend matches 0 at @s run effect give @e[tag=hit] minecraft:slowness 8 1 true
 execute if score @s rend matches 0 run effect give @s minecraft:speed 8 9 true
 execute if score @s rend matches 0 at @s run summon minecraft:armor_stand ~0.4 61.1 ~0.7 {ShowArms:1b,Marker:1b,Invisible:1b,Tags:["reapScythe"],Pose:{RightArm:[100f,0f,0f]},equipment:{mainhand:{id:"minecraft:netherite_hoe",count:1,components:{"minecraft:enchantment_glint_override":1b}}}}
-execute if score @s rend matches 0 at @s positioned ~0.4 61.1 ~0.7 run scoreboard players set @e[type=minecraft:armor_stand,tag=reapScythe,limit=1,sort=nearest] calculation 280
+execute if score @s rend matches 0 at @s positioned ~0.4 61.1 ~0.7 run scoreboard players set @e[type=minecraft:armor_stand,tag=reapScythe,limit=1,sort=nearest] calculation 260
 execute if score @s rend matches 0 at @s run particle minecraft:large_smoke ~ ~1.2 ~ 0.25 0.6 0.25 0 15 normal
 execute if score @s rend matches 0 at @s run particle minecraft:soul ~ ~1 ~ 0.52 0.9 0.52 0.03 5 normal
 execute if score @s rend matches 0 at @s run particle minecraft:smoke ~ ~0.8 ~ 0.25 0.6 0.25 0.05 90 normal

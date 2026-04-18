@@ -15,10 +15,11 @@ spreadplayers 0.5 -28.5 0 4 false @a[tag=inGame]
 #Untagging all players; score reset (just for safety)
 tag @a[tag=inGame] remove inGame
 tag @a[tag=noScythe] remove noScythe
-scoreboard players reset * score
+#scoreboard players reset * score
 scoreboard players reset * pyroFlail
 scoreboard players reset * reap
 scoreboard players reset * calculation
+scoreboard objectives setdisplay sidebar
 
 #Setting %game to false
 scoreboard players set %game wins 0

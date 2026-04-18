@@ -39,17 +39,17 @@ give @a[scores={queue=1},team=Witch] minecraft:splash_potion[custom_name={text:"
 give @a[scores={queue=1},team=Witch] minecraft:milk_bucket[custom_name={text:"Magic Milk",color:"dark_purple",italic:false},lore=[{text:"Milk milked from a magic"},{text:"cow. This strange liquid"},{text:"flows endlessly."}],consumable={consume_seconds:0.1}] 1
 
 #Pyromaniac
-give @a[team=Pyromaniac,scores={queue=1}] minecraft:golden_sword[custom_name={text:"Meteor Blade",color:"gold",italic:false},lore=[{text:"A glowing blade forged from"},{text:"a thousand meteors."},{text:"Sneak while high in the air to"},{text:"send yourself crashing down!"}],unbreakable={},enchantments={knockback:3,fire_aspect:1},tooltip_display={hidden_components:["unbreakable"]},attribute_modifiers=[{id:"gravity",type:"gravity",amount:0.2,operation:"add_multiplied_base",slot:"mainhand"}],custom_data={pyroSlam:1b}] 1
-give @a[team=Pyromaniac,scores={queue=1}] minecraft:carrot_on_a_stick[can_place_on=[{blocks:["minecraft:glowstone","minecraft:white_wool","minecraft:lime_wool","minecraft:sand","minecraft:red_terracotta"]}],custom_name={text:"Fiery Flail",color:"gold",italic:false},lore=[{text:"It's like a bow..."},{text:"but more explosive."}],unbreakable={},enchantments={fire_aspect:4,knockback:1},tooltip_display={hidden_components:["unbreakable","can_place_on"]}] 1
+give @a[team=Pyromaniac,scores={queue=1}] minecraft:golden_sword[custom_name={text:"Meteor Blade",color:"gold",italic:false},lore=[{text:"A glowing blade forged from a"},{text:"thousand meteors. You can feel its"},{text:"crushing gravity as you hold it."}],unbreakable={},enchantments={knockback:3,fire_aspect:1},tooltip_display={hidden_components:["unbreakable"]},attribute_modifiers=[{id:"gravity",type:"gravity",amount:0.2,operation:"add_multiplied_base",slot:"mainhand"}],custom_data={pyroSlam:1b}] 1
+give @a[team=Pyromaniac,scores={queue=1}] minecraft:carrot_on_a_stick[custom_name={text:"Fiery Flail",color:"gold",italic:false},lore=[{text:"It's like a bow..."},{text:"but more explosive."}],unbreakable={},enchantments={fire_aspect:4,knockback:1},tooltip_display={hidden_components:["unbreakable"]},use_cooldown={seconds:2}] 1
 
 #Ghost
 give @a[scores={queue=1},team=Ghost] minecraft:ender_eye[custom_name={text:"Ghostly Presence",color:"gray",italic:false},lore=[{text:"Enter the realm of spirits"},{text:"and drift around freely."}],enchantment_glint_override=true,attribute_modifiers=[{id:"kbw:ghost_presence_speed",type:"minecraft:movement_speed",amount:0.5d,operation:"add_multiplied_total",slot:"mainhand"},{id:"kbw:ghost_presence_kbr",type:"minecraft:knockback_resistance",amount:-1.0d,operation:"add_value",slot:"mainhand"},{id:"kbw:ghost_presence_ad",type:"minecraft:attack_damage",amount:-1.0d,operation:"add_value",slot:"mainhand"}]] 1
-give @a[scores={queue=1},team=Ghost] minecraft:carved_pumpkin[custom_name={text:"Scary Face",color:"gray",italic:false},lore=[{text:"Hold your ground and"},{text:"make your opponents"},{text:"jump with fright!"}],enchantments={knockback:4},attribute_modifiers=[{id:"kbw:scaryface_mainhand_slow",type:"minecraft:movement_speed",amount:-1.0d,operation:"add_multiplied_total",slot:"mainhand"},{id:"kbw:scaryface_offhand_slow",type:"minecraft:movement_speed",amount:-2.0d,operation:"add_multiplied_base",slot:"offhand"}]] 1
+give @a[scores={queue=1},team=Ghost] minecraft:carved_pumpkin[custom_name={text:"Scary Face",color:"gray",italic:false},lore=[{text:"Hold your ground and"},{text:"make your opponents"},{text:"jump with fright!"}],enchantments={knockback:4,piercing:10,sharpness:5},attribute_modifiers=[{id:"kbw:scaryface_mainhand_slow",type:"minecraft:movement_speed",amount:-2.0d,operation:"add_multiplied_total",slot:"any"}],piercing_weapon={deals_knockback:true,hit_sound:"entity.rabbit.attack",sound:"entity.armadillo.brush"},swing_animation={duration:10,type:"stab"},attack_range={min_reach:0.0,max_reach:3.0,min_creative_reach:0.0,max_creative_reach:5.0,hitbox_margin:0.5},custom_data={ghost:1b}] 1
 #give @a[scores={queue=1},team=Ghost] minecraft:blaze_powder[custom_name={text:"Cursed Flames",color:"gray",italic:false},lore=[{text:"Spirit fire seems to"},{text:"burn the living, too."}],enchantments={knockback:1,fire_aspect:1},attribute_modifiers=[{id:"kbw:cursedflames_speed",type:"minecraft:movement_speed",amount:0.3d,operation:"add_multiplied_total",slot:"mainhand"}]] 1
 
 #Reaper
-give @a[scores={queue=1},team=Reaper] minecraft:netherite_hoe[custom_name={text:"Soul Reaper",color:"black",italic:false},lore=[{text:"This mysterious scythe has"},{text:"strange powers. Not even you"},{text:"have complete mastery of it. "}],unbreakable={},enchantments={sharpness:10,knockback:2},custom_data={scythe:2b},tooltip_display={hidden_components:["unbreakable","attribute_modifiers"]}] 1
-give @a[scores={queue=1},team=Reaper] minecraft:wooden_hoe[custom_name={text:"Farmer's Scythe",color:"black",italic:false},lore=[{text:"Knockback 0","color":gray,"italic":false},{text:"This stick isn't very good"},{text:"at stealing souls. You should"},{text:"probably get your weapon back."}],unbreakable={},enchantment_glint_override=true,custom_data={scythe:1b},tooltip_display={hidden_components:["unbreakable","attribute_modifiers"]}] 1
+give @a[scores={queue=1},team=Reaper] minecraft:netherite_hoe[custom_name={text:"Soul Reaper",color:"black",italic:false},lore=[{text:"This mysterious scythe has"},{text:"strange powers. Not even you"},{text:"have complete mastery of it. "}],unbreakable={},enchantments={knockback:2},custom_data={scythe:2b},tooltip_display={hidden_components:["unbreakable","attribute_modifiers"]}] 1
+give @a[scores={queue=1},team=Reaper] minecraft:wooden_hoe[custom_name={text:"Farmer's Scythe",color:"black",italic:false},lore=[{text:"Knockback 0","color":gray,"italic":false},{text:"This light stick isn't very good at"},{text:"stealing souls. You should probably"},{text:"get your weapon back."}],unbreakable={},enchantment_glint_override=true,custom_data={scythe:1b},tooltip_display={hidden_components:["unbreakable"]},attribute_modifiers=[{id:"movement_speed",type:"movement_speed",amount:0.1,operation:"add_multiplied_base",slot:"mainhand"}]] 1
 
 #Duelist
 give @a[scores={queue=1},team=Duelist] minecraft:iron_axe[custom_name={text:"Iron Axe",color:"red",italic:false},lore=[{text:"All you need to survive"},{text:"is your trusty iron axe"}],unbreakable={},damage=0,enchantments={knockback:3},custom_data={duelist:1b},tooltip_display={hidden_components:["unbreakable","attribute_modifiers"]}] 1
@@ -79,8 +79,11 @@ execute as @a run attribute @s minecraft:attack_knockback base set 0
 execute as @a run attribute @s minecraft:jump_strength base set 0.42
 execute as @a run attribute @s minecraft:gravity base set 0.08
 
+#Reveal score on sidebar
+scoreboard objectives setdisplay sidebar score
+
 #Teleportating all inGame players into arena
-spreadplayers 0 0 3 11 false @a[tag=inGame]
+spreadplayers 0 0 0 11 false @a[tag=inGame]
 
 # %game set to true
 scoreboard players set %game wins 1
