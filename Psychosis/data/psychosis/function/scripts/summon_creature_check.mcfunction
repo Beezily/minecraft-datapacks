@@ -1,5 +1,5 @@
 #Summons psychosis creatures first check RUN BY PLAYER
-summon area_effect_cloud ~ ~4 ~ {Tags:["psyMarker"]}
+summon marker ~ ~4 ~ {Tags:["psyMarker"]}
 scoreboard players set %crash_check psychosis 0
 function psychosis:scripts/spread_far
 

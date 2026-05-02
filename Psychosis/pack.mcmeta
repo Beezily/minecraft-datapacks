@@ -1,6 +1,7 @@
 {
-    "pack":
-    {"pack_format": 71,
-     "description": "An alternative way to remove phantoms"
-    }
+  "pack": {
+    "min_format": [101, 1],
+    "max_format": [101, 1],
+    "description": "An alternative way to remove phantoms"
+  }
 }

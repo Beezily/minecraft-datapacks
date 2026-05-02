@@ -1,7 +1,7 @@
 #Removes all tags and scoreboards from the game before disabling the pack
 tellraw @a [{"text":"removed - "},{"text":"Psychosis","color":"dark_gray","bold":true},{"text":" - ","color":"white","bold":false},{"text":"by Beezily","color":"light_purple"}]
 
-gamerule doInsomnia true
+gamerule spawn_phantoms true
 
 execute as @e[tag=psyCreature] run function psychosis:scripts/kill_creature
 execute as @e[tag=psyDying] run function psychosis:scripts/kill_creature

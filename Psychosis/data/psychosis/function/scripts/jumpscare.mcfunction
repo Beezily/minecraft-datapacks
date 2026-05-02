@@ -20,3 +20,8 @@ scoreboard players set @e[tag=psySpawned] psychosis 15
 execute as @e[tag=psySpawned] at @s run forceload add ~ ~ ~ ~
 
 execute as @e[tag=psySpawned] run tag @s remove psySpawned
+
+# Summon phantoms
+execute at @s positioned ~ ~20 ~ run summon minecraft:phantom
+execute at @s positioned ~ ~22 ~ run summon minecraft:phantom
+execute at @s positioned ~ ~24 ~ run summon minecraft:phantom

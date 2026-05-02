@@ -10,7 +10,7 @@ execute as @a[scores={psy_death=1..,psychosis=72000..}] at @s as @e[tag=psyCreat
 execute as @a[scores={psy_death=1..,psychosis=1..}] run scoreboard players set @s psychosis 0
 execute as @a[scores={psy_death=1..}] run scoreboard players set @s psy_death 0
 execute as @e[type=minecraft:player,gamemode=!spectator] unless score @s psychosis matches 72000.. run scoreboard players add @s psychosis 1
-execute store result score %time psychosis run time query daytime
+execute store result score %time psychosis run time query minecraft:day
 
 #Guarenteed psychosis tag reset (if they leave the game and come back or something). Again, avoiding tags because they are apparently inefficient
 execute as @a[tag=psychosis] unless score @s psy_check matches ..-1 run scoreboard players set @s psy_check 1
@@ -80,16 +80,18 @@ execute if score %time psychosis matches 13000..23000 as @e[type=minecraft:playe
 execute as @a[tag=psyHaunted,scores={psy_sound=0}] at @s run playsound minecraft:ambient.soul_sand_valley.mood ambient @s ~ ~ ~ 0.45 0
 execute as @a[tag=psyHaunted,scores={psy_sound=0}] run scoreboard players set @s psy_sound -200
 execute as @a[tag=psyHaunted,scores={psy_sound=..-1}] run scoreboard players add @s psy_sound 1
-execute as @e[tag=psyCreature,type=wither_skeleton,scores={psy_sound=1..}] run scoreboard players remove @s psy_sound 1
-execute as @e[tag=psyCreature,type=wither_skeleton,scores={psy_sound=0}] at @s run playsound minecraft:entity.ravager.stunned ambient @a[tag=psychosis] ~ ~ ~ 0.8 0.7
-execute as @e[tag=psyCreature,type=wither_skeleton,scores={psy_sound=0}] at @s run playsound minecraft:entity.drowned.ambient ambient @a[tag=psychosis] ~ ~ ~ 0.7 0
-execute as @e[tag=psyCreature,type=wither_skeleton,scores={psy_sound=0}] at @s run playsound minecraft:entity.wither.ambient ambient @a[tag=psychosis] ~ ~ ~ 0.12 0.7
-execute as @e[tag=psyCreature,type=wither_skeleton,scores={psy_sound=0}] at @s run playsound minecraft:entity.skeleton.step ambient @a[tag=psychosis] ~ ~ ~ 1 0.4
-execute as @e[tag=psyCreature,type=wither_skeleton,scores={psy_sound=240}] at @s run playsound minecraft:entity.warden.agitated ambient @a[tag=psychosis] ~ ~ ~ 1 0
-execute as @e[tag=psyCreature,type=wither_skeleton,scores={psy_sound=240}] at @s run playsound minecraft:entity.drowned.ambient ambient @a[tag=psychosis] ~ ~ ~ 0.7 0
-execute as @e[tag=psyCreature,type=wither_skeleton,scores={psy_sound=240}] at @s run playsound minecraft:entity.wither.ambient ambient @a[tag=psychosis] ~ ~ ~ 0.12 0.7
-execute as @e[tag=psyCreature,type=wither_skeleton,scores={psy_sound=240}] at @s run playsound minecraft:entity.skeleton.step ambient @a[tag=psychosis] ~ ~ ~ 1 0.4
-execute as @e[tag=psyCreature,type=wither_skeleton,scores={psy_sound=0}] run scoreboard players set @s psy_sound 480
+execute as @e[tag=psyCreature,type=wither_skeleton,scores={psy_sound=2..}] run scoreboard players remove @s psy_sound 1
+execute as @e[tag=psyCreature,type=wither_skeleton,scores={psy_sound=..-2}] run scoreboard players add @s psy_sound 1
+execute as @e[tag=psyCreature,type=wither_skeleton,scores={psy_sound=1}] at @s run playsound minecraft:entity.ravager.stunned ambient @a[tag=psychosis] ~ ~ ~ 0.8 0.7
+execute as @e[tag=psyCreature,type=wither_skeleton,scores={psy_sound=1}] at @s run playsound minecraft:entity.drowned.ambient ambient @a[tag=psychosis] ~ ~ ~ 0.7 0
+execute as @e[tag=psyCreature,type=wither_skeleton,scores={psy_sound=1}] at @s run playsound minecraft:entity.wither.ambient ambient @a[tag=psychosis] ~ ~ ~ 0.12 0.7
+execute as @e[tag=psyCreature,type=wither_skeleton,scores={psy_sound=1}] at @s run playsound minecraft:entity.skeleton.step ambient @a[tag=psychosis] ~ ~ ~ 1 0.4
+execute as @e[tag=psyCreature,type=wither_skeleton,scores={psy_sound=-1}] at @s run playsound minecraft:entity.warden.agitated ambient @a[tag=psychosis] ~ ~ ~ 1 0
+execute as @e[tag=psyCreature,type=wither_skeleton,scores={psy_sound=-1}] at @s run playsound minecraft:entity.drowned.ambient ambient @a[tag=psychosis] ~ ~ ~ 0.7 0
+execute as @e[tag=psyCreature,type=wither_skeleton,scores={psy_sound=-1}] at @s run playsound minecraft:entity.wither.ambient ambient @a[tag=psychosis] ~ ~ ~ 0.12 0.7
+execute as @e[tag=psyCreature,type=wither_skeleton,scores={psy_sound=-1}] at @s run playsound minecraft:entity.skeleton.step ambient @a[tag=psychosis] ~ ~ ~ 1 0.4
+execute as @e[tag=psyCreature,type=wither_skeleton,scores={psy_sound=1}] store result score @s psy_sound run random value -300..-160
+execute as @e[tag=psyCreature,type=wither_skeleton,scores={psy_sound=-1}] store result score @s psy_sound run random value 160..300
 execute as @e[tag=psyCreature,type=wither_skeleton] if predicate psychosis:soul at @s run particle minecraft:sculk_soul ~ ~1 ~ 0.3 1 0.3 0 1 normal @a
 execute as @e[tag=psyReaper,type=wither_skeleton] at @s run particle minecraft:sculk_soul ~ ~1 ~ 0.3 1 0.3 0 1 normal @a
 # Level 3 skeleton interaction, increment, and animation

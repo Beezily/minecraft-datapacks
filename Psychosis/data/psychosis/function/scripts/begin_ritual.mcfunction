@@ -1,5 +1,8 @@
 #Scary ritual animation finale start RUN BY PLAYER
 
+# Stops all music sound
+stopsound @s music
+
 #Adds to psychosis, scoreboard is just a second failsafe to prevent more spawns
 scoreboard players add @s psychosis 1
 tag @s remove psyHaunted

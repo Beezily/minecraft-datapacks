@@ -1,6 +1,6 @@
 tellraw @a [{"text":"reload - "},{"text":"Psychosis","color":"dark_gray","bold":true},{"text":" - ","color":"white","bold":false},{"text":"by Beezily","color":"light_purple"}]
 
-gamerule doInsomnia false
+gamerule spawn_phantoms false
 
 scoreboard objectives add psychosis dummy
 scoreboard objectives add psy_sound dummy
