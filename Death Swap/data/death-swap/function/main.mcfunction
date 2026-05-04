@@ -98,9 +98,15 @@ execute if score %timer ds matches -601 as @a[gamemode=survival] at @s run plays
 execute if score %timer ds matches -601 if score %iteration ds = %final_iteration ds run function death-swap:scripts/end_game
 execute if score %timer ds matches -601 unless score %iteration ds = %final_iteration ds at @r run function death-swap:scripts/next_round
 
+# Calculate score increment if died during swap period
+# ONLY IF LOCKOUT MODE IS OFF
+execute if score %lockout ds matches 0 as @a[scores={ds_died=1..}] run gamemode spectator @s
+execute if score %lockout ds matches 0 run scoreboard players reset @a[scores={ds_died=1..}] ds_died
+
 # Put all players that died into spectator mode, they will be respawned next round
-execute as @a[scores={ds_died=1..}] run gamemode spectator @s
-scoreboard players reset @a[scores={ds_died=1..}] ds_died
+# ONLY IF LOCKOUT MODE IS ON
+execute if score %lockout ds matches 1 if score %timer ds matches ..-1 as @a[scores={ds_died=1..}] run function death-swap:lockout/determine_cause
+execute if score %lockout ds matches 1 run scoreboard players reset @a[scores={ds_died=1..}] ds_died
 
 # team_tp trigger (only 1 time use)
 execute as @a[team=!,scores={team_tp=1..}] run tellraw @s {"text":"You have used your team teleport this round and teleported to a random teammate!","bold":false,"color":"light_purple"}
@@ -137,6 +143,10 @@ execute as @a[gamemode=spectator,team=Aqua] at @s unless entity @a[team=Aqua,gam
 # PURPLE
 execute as @a[gamemode=spectator,team=Purple] at @s unless entity @a[team=Purple,gamemode=!spectator,distance=..24] if entity @a[team=Purple,gamemode=!spectator] run title @s actionbar {"text":"Stay close to a teammate!","color":"red"}
 execute as @a[gamemode=spectator,team=Purple] at @s unless entity @a[team=Purple,gamemode=!spectator,distance=..24] if entity @a[team=Purple,gamemode=!spectator] run tp @s @r[team=Purple,gamemode=!spectator]
+
+# Reset the source to -1 for all players if lockout mode, so irrelevant damages also pass through
+execute if score %lockout ds matches 1 run scoreboard players set @a ds_cause_generic -1
+execute if score %lockout ds matches 1 run scoreboard players set @a ds_cause_source -1
 
 # Game ticking
 # Decrement main timer down to 0 (stops at 0)

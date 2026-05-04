@@ -37,6 +37,7 @@ scoreboard players set %game ds 0
 scoreboard players set %timer ds 0
 scoreboard players set %iteration ds 0
 execute unless score %final_iteration ds matches 0.. run scoreboard players set %final_iteration ds 6
+execute unless score %lockout_limit ds matches 0.. run scoreboard players set %lockout_limit ds 2
 execute unless score %nerf_lava ds matches 0.. run scoreboard players set %nerf_lava ds 1
 execute unless score %nerf_obsidian ds matches 0.. run scoreboard players set %nerf_obsidian ds 1
 execute unless score %clear_rounds ds matches 0.. run scoreboard players set %clear_rounds ds 1
@@ -62,6 +63,7 @@ bossbar set ds:timer players @a
 bossbar set ds:timer visible false
 
 # Kill counter
+scoreboard objectives add kills dummy
 scoreboard objectives add deaths deathCount
 scoreboard objectives setdisplay below_name deaths
 scoreboard objectives setdisplay list deaths
@@ -72,6 +74,10 @@ scoreboard objectives add ds_died deathCount
 # Ordering scoreboard
 scoreboard objectives add ds_group dummy
 scoreboard objectives add ds_group_order dummy
+
+# Lockout causes 
+scoreboard objectives add ds_cause_generic dummy
+scoreboard objectives add ds_cause_source dummy
 
 # Gamerules
 gamerule show_advancement_messages false

@@ -64,6 +64,16 @@ function death-swap:scripts/gen_new_spot
 gamemode survival @a
 scoreboard players reset * ds_died
 
+# Set deaths in tab and under name
+scoreboard objectives setdisplay below_name deaths
+scoreboard objectives setdisplay list deaths
+
+# Turn off keep_inventory
+gamerule keep_inventory false
+
+# Turn off lockout mode
+scoreboard players set %lockout ds 0
+
 # Tellraw current round to all players
 tellraw @a [{"text":"Starting ","color":"green","bold":true},{"text":"Round ","color":"gold","bold":true},{"score":{"name":"%iteration","objective":"ds"},"color":"gold","bold":true},{"text":"! Swapping in 5 minutes.","color":"green","bold":true}]
 execute if score %iteration ds = %final_iteration ds run tellraw @a {"text":"This is the final round!","color":"dark_green"}

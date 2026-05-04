@@ -1,0 +1,22 @@
+{
+  "criteria": {
+    "triggered": {
+      "trigger": "minecraft:entity_hurt_player",
+      "conditions": {
+        "damage": {
+          "type": {
+            "tags": [
+              {
+                "id": "death-swap:death_causes/generic/lightning",
+                "expected": true
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "rewards": {
+    "function": "death-swap:death_causes/generic/lightning"
+  }
+}
